@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Play, Pause, RotateCcw, Settings } from 'lucide-react';
+import { Play, Pause, RotateCcw, Settings, Info } from 'lucide-react';
 import { useTimer, type TimerMode } from '@/hooks/useTimer';
 import { playBeep, playChime } from '@/hooks/useAudio';
 import { useSessionStats } from '@/hooks/useSessionStats';
@@ -8,6 +8,7 @@ import AudioPlayer from './AudioPlayer';
 import SessionStats from './SessionStats';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 import { useState } from 'react';
 
 interface TimerProps {
