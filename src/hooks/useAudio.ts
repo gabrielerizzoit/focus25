@@ -29,6 +29,9 @@ export function useAudio() {
       setActiveSound(null);
       return;
     }
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'audio_select', { sound_type: sound });
+    }
     const audio = new Audio(SOUND_FILES[sound]);
     audio.loop = true;
     audio.volume = volume;

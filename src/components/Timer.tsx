@@ -78,7 +78,7 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
           {modes.map(({ id, label }) => (
             <span key={id} className="flex items-center gap-0.5">
               <button
-                onClick={() => switchMode(id)}
+                onClick={() => { switchMode(id); if (typeof window.gtag === 'function') window.gtag('event', 'mode_switch', { timer_mode: id }); }}
                 className={`px-4 py-1.5 rounded-full text-sm transition-all ${
                   mode === id
                     ? isBreak ? 'bg-secondary text-secondary-foreground' : 'bg-primary text-primary-foreground'
