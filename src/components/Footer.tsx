@@ -1,50 +1,57 @@
 import { Link } from 'react-router-dom';
+import { useLanguage } from '@/contexts/LanguageContext';
 
-const Footer = () => (
-  <footer className="w-full border-t border-border mt-16 py-8 px-4">
-    <div className="max-w-4xl mx-auto">
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 text-sm">
-        <div>
-          <h4 className="font-medium text-foreground mb-3">Timers</h4>
-          <ul className="space-y-1.5 text-muted-foreground">
-            <li><Link to="/pomodoro-timer" className="hover:text-foreground transition-colors">Pomodoro Timer</Link></li>
-            <li><Link to="/focus-timer" className="hover:text-foreground transition-colors">Focus Timer</Link></li>
-            <li><Link to="/study-timer" className="hover:text-foreground transition-colors">Study Timer</Link></li>
-            <li><Link to="/online-timer" className="hover:text-foreground transition-colors">Online Timer</Link></li>
-            <li><Link to="/free-timer" className="hover:text-foreground transition-colors">Free Timer</Link></li>
-          </ul>
+const Footer = () => {
+  const { t, langPrefix } = useLanguage();
+  const f = t.footer;
+  const p = (path: string) => `${langPrefix}${path}`;
+
+  return (
+    <footer className="w-full border-t border-border mt-16 py-8 px-4">
+      <div className="max-w-4xl mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 text-sm">
+          <div>
+            <h4 className="font-medium text-foreground mb-3">{f.timers}</h4>
+            <ul className="space-y-1.5 text-muted-foreground">
+              <li><Link to={p('/pomodoro-timer')} className="hover:text-foreground transition-colors">{f.pomodoroTimer}</Link></li>
+              <li><Link to={p('/focus-timer')} className="hover:text-foreground transition-colors">{f.focusTimer}</Link></li>
+              <li><Link to={p('/study-timer')} className="hover:text-foreground transition-colors">{f.studyTimer}</Link></li>
+              <li><Link to={p('/online-timer')} className="hover:text-foreground transition-colors">{f.onlineTimer}</Link></li>
+              <li><Link to={p('/free-timer')} className="hover:text-foreground transition-colors">{f.freeTimer}</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-medium text-foreground mb-3">{f.presetTimers}</h4>
+            <ul className="space-y-1.5 text-muted-foreground">
+              <li><Link to={p('/25-minute-timer')} className="hover:text-foreground transition-colors">{f.minuteTimer25}</Link></li>
+              <li><Link to={p('/timer-15-minutes')} className="hover:text-foreground transition-colors">{f.minuteTimer15}</Link></li>
+              <li><Link to={p('/timer-10-minutes')} className="hover:text-foreground transition-colors">{f.minuteTimer10}</Link></li>
+              <li><Link to={p('/timer-5-minutes')} className="hover:text-foreground transition-colors">{f.minuteTimer5}</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-medium text-foreground mb-3">{f.resources}</h4>
+            <ul className="space-y-1.5 text-muted-foreground">
+              <li><Link to={p('/pomofocus-alternative')} className="hover:text-foreground transition-colors">{f.pomofocusAlt}</Link></li>
+              <li><Link to={p('/marinara-timer-alternative')} className="hover:text-foreground transition-colors">{f.marinaraAlt}</Link></li>
+              <li><Link to={p('/timer-online')} className="hover:text-foreground transition-colors">{f.timerOnline}</Link></li>
+              <li><Link to={p('/blog')} className="hover:text-foreground transition-colors">{f.blog}</Link></li>
+            </ul>
+          </div>
         </div>
-        <div>
-          <h4 className="font-medium text-foreground mb-3">Preset Timers</h4>
-          <ul className="space-y-1.5 text-muted-foreground">
-            <li><Link to="/25-minute-timer" className="hover:text-foreground transition-colors">25 Minute Timer</Link></li>
-            <li><Link to="/timer-15-minutes" className="hover:text-foreground transition-colors">15 Minute Timer</Link></li>
-            <li><Link to="/timer-10-minutes" className="hover:text-foreground transition-colors">10 Minute Timer</Link></li>
-            <li><Link to="/timer-5-minutes" className="hover:text-foreground transition-colors">5 Minute Timer</Link></li>
-          </ul>
+        <div className="flex flex-wrap justify-center gap-4 mt-6 text-xs text-muted-foreground">
+          <Link to={p('/how-it-works')} className="hover:text-foreground transition-colors">{f.howItWorks}</Link>
+          <Link to={p('/faq')} className="hover:text-foreground transition-colors">{f.faq}</Link>
+          <Link to={p('/terms')} className="hover:text-foreground transition-colors">{f.terms}</Link>
+          <Link to={p('/privacy')} className="hover:text-foreground transition-colors">{f.privacy}</Link>
+          <Link to={p('/fair-use')} className="hover:text-foreground transition-colors">{f.fairUse}</Link>
         </div>
-        <div>
-          <h4 className="font-medium text-foreground mb-3">Resources</h4>
-          <ul className="space-y-1.5 text-muted-foreground">
-            <li><Link to="/pomofocus-alternative" className="hover:text-foreground transition-colors">Pomofocus Alternative</Link></li>
-            <li><Link to="/marinara-timer-alternative" className="hover:text-foreground transition-colors">Marinara Timer Alternative</Link></li>
-            <li><Link to="/timer-online" className="hover:text-foreground transition-colors">Timer Online</Link></li>
-            <li><Link to="/blog" className="hover:text-foreground transition-colors">Blog</Link></li>
-          </ul>
+        <div className="mt-4 pt-4 border-t border-border text-center text-xs text-muted-foreground">
+          {f.copyright.replace('{year}', String(new Date().getFullYear()))}
         </div>
       </div>
-      <div className="flex flex-wrap justify-center gap-4 mt-6 text-xs text-muted-foreground">
-        <Link to="/how-it-works" className="hover:text-foreground transition-colors">How It Works</Link>
-        <Link to="/faq" className="hover:text-foreground transition-colors">FAQ</Link>
-        <Link to="/terms" className="hover:text-foreground transition-colors">Terms</Link>
-        <Link to="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
-        <Link to="/fair-use" className="hover:text-foreground transition-colors">Fair Use</Link>
-      </div>
-      <div className="mt-4 pt-4 border-t border-border text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} Focus25 — Free Pomodoro Timer Online
-      </div>
-    </div>
-  </footer>
-);
+    </footer>
+  );
+};
 
 export default Footer;
