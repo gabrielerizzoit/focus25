@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Play, Pause, RotateCcw, Settings } from 'lucide-react';
+import { Play, Pause, RotateCcw, Settings, Info } from 'lucide-react';
 import { useTimer, type TimerMode } from '@/hooks/useTimer';
 import { playBeep, playChime } from '@/hooks/useAudio';
 import { useSessionStats } from '@/hooks/useSessionStats';
@@ -8,6 +8,7 @@ import AudioPlayer from './AudioPlayer';
 import SessionStats from './SessionStats';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 import { useState } from 'react';
 
 interface TimerProps {
@@ -69,17 +70,26 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
       {!defaultDuration && (
         <div className="flex gap-1 bg-muted/30 rounded-full p-1">
           {modes.map(({ id, label }) => (
-            <button
-              key={id}
-              onClick={() => switchMode(id)}
-              className={`px-4 py-1.5 rounded-full text-sm transition-all ${
-                mode === id
-                  ? isBreak ? 'bg-secondary text-secondary-foreground' : 'bg-primary text-primary-foreground'
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
-            >
-              {label}
-            </button>
+            <span key={id} className="flex items-center gap-0.5">
+              <button
+                onClick={() => switchMode(id)}
+                className={`px-4 py-1.5 rounded-full text-sm transition-all ${
+                  mode === id
+                    ? isBreak ? 'bg-secondary text-secondary-foreground' : 'bg-primary text-primary-foreground'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                {label}
+              </button>
+              {id === 'longBreak' && (
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Info size={14} className="text-muted-foreground cursor-help" />
+                  </TooltipTrigger>
+                  <TooltipContent>Long break starts after 4 focus sessions</TooltipContent>
+                </Tooltip>
+              )}
+            </span>
           ))}
         </div>
       )}
@@ -122,6 +132,12 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <Switch checked={autoSwitch} onCheckedChange={setAutoSwitch} />
           <span>Auto-switch</span>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Info size={14} className="cursor-help" />
+            </TooltipTrigger>
+            <TooltipContent>Automatically switches between focus and break sessions</TooltipContent>
+          </Tooltip>
         </div>
       )}
 

@@ -33,7 +33,14 @@ const Footer = () => (
           </ul>
         </div>
       </div>
-      <div className="mt-8 pt-4 border-t border-border text-center text-xs text-muted-foreground">
+      <div className="flex flex-wrap justify-center gap-4 mt-6 text-xs text-muted-foreground">
+        <Link to="/how-it-works" className="hover:text-foreground transition-colors">How It Works</Link>
+        <Link to="/faq" className="hover:text-foreground transition-colors">FAQ</Link>
+        <Link to="/terms" className="hover:text-foreground transition-colors">Terms</Link>
+        <Link to="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
+        <Link to="/fair-use" className="hover:text-foreground transition-colors">Fair Use</Link>
+      </div>
+      <div className="mt-4 pt-4 border-t border-border text-center text-xs text-muted-foreground">
         © {new Date().getFullYear()} Focus25 — Free Pomodoro Timer Online
       </div>
     </div>
