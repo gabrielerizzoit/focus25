@@ -38,6 +38,9 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
   const timer = useTimer(defaultDuration, (mode) => {
     playChime();
     if (mode === 'focus') incrementSession();
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'session_complete', { completed_mode: mode });
+    }
     if ('Notification' in window && Notification.permission === 'granted') {
       new Notification('Focus25', {
         body: mode === 'focus' ? ui.sessionComplete : ui.breakOver,
