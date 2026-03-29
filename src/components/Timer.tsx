@@ -60,6 +60,9 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
     if ('Notification' in window && Notification.permission === 'default') {
       Notification.requestPermission();
     }
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'timer_start', { event_category: 'engagement', event_label: mode });
+    }
     start();
   };
 
