@@ -70,17 +70,26 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
       {!defaultDuration && (
         <div className="flex gap-1 bg-muted/30 rounded-full p-1">
           {modes.map(({ id, label }) => (
-            <button
-              key={id}
-              onClick={() => switchMode(id)}
-              className={`px-4 py-1.5 rounded-full text-sm transition-all ${
-                mode === id
-                  ? isBreak ? 'bg-secondary text-secondary-foreground' : 'bg-primary text-primary-foreground'
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
-            >
-              {label}
-            </button>
+            <span key={id} className="flex items-center gap-0.5">
+              <button
+                onClick={() => switchMode(id)}
+                className={`px-4 py-1.5 rounded-full text-sm transition-all ${
+                  mode === id
+                    ? isBreak ? 'bg-secondary text-secondary-foreground' : 'bg-primary text-primary-foreground'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                {label}
+              </button>
+              {id === 'longBreak' && (
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Info size={14} className="text-muted-foreground cursor-help" />
+                  </TooltipTrigger>
+                  <TooltipContent>Long break starts after 4 focus sessions</TooltipContent>
+                </Tooltip>
+              )}
+            </span>
           ))}
         </div>
       )}
