@@ -1,154 +1,135 @@
 
 
-# Focus25 — Updated Plan
+# Focus25 — Complete Update Plan
 
-## Key Changes from Original Plan
+## Overview
 
-1. **Timer logic**: Timestamp-based (Date.now()) instead of setInterval-only
-2. **Audio**: Local MP3 files from `/public/audio/` instead of Web Audio API synthesis
-3. **SEO pages**: 12 total (7 original + 5 new)
-4. **Session tracking**: localStorage-based daily counter displayed under timer
-5. **Browser notifications**: Optional, on permission grant
-
-## Architecture Note
-
-This project runs on **React + Vite** (Lovable platform constraint). True static multi-page HTML (separate .html files) is not natively supported. The approach will be:
-- React Router for routing (required by the platform)
-- `react-helmet-async` for per-page meta tags (title, description, OG tags)
-- Each page renders full semantic HTML (h1, article, nav) so crawlers that execute JS (Google, Bing) index it correctly
-- Lightweight pages — no heavy JS per route
-
-This achieves the SEO goals within platform constraints.
+This update adds 7 features: audio file swap, timer tooltips, legal pages, footer update, blog/nav cleanup, and full multi-language support (7 languages × 23 pages = 161 localized routes).
 
 ---
 
-## Phase 1: Core Timer
+## Phase 1: Quick Fixes (audio, tooltips, footer, nav)
 
-### Timer Engine
-- Use `Date.now()` to record start timestamp
-- On each animation frame / 1s interval, compute `remaining = endTime - Date.now()`
-- Accurate across tab switches — when user returns, timer reflects real elapsed time
-- Store `endTime` in state so pause/resume works correctly
+### 1A. Audio Files
+- Copy uploaded `Rain-2.wav`, `Cafe-2.mp3`, `white-noise-2.wav` to `public/audio/` as `rain.wav`, `cafe.mp3`, `white-noise.wav`
+- Update `useAudio.ts` sound file paths: `rain.wav`, `cafe.mp3`, `white-noise.wav`
 
-### Timer UI
-- Large centered countdown (mm:ss)
-- SVG progress ring animation
-- Three mode tabs: Focus (25m), Short Break (5m), Long Break (15m)
-- Start / Pause / Reset buttons
-- Auto-switch toggle (focus → break → focus)
-- Settings modal for custom durations (saved to localStorage)
-- Small text below timer: "Today: X sessions completed"
-- Info text: "Timer continues even if you switch tabs."
+### 1B. Timer Tooltips
+- In `Timer.tsx`, add `Info` icon + `Tooltip` next to:
+  - Auto-switch toggle: "Automatically switches between focus and break sessions"
+  - Long Break tab: "Long break starts after 4 focus sessions"
+- Uses existing `Tooltip` component from `src/components/ui/tooltip.tsx`
 
-### Session Tracking (localStorage)
-- `focusSessions`: count for today
-- `lastSessionDate`: to reset daily
-- Display under timer
+### 1C. Footer Update
+- Add legal links row: Terms, Privacy, Fair Use, FAQ, How It Works
+- Keep existing structure, add new section below
 
-### Design
-- Background: #0B0F14, Focus green: #4CAF50, Break yellow: #FFC107
-- "Focus25" text logo top-center
-- System sans-serif, mobile-first, centered layout
+### 1D. Navigation Cleanup
+- Verify homepage has no blog links in main area (already clean)
+- Blog articles already use CTA instead of embedded timer (already done)
 
 ---
 
-## Phase 2: Audio System
+## Phase 2: Legal & Info Pages (5 pages)
 
-### Background Sounds (local files)
-- `/public/audio/rain.mp3`
-- `/public/audio/cafe.mp3`
-- `/public/audio/white-noise.mp3`
-- HTML `<audio>` elements with `loop` attribute
-- Only ONE sound active at a time — selecting a new one stops the previous
-- Audio OFF by default; user clicks to start (browser autoplay policy)
-- Simple volume slider
-- Play/pause toggle per sound
+Create simple text content pages using `SEOHead`, `Header`, `Footer`:
 
-### Alert Sounds
-- Countdown tick in last 5 seconds (short beep via small inline audio or Web Audio oscillator — single beep is trivial)
-- Final chime when session ends
-- These are brief alerts, not background music
+| Page | Route | Content |
+|------|-------|---------|
+| Terms of Service | `/terms` | Usage terms, disclaimers, liability |
+| Privacy Policy | `/privacy` | No data collection, localStorage only, no cookies |
+| Fair Use | `/fair-use` | Audio attribution, open-source notice |
+| FAQ | `/faq` | 8-10 common questions about the timer |
+| How It Works | `/how-it-works` | Pomodoro method + Focus25 features explained |
+
+Add all 5 routes to `App.tsx`.
 
 ---
 
-## Phase 3: SEO Landing Pages (12 pages)
+## Phase 3: Multi-Language System
 
-Each page: embedded timer component + 300–600 words unique content + H1 with target keyword + internal links.
+### Architecture
 
-Original 7:
-- `/pomodoro-timer`
-- `/focus-timer`
-- `/study-timer`
-- `/25-minute-timer`
-- `/marinara-timer-alternative`
-- `/pomofocus-alternative`
-- `/online-timer`
+Create a translation system with static content per language. Each language gets prefixed routes.
 
-New 5:
-- `/timer-5-minutes` (timer defaults to 5 min)
-- `/timer-10-minutes` (timer defaults to 10 min)
-- `/timer-15-minutes` (timer defaults to 15 min)
-- `/timer-online`
-- `/free-timer`
+**Languages:** `en` (default, no prefix), `it`, `fr`, `es`, `pt`, `hi`, `tl`
 
-Each page component includes the shared Timer component with appropriate default duration and unique SEO copy.
-
----
-
-## Phase 4: Blog (10 articles)
-
-Route `/blog` (index) and `/blog/[slug]` for each. 800–1200 words each, internal links to timer pages and cross-links between articles. CTA button "Start Focus Session" linking to `/`.
-
-Articles (unchanged list of 10).
-
----
-
-## Phase 5: SEO & Polish
-
-- `react-helmet-async` for dynamic meta tags on every page
-- Open Graph + Twitter card meta
-- Semantic HTML throughout
-- Favicon (SVG clock icon)
-- Browser notification on session end (if Notification permission granted)
-- Internal linking footer on all pages
-
----
-
-## File Structure (key new files)
-
+### File Structure
 ```text
-src/
-  components/
-    Timer.tsx              — core timer with Date.now() logic
-    ProgressRing.tsx       — SVG ring
-    AudioPlayer.tsx        — sound controls
-    SessionStats.tsx       — daily session counter
-    SEOHead.tsx            — react-helmet wrapper
-    TimerPage.tsx          — shared layout for SEO pages
-    BlogLayout.tsx         — blog article layout
-  pages/
-    Index.tsx              — homepage (timer only)
-    PomodoroTimer.tsx      — /pomodoro-timer
-    FocusTimer.tsx         — /focus-timer
-    StudyTimer.tsx         — /study-timer
-    ... (12 SEO pages total)
-    Blog.tsx               — /blog index
-    blog/
-      [10 article pages]
-  hooks/
-    useTimer.ts            — timestamp-based timer hook
-    useAudio.ts            — audio management hook
-    useSessionStats.ts     — localStorage session tracking
-  data/
-    blogArticles.ts        — article content
-    seoPages.ts            — SEO page content
+src/i18n/
+  types.ts          — TypeScript interfaces for translation shape
+  en.ts             — English (UI strings + all page content)
+  it.ts             — Italian
+  fr.ts             — French
+  es.ts             — Spanish
+  pt.ts             — Portuguese
+  hi.ts             — Hindi
+  tl.ts             — Filipino
+  index.ts          — registry + getTranslation helper
+src/contexts/LanguageContext.tsx  — provider reading lang from URL
+src/components/LanguageSwitcher.tsx — dropdown in header
 ```
 
+### Translation File Shape
+Each language file exports an object with:
+- **UI strings**: timer labels, button text, tooltips, footer text, session stats
+- **SEO pages** (12): title, description, keywords, heading, body paragraphs (300-600 words each)
+- **Blog articles** (10): title, description, keywords, heading, full article content (800-1200 words)
+- **Legal pages** (5): title, content
+
+### Routing Strategy
+Update `App.tsx` to register prefixed routes for each non-English language:
+
+```tsx
+const LANGS = ['it','fr','es','pt','hi','tl'];
+// For each lang, duplicate all routes with /${lang}/ prefix
+// Pages read language from URL param and pull correct translations
+```
+
+All page components (`TimerPage`, `BlogLayout`, SEO pages, blog articles) will be refactored to accept a `lang` prop and render translated content from the i18n files.
+
+### SEO Implementation
+- `SEOHead.tsx`: Add `hreflang` link tags for all 7 language variants of each page
+- `SEOHead.tsx`: Set `<html lang="xx">` dynamically via Helmet
+- Each page gets unique translated meta title + description
+
+### Language Switcher
+- Small dropdown in `Header.tsx` top-right
+- Shows current language code (EN/IT/FR/ES/PT/HI/TL)
+- On select, navigates to same page in selected language
+- Clean, minimal design
+
+### Content Generation Approach
+Each language file will contain naturally adapted (not literally translated) content with localized SEO keywords. Articles will maintain the same structure but use natural phrasing for each language.
+
+---
+
+## Phase 4: Wire Everything Together
+
+- Update `App.tsx` with all new routes (5 legal + ~138 i18n routes)
+- Wrap app in `LanguageProvider`
+- Update `Header.tsx` with `LanguageSwitcher`
+- Update all page components to use translations
+- Update internal links throughout to respect current language prefix
+
+---
+
 ## Implementation Order
-1. Timer engine + UI (homepage)
-2. Audio system
-3. Session tracking
-4. 12 SEO pages
-5. 10 blog articles
-6. Meta tags, favicon, notifications, final polish
+
+1. Audio files + tooltips + footer (quick wins)
+2. Legal pages
+3. i18n system (types, context, English extraction)
+4. Translation files (one language at a time)
+5. Route registration + component refactoring
+6. Language switcher + hreflang tags
+
+---
+
+## Technical Notes
+
+- Translation files will be large (~2000-3000 lines each) — this is intentional for static SEO content
+- No runtime translation APIs — all content is pre-written
+- Platform uses React Router (not true static HTML), but react-helmet-async ensures proper meta tags for crawlers
+- Timer logic (`useTimer.ts`) remains unchanged — already uses `Date.now()`
+- Blog articles do NOT embed the timer — only CTA button (already implemented)
 
