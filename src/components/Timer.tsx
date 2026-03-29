@@ -132,6 +132,12 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <Switch checked={autoSwitch} onCheckedChange={setAutoSwitch} />
           <span>Auto-switch</span>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Info size={14} className="cursor-help" />
+            </TooltipTrigger>
+            <TooltipContent>Automatically switches between focus and break sessions</TooltipContent>
+          </Tooltip>
         </div>
       )}
 

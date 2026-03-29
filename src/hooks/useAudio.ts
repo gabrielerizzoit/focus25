@@ -3,9 +3,9 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 export type SoundType = 'rain' | 'cafe' | 'white-noise';
 
 const SOUND_FILES: Record<SoundType, string> = {
-  rain: '/audio/rain.mp3',
+  rain: '/audio/rain.wav',
   cafe: '/audio/cafe.mp3',
-  'white-noise': '/audio/white-noise.mp3',
+  'white-noise': '/audio/white-noise.wav',
 };
 
 export function useAudio() {
