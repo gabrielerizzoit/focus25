@@ -50,6 +50,8 @@ export function useTimer(
   const endTimeRef = useRef<number | null>(null);
   const pausedRemainingRef = useRef<number>(duration);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const prevSettingsRef = useRef(settings);
+  const prevModeRef = useRef(mode);
 
   const clearTimer = useCallback(() => {
     if (intervalRef.current) {
