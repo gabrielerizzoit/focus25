@@ -88,12 +88,12 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
                 {label}
               </button>
               {id === 'longBreak' && (
-                <Tooltip>
-                  <TooltipTrigger asChild>
+                <Popover>
+                  <PopoverTrigger asChild>
                     <Info size={14} className="text-muted-foreground cursor-help" />
-                  </TooltipTrigger>
-                  <TooltipContent>{ui.longBreakTooltip}</TooltipContent>
-                </Tooltip>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto max-w-xs text-sm p-2">{ui.longBreakTooltip}</PopoverContent>
+                </Popover>
               )}
             </span>
           ))}
