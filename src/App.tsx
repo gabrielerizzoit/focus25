@@ -53,6 +53,7 @@ const App = () => (
         <Toaster />
         <BrowserRouter>
           <LanguageProvider>
+            <ScrollToTop />
             <Routes>
               {/* English routes */}
               <Route path="/" element={<Index />} />
