@@ -50,6 +50,8 @@ export function useTimer(
   const endTimeRef = useRef<number | null>(null);
   const pausedRemainingRef = useRef<number>(duration);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const prevSettingsRef = useRef(settings);
+  const prevModeRef = useRef(mode);
 
   const clearTimer = useCallback(() => {
     if (intervalRef.current) {
@@ -147,10 +149,16 @@ export function useTimer(
   // Reset duration when settings or mode changes
   useEffect(() => {
     if (!isRunning) {
-      const d = defaultDuration || settings[mode];
-      pausedRemainingRef.current = d;
-      setRemaining(d);
+      const settingsChanged = prevSettingsRef.current !== settings;
+      const modeChanged = prevModeRef.current !== mode;
+      if (settingsChanged || modeChanged) {
+        const d = defaultDuration || settings[mode];
+        pausedRemainingRef.current = d;
+        setRemaining(d);
+      }
     }
+    prevSettingsRef.current = settings;
+    prevModeRef.current = mode;
   }, [settings, mode, defaultDuration, isRunning]);
 
   useEffect(() => () => clearTimer(), [clearTimer]);
