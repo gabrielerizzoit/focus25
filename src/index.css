@@ -55,3 +55,111 @@
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 }
+
+/* Article prose styles */
+.prose-article p {
+  margin-bottom: 1rem;
+  line-height: 1.75;
+}
+
+.prose-article h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: hsl(var(--foreground));
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-article h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-article ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose-article ul li {
+  margin-bottom: 0.35rem;
+  line-height: 1.6;
+}
+
+.prose-article ol {
+  list-style: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose-article ol li {
+  margin-bottom: 0.35rem;
+  line-height: 1.6;
+}
+
+.prose-article strong {
+  color: hsl(var(--foreground));
+  font-weight: 600;
+}
+
+.prose-article hr {
+  border: none;
+  border-top: 1px solid hsl(var(--border));
+  margin: 2rem 0;
+}
+
+.prose-article img {
+  border-radius: 0.75rem;
+  margin: 1.5rem 0;
+  width: 100%;
+  height: auto;
+}
+
+/* Highlight / tip box */
+.content-tip {
+  background: hsl(var(--muted));
+  border-left: 3px solid hsl(var(--primary));
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.content-tip strong {
+  color: hsl(var(--primary));
+}
+
+/* CTA block at end of articles */
+.content-cta {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.content-cta p {
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+  color: hsl(var(--foreground));
+}
+
+.content-cta a {
+  display: inline-block;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  padding: 0.6rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.content-cta a:hover {
+  opacity: 0.9;
+}
