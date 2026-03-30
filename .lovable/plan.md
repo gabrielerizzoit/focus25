@@ -1,44 +1,55 @@
 
 
-# Add GA4 Event Tracking for User Actions
+# Fix: Timer Pause/Resume Reset + Mobile Tooltips
 
-## What Changes
+## Bug 1: Timer resets to full duration on pause/resume
 
-Add `gtag` event calls to three areas:
+**Root cause:** In `useTimer.ts`, the effect on lines 148-154 resets `remaining` to full duration whenever `isRunning` is false. When the user pauses, `isRunning` becomes false, triggering this effect which overwrites the paused time with the full duration.
 
-### 1. Audio Selection (`useAudio.ts`)
-In `playSound()` — fire `audio_select` event with the sound type (rain/cafe/white-noise).
+**Fix:** Track previous settings and mode values so the reset effect only fires when settings or mode *actually change*, not when `isRunning` changes.
 
-### 2. Mode Switching (`Timer.tsx`)
-In the mode tab click handler — fire `mode_switch` event with the selected mode (focus/shortBreak/longBreak).
+In `useTimer.ts`:
+- Add `useRef` to track previous settings and mode
+- Change the effect on lines 148-154 to only reset when settings or mode differ from previous values (not on every `isRunning` change)
 
-### 3. Session Completion (`Timer.tsx`)
-In the `onComplete` callback passed to `useTimer` — fire `session_complete` event with the completed mode.
+```ts
+const prevSettingsRef = useRef(settings);
+const prevModeRef = useRef(mode);
+
+useEffect(() => {
+  if (!isRunning) {
+    const settingsChanged = prevSettingsRef.current !== settings;
+    const modeChanged = prevModeRef.current !== mode;
+    if (settingsChanged || modeChanged) {
+      const d = defaultDuration || settings[mode];
+      pausedRemainingRef.current = d;
+      setRemaining(d);
+    }
+  }
+  prevSettingsRef.current = settings;
+  prevModeRef.current = mode;
+}, [settings, mode, defaultDuration, isRunning]);
+```
+
+---
+
+## Bug 2: Tooltips don't work on mobile
+
+**Root cause:** Radix UI `Tooltip` is hover-only by design — no touch/tap support on mobile.
+
+**Fix:** Replace the two tooltip instances in `Timer.tsx` with a `Popover` component (from existing `src/components/ui/popover.tsx`), which opens on click/tap and works on both desktop and mobile. The visual appearance stays the same — small info text appearing near the `Info` icon.
+
+In `Timer.tsx`:
+- Import `Popover, PopoverTrigger, PopoverContent` instead of `Tooltip, TooltipTrigger, TooltipContent`
+- Replace both tooltip usages (Long Break info icon and Auto-switch info icon) with `Popover` equivalents
+- The `Info` icon becomes the `PopoverTrigger` — tap on mobile, click on desktop
+
+---
 
 ## Files Modified
 
 | File | Change |
 |------|--------|
-| `src/hooks/useAudio.ts` | Add `gtag('event', 'audio_select', {...})` in `playSound()` |
-| `src/components/Timer.tsx` | Add `gtag` call in mode switch button `onClick` and in the `onComplete` callback |
-
-## Helper
-
-Create a small `trackEvent` utility to avoid repeating the `typeof gtag` check everywhere:
-
-```ts
-function trackEvent(name: string, params: Record<string, string>) {
-  if (typeof window.gtag === 'function') {
-    window.gtag('event', name, params);
-  }
-}
-```
-
-## Events Summary
-
-| Event Name | Trigger | Parameters |
-|------------|---------|------------|
-| `audio_select` | User clicks a sound button | `sound_type`: rain/cafe/white-noise |
-| `mode_switch` | User clicks Focus/Short/Long tab | `timer_mode`: focus/shortBreak/longBreak |
-| `session_complete` | Timer reaches 0 | `completed_mode`: focus/shortBreak/longBreak |
+| `src/hooks/useTimer.ts` | Fix reset effect to only trigger on settings/mode change |
+| `src/components/Timer.tsx` | Replace `Tooltip` with `Popover` for the two info icons |
 
