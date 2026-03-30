@@ -22,7 +22,7 @@ const BlogLayout = ({ slug }: BlogLayoutProps) => {
         <article>
           <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-6">{article.heading}</h1>
           <div
-            className="prose prose-invert text-muted-foreground text-sm leading-relaxed space-y-4"
+            className="prose-article text-muted-foreground text-sm leading-relaxed"
             dangerouslySetInnerHTML={{ __html: article.content }}
           />
           {article.relatedLinks.length > 0 && (

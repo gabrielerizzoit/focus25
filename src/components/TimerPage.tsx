@@ -29,7 +29,7 @@ const TimerPage = ({ slug, defaultDuration }: TimerPageProps) => {
           </Link>
         </div>
         <article
-          className="prose prose-invert max-w-2xl text-muted-foreground text-sm leading-relaxed space-y-4"
+          className="prose-article max-w-2xl text-muted-foreground text-sm leading-relaxed"
           dangerouslySetInnerHTML={{ __html: page.content }}
         />
       </main>
