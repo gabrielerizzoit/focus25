@@ -131,12 +131,12 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <Switch checked={autoSwitch} onCheckedChange={setAutoSwitch} />
           <span>{ui.autoSwitch}</span>
-          <Tooltip>
-            <TooltipTrigger asChild>
+          <Popover>
+            <PopoverTrigger asChild>
               <Info size={14} className="cursor-help" />
-            </TooltipTrigger>
-            <TooltipContent>{ui.autoSwitchTooltip}</TooltipContent>
-          </Tooltip>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto max-w-xs text-sm p-2">{ui.autoSwitchTooltip}</PopoverContent>
+          </Popover>
         </div>
       )}
 

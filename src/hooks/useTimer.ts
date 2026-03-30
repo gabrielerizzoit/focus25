@@ -149,10 +149,16 @@ export function useTimer(
   // Reset duration when settings or mode changes
   useEffect(() => {
     if (!isRunning) {
-      const d = defaultDuration || settings[mode];
-      pausedRemainingRef.current = d;
-      setRemaining(d);
+      const settingsChanged = prevSettingsRef.current !== settings;
+      const modeChanged = prevModeRef.current !== mode;
+      if (settingsChanged || modeChanged) {
+        const d = defaultDuration || settings[mode];
+        pausedRemainingRef.current = d;
+        setRemaining(d);
+      }
     }
+    prevSettingsRef.current = settings;
+    prevModeRef.current = mode;
   }, [settings, mode, defaultDuration, isRunning]);
 
   useEffect(() => () => clearTimer(), [clearTimer]);
