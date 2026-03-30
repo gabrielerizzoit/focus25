@@ -9,7 +9,7 @@ import AudioPlayer from './AudioPlayer';
 import SessionStats from './SessionStats';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
-import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
+import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
 
 interface TimerProps {
   defaultDuration?: number;
