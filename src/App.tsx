@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import TimerPage from "@/components/TimerPage";
 import BlogLayout from "@/components/BlogLayout";
 import LegalPage from "./pages/LegalPage";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
