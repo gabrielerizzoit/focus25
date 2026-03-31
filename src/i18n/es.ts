@@ -1,4 +1,5 @@
 import type { Translations } from './types';
+import { adhdBlogArticlesEs, adhdBlogIndexArticlesEs } from './adhd-es';
 
 const es: Translations = {
   langName: 'Español',
