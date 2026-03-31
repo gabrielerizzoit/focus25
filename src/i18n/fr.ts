@@ -73,6 +73,7 @@ const fr: Translations = {
       { slug: 'deep-work-technique-explained', title: 'La Technique du Deep Work Expliquée', excerpt: 'La méthode Deep Work de Cal Newport : ce que c\'est, pourquoi c\'est important et comment la pratiquer.' },
       { slug: 'best-free-study-tools-online', title: 'Meilleurs Outils d\'Études Gratuits en Ligne', excerpt: 'Une liste d\'outils gratuits que chaque étudiant devrait connaître pour maximiser sa productivité.' },
       { slug: 'how-to-avoid-distractions', title: 'Comment Éviter les Distractions au Travail', excerpt: 'Méthodes prouvées pour éliminer les distractions et créer un environnement propice à la concentration.' },
+      ...adhdBlogIndexArticlesFr,
     ],
   },
   seoPages: {
