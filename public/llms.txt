@@ -1,0 +1,41 @@
+# Focus25
+
+> Free, minimal Pomodoro timer — no signup, no ads, instant focus.
+
+Focus25 is a web-based productivity tool that implements the Pomodoro Technique. Users start a 25-minute focus timer with one click, take short breaks, and track completed sessions — all without creating an account.
+
+## Features
+
+- One-click Pomodoro timer (25 min focus / 5 min break)
+- Customizable durations (5, 10, 15, 25 minutes)
+- Ambient background sounds (rain, café, lo-fi, nature)
+- Session tracking and daily statistics
+- Works on desktop and mobile browsers
+- No signup or login required
+- Completely free
+
+## Supported Languages
+
+English, Italian, French, Spanish, Portuguese, Hindi, Tagalog (Filipino)
+
+## URLs
+
+- Homepage: https://focus25.io
+- Pomodoro Timer: https://focus25.io/pomodoro-timer
+- Focus Timer: https://focus25.io/focus-timer
+- Study Timer: https://focus25.io/study-timer
+- Blog: https://focus25.io/blog
+
+## Use Cases
+
+- Students studying for exams
+- Remote workers managing deep work blocks
+- Writers and creatives maintaining focus
+- Anyone looking to reduce distractions and improve productivity
+
+## Technical Details
+
+- Client-side web application (React + TypeScript)
+- No backend or user data collection
+- Works offline after initial load
+- Progressive Web App compatible
