@@ -2,24 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Homepage -->
   <url><loc>https://focus25.io/</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://focus25.io/it</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://focus25.io/fr</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://focus25.io/es</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://focus25.io/pt</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://focus25.io/hi</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://focus25.io/tl</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://focus25.io/it</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/fr</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/es</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/pt</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/hi</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/tl</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 
   <!-- SEO Pages — English -->
-  <url><loc>https://focus25.io/pomodoro-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://focus25.io/focus-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://focus25.io/study-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://focus25.io/pomodoro-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/focus-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/study-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://focus25.io/25-minute-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://focus25.io/marinara-timer-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://focus25.io/pomofocus-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://focus25.io/online-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://focus25.io/timer-5-minutes</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/timer-10-minutes</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/timer-15-minutes</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://focus25.io/timer-5-minutes</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/timer-10-minutes</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/timer-15-minutes</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://focus25.io/timer-online</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://focus25.io/free-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
@@ -27,101 +27,101 @@
   <url><loc>https://focus25.io/it/pomodoro-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://focus25.io/it/focus-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://focus25.io/it/study-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://focus25.io/it/25-minute-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/it/marinara-timer-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/it/pomofocus-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/it/online-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://focus25.io/it/25-minute-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/it/marinara-timer-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/it/pomofocus-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/it/online-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://focus25.io/it/timer-5-minutes</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/it/timer-10-minutes</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/it/timer-15-minutes</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://focus25.io/it/timer-online</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/it/free-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://focus25.io/it/timer-online</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/it/free-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- SEO Pages — French -->
   <url><loc>https://focus25.io/fr/pomodoro-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://focus25.io/fr/focus-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://focus25.io/fr/study-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://focus25.io/fr/25-minute-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/fr/marinara-timer-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/fr/pomofocus-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/fr/online-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://focus25.io/fr/25-minute-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/fr/marinara-timer-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/fr/pomofocus-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/fr/online-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://focus25.io/fr/timer-5-minutes</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/fr/timer-10-minutes</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/fr/timer-15-minutes</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://focus25.io/fr/timer-online</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/fr/free-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://focus25.io/fr/timer-online</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/fr/free-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- SEO Pages — Spanish -->
   <url><loc>https://focus25.io/es/pomodoro-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://focus25.io/es/focus-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://focus25.io/es/study-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://focus25.io/es/25-minute-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/es/marinara-timer-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/es/pomofocus-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/es/online-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://focus25.io/es/25-minute-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/es/marinara-timer-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/es/pomofocus-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/es/online-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://focus25.io/es/timer-5-minutes</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/es/timer-10-minutes</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/es/timer-15-minutes</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://focus25.io/es/timer-online</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/es/free-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://focus25.io/es/timer-online</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/es/free-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- SEO Pages — Portuguese -->
   <url><loc>https://focus25.io/pt/pomodoro-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://focus25.io/pt/focus-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://focus25.io/pt/study-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://focus25.io/pt/25-minute-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/pt/marinara-timer-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/pt/pomofocus-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/pt/online-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://focus25.io/pt/25-minute-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/pt/marinara-timer-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/pt/pomofocus-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/pt/online-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://focus25.io/pt/timer-5-minutes</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/pt/timer-10-minutes</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/pt/timer-15-minutes</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://focus25.io/pt/timer-online</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/pt/free-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://focus25.io/pt/timer-online</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/pt/free-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- SEO Pages — Hindi -->
   <url><loc>https://focus25.io/hi/pomodoro-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://focus25.io/hi/focus-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://focus25.io/hi/study-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://focus25.io/hi/25-minute-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/hi/marinara-timer-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/hi/pomofocus-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/hi/online-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://focus25.io/hi/25-minute-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/hi/marinara-timer-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/hi/pomofocus-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/hi/online-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://focus25.io/hi/timer-5-minutes</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/hi/timer-10-minutes</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/hi/timer-15-minutes</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://focus25.io/hi/timer-online</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/hi/free-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://focus25.io/hi/timer-online</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/hi/free-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- SEO Pages — Tagalog -->
   <url><loc>https://focus25.io/tl/pomodoro-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://focus25.io/tl/focus-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://focus25.io/tl/study-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://focus25.io/tl/25-minute-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/tl/marinara-timer-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/tl/pomofocus-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/tl/online-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://focus25.io/tl/25-minute-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/tl/marinara-timer-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/tl/pomofocus-alternative</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/tl/online-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://focus25.io/tl/timer-5-minutes</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/tl/timer-10-minutes</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/tl/timer-15-minutes</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://focus25.io/tl/timer-online</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/tl/free-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://focus25.io/tl/timer-online</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/tl/free-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Blog — English -->
-  <url><loc>https://focus25.io/blog</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://focus25.io/blog/what-is-pomodoro-technique</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/blog/best-pomodoro-timer-online-2026</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/blog/what-happened-to-marinara-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/blog/pomofocus-alternative-guide</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/blog/how-to-stay-focused-while-studying</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/blog/25-minute-timer-benefits</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/blog/study-timer-vs-pomodoro</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/blog/deep-work-technique-explained</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/blog/best-free-study-tools-online</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://focus25.io/blog/how-to-avoid-distractions</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://focus25.io/blog</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://focus25.io/blog/what-is-pomodoro-technique</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://focus25.io/blog/best-pomodoro-timer-online-2026</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://focus25.io/blog/what-happened-to-marinara-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://focus25.io/blog/pomofocus-alternative-guide</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://focus25.io/blog/how-to-stay-focused-while-studying</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://focus25.io/blog/25-minute-timer-benefits</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://focus25.io/blog/study-timer-vs-pomodoro</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://focus25.io/blog/deep-work-technique-explained</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://focus25.io/blog/best-free-study-tools-online</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://focus25.io/blog/how-to-avoid-distractions</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 
   <!-- Blog — Italian -->
-  <url><loc>https://focus25.io/it/blog</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://focus25.io/it/blog</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/it/blog/what-is-pomodoro-technique</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/it/blog/best-pomodoro-timer-online-2026</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/it/blog/what-happened-to-marinara-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -134,7 +134,7 @@
   <url><loc>https://focus25.io/it/blog/how-to-avoid-distractions</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 
   <!-- Blog — French -->
-  <url><loc>https://focus25.io/fr/blog</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://focus25.io/fr/blog</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/fr/blog/what-is-pomodoro-technique</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/fr/blog/best-pomodoro-timer-online-2026</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/fr/blog/what-happened-to-marinara-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -147,7 +147,7 @@
   <url><loc>https://focus25.io/fr/blog/how-to-avoid-distractions</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 
   <!-- Blog — Spanish -->
-  <url><loc>https://focus25.io/es/blog</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://focus25.io/es/blog</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/es/blog/what-is-pomodoro-technique</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/es/blog/best-pomodoro-timer-online-2026</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/es/blog/what-happened-to-marinara-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -160,7 +160,7 @@
   <url><loc>https://focus25.io/es/blog/how-to-avoid-distractions</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 
   <!-- Blog — Portuguese -->
-  <url><loc>https://focus25.io/pt/blog</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://focus25.io/pt/blog</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/pt/blog/what-is-pomodoro-technique</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/pt/blog/best-pomodoro-timer-online-2026</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/pt/blog/what-happened-to-marinara-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -173,7 +173,7 @@
   <url><loc>https://focus25.io/pt/blog/how-to-avoid-distractions</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 
   <!-- Blog — Hindi -->
-  <url><loc>https://focus25.io/hi/blog</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://focus25.io/hi/blog</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/hi/blog/what-is-pomodoro-technique</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/hi/blog/best-pomodoro-timer-online-2026</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/hi/blog/what-happened-to-marinara-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -186,7 +186,7 @@
   <url><loc>https://focus25.io/hi/blog/how-to-avoid-distractions</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 
   <!-- Blog — Tagalog -->
-  <url><loc>https://focus25.io/tl/blog</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://focus25.io/tl/blog</loc><lastmod>2026-03-31</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/tl/blog/what-is-pomodoro-technique</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/tl/blog/best-pomodoro-timer-online-2026</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://focus25.io/tl/blog/what-happened-to-marinara-timer</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -202,48 +202,48 @@
   <url><loc>https://focus25.io/terms</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
   <url><loc>https://focus25.io/privacy</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
   <url><loc>https://focus25.io/fair-use</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://focus25.io/faq</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://focus25.io/how-it-works</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://focus25.io/faq</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/how-it-works</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Legal Pages — Italian -->
-  <url><loc>https://focus25.io/it/terms</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://focus25.io/it/privacy</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://focus25.io/it/fair-use</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://focus25.io/it/faq</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://focus25.io/it/how-it-works</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://focus25.io/it/terms</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://focus25.io/it/privacy</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://focus25.io/it/fair-use</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://focus25.io/it/faq</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/it/how-it-works</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Legal Pages — French -->
-  <url><loc>https://focus25.io/fr/terms</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://focus25.io/fr/privacy</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://focus25.io/fr/fair-use</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://focus25.io/fr/faq</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://focus25.io/fr/how-it-works</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://focus25.io/fr/terms</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://focus25.io/fr/privacy</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://focus25.io/fr/fair-use</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://focus25.io/fr/faq</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/fr/how-it-works</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Legal Pages — Spanish -->
-  <url><loc>https://focus25.io/es/terms</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://focus25.io/es/privacy</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://focus25.io/es/fair-use</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://focus25.io/es/faq</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://focus25.io/es/how-it-works</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://focus25.io/es/terms</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://focus25.io/es/privacy</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://focus25.io/es/fair-use</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://focus25.io/es/faq</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/es/how-it-works</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Legal Pages — Portuguese -->
-  <url><loc>https://focus25.io/pt/terms</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://focus25.io/pt/privacy</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://focus25.io/pt/fair-use</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://focus25.io/pt/faq</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://focus25.io/pt/how-it-works</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://focus25.io/pt/terms</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://focus25.io/pt/privacy</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://focus25.io/pt/fair-use</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://focus25.io/pt/faq</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/pt/how-it-works</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Legal Pages — Hindi -->
-  <url><loc>https://focus25.io/hi/terms</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://focus25.io/hi/privacy</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://focus25.io/hi/fair-use</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://focus25.io/hi/faq</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://focus25.io/hi/how-it-works</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://focus25.io/hi/terms</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://focus25.io/hi/privacy</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://focus25.io/hi/fair-use</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://focus25.io/hi/faq</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/hi/how-it-works</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Legal Pages — Tagalog -->
-  <url><loc>https://focus25.io/tl/terms</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://focus25.io/tl/privacy</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://focus25.io/tl/fair-use</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://focus25.io/tl/faq</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://focus25.io/tl/how-it-works</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://focus25.io/tl/terms</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://focus25.io/tl/privacy</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://focus25.io/tl/fair-use</loc><lastmod>2026-03-31</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://focus25.io/tl/faq</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://focus25.io/tl/how-it-works</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

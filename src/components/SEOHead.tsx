@@ -9,7 +9,7 @@ interface SEOHeadProps {
   keywords?: string;
 }
 
-const BASE = 'https://focus25.app';
+const BASE = 'https://focus25.io';
 
 const SEOHead = ({ title, description, canonical, keywords }: SEOHeadProps) => {
   const { lang } = useLanguage();
@@ -30,6 +30,7 @@ const SEOHead = ({ title, description, canonical, keywords }: SEOHeadProps) => {
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
+      <meta property="og:url" content={`${BASE}${lang === 'en' ? canonicalPath : `/${lang}${canonicalPath === '/' ? '' : canonicalPath}`}`} />
       {/* hreflang tags for all languages */}
       {SUPPORTED_LANGS.map(l => (
         <link
