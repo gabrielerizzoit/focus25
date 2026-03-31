@@ -1,55 +1,38 @@
-# Sitemap, Robots.txt & AI Discoverability — Plan
 
-## Current State
 
-- `robots.txt` exists but has **no Sitemap reference** and no AI bot rules
-- **No `sitemap.xml**` exists anywhere
-- No structured data (JSON-LD) for search engines or AI crawlers
+# SEO Infrastructure Fix
 
-## What We'll Add
+## Problem Found
 
-### 1. Static `sitemap.xml` in `/public/`
+The critical bug: `src/components/SEOHead.tsx` line 12 uses `https://focus25.app` instead of `https://focus25.io`. This means ALL canonical tags and hreflang tags across every page are pointing to the wrong domain.
 
-Generate a complete sitemap covering all routes across all 7 languages:
+Everything else (sitemap, robots.txt, index.html JSON-LD) already uses `focus25.io` correctly.
 
-- `/` + 6 localized homepages = 7 URLs
-- 12 SEO pages × 7 languages = 84 URLs
-- `/blog` + 10 blog articles × 7 languages = 77 URLs
-- 5 legal pages × 7 languages = 35 URLs
+## Changes
 
-**Total: ~203 URLs**, all with `<lastmod>`, `<changefreq>`, and `<priority>`.
+### 1. Fix domain in SEOHead.tsx
+Change `const BASE = 'https://focus25.app'` to `const BASE = 'https://focus25.io'` — this single fix corrects canonical and hreflang tags on all ~203 pages.
 
-### 2. Update `robots.txt`
+### 2. Standardize sitemap priorities per requirements
+Adjust priorities to match the requested values:
+- Homepage: 1.0 (already correct)
+- SEO pages: 0.8 (some currently 0.9, 0.7, 0.6 — normalize all to 0.8)
+- Blog articles: 0.6 (some currently 0.7 — normalize)
+- Legal pages: 0.3 (keep as-is)
 
-- Add `Sitemap: https://focus25.io/sitemap.xml`
-- Add rules for AI crawlers (GPTBot, Google-Extended, ChatGPT-User, Amazonbot, ClaudeBot, PerplexityBot, Applebot) — all set to `Allow`
-- Keep existing bot rules
-
-### 3. Structured Data (JSON-LD) in `index.html`
-
-Add `WebApplication` schema markup so Google/AI understand Focus25 is a web app:
-
-```json
-{
-  "@type": "WebApplication",
-  "name": "Focus25",
-  "applicationCategory": "ProductivityApplication",
-  "offers": { "price": "0" }
-}
-```
-
-### 4. Add `llms.txt` in `/public/`
-
-Emerging standard for AI discoverability — a plain text file describing the site for LLMs.
-
----
+### 3. Add OG URL tag to SEOHead
+Add `<meta property="og:url">` with the correct canonical URL for better social sharing.
 
 ## Files
 
+| File | Change |
+|------|--------|
+| `src/components/SEOHead.tsx` | Fix BASE domain to `focus25.io`, add `og:url` |
+| `public/sitemap.xml` | Normalize priorities |
 
-| File                 | Action                                        |
-| -------------------- | --------------------------------------------- |
-| `public/sitemap.xml` | Create — full sitemap with all routes         |
-| `public/robots.txt`  | Update — add Sitemap directive + AI bot rules |
-| `public/llms.txt`    | Create — AI-readable site description         |
-| `index.html`         | Add JSON-LD structured data                   |
+## What's Already Correct
+- `robots.txt` — has `Sitemap: https://focus25.io/sitemap.xml` and all AI bot rules
+- `index.html` — has JSON-LD with correct domain, `inLanguage`, `operatingSystem`
+- Hreflang logic in SEOHead — already generates tags for all 7 languages + x-default
+- Canonical tag logic — already handles lang prefixes correctly (just wrong domain)
+
