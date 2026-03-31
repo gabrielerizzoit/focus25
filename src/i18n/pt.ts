@@ -88,6 +88,7 @@ const pt: Translations = {
     'deep-work-technique-explained': { title: 'Técnica Deep Work Explicada — Focus25', description: 'O método Deep Work de Cal Newport.', keywords: 'deep work, cal newport', heading: 'Técnica Deep Work', content: '<p>Concentre-se sem distrações em tarefas cognitivamente exigentes. Use um temporizador para blocos de 45-90 minutos.</p>', relatedLinks: [{ href: '/focus-timer', label: 'Temporizador Foco' }] },
     'best-free-study-tools-online': { title: 'Melhores Ferramentas de Estudo Gratuitas — Focus25', description: 'Ferramentas gratuitas para estudantes.', keywords: 'ferramentas estudo gratuitas', heading: 'Melhores Ferramentas de Estudo Gratuitas', content: '<p>Focus25 para temporizador. Notion para notas. Anki para flashcards.</p>', relatedLinks: [{ href: '/study-timer', label: 'Temporizador Estudo' }] },
     'how-to-avoid-distractions': { title: 'Como Evitar Distrações — Focus25', description: 'Métodos para eliminar distrações.', keywords: 'evitar distrações, manter foco', heading: 'Como Evitar Distrações', content: '<p>Remova a fonte. Use sinais ambientais. Cronometre seu trabalho com a Técnica Pomodoro.</p>', relatedLinks: [{ href: '/focus-timer', label: 'Temporizador Foco' }] },
+    ...adhdBlogArticlesPt,
   },
   legalPages: {
     terms: { title: 'Termos de Serviço — Focus25', description: 'Termos de serviço do Focus25.', content: '' },

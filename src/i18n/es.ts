@@ -1328,6 +1328,7 @@ const es: Translations = {
         { href: '/blog/how-to-stay-focused-while-studying', label: 'Mantener el Enfoque' },
       ],
     },
+    ...adhdBlogArticlesEs,
   },
   legalPages: {
     terms: { title: 'Términos de Servicio — Focus25', description: 'Términos de servicio del temporizador Pomodoro Focus25.', content: '' },

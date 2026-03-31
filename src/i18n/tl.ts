@@ -1430,6 +1430,7 @@ const tl: Translations = {
         { href: '/blog/what-is-pomodoro-technique', label: 'Pomodoro Technique' },
       ],
     },
+    ...adhdBlogArticlesTl,
   },
   legalPages: {
     terms: { title: 'Mga Tuntunin ng Serbisyo — Focus25', description: 'Mga tuntunin ng serbisyo ng Focus25.', content: '' },

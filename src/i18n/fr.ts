@@ -1382,6 +1382,7 @@ const fr: Translations = {
         { href: '/blog/how-to-stay-focused-while-studying', label: 'Rester Concentré en Étudiant' },
       ],
     },
+    ...adhdBlogArticlesFr,
   },
   legalPages: {
     terms: { title: 'Conditions d\'Utilisation — Focus25', description: 'Conditions d\'utilisation du minuteur Pomodoro Focus25.', content: '' },

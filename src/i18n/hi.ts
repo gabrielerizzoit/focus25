@@ -88,6 +88,7 @@ const hi: Translations = {
     'deep-work-technique-explained': { title: 'डीप वर्क तकनीक — Focus25', description: 'Cal Newport की डीप वर्क विधि।', keywords: 'डीप वर्क, cal newport', heading: 'डीप वर्क तकनीक', content: '<p>बिना विकर्षण के संज्ञानात्मक रूप से कठिन कार्यों पर ध्यान केंद्रित करें। 45-90 मिनट के ब्लॉक में टाइमर का उपयोग करें।</p>', relatedLinks: [{ href: '/focus-timer', label: 'फोकस टाइमर' }] },
     'best-free-study-tools-online': { title: 'सर्वश्रेष्ठ मुफ्त स्टडी टूल्स — Focus25', description: 'छात्रों के लिए मुफ्त उपकरण।', keywords: 'मुफ्त स्टडी टूल्स', heading: 'सर्वश्रेष्ठ मुफ्त स्टडी टूल्स', content: '<p>Focus25 टाइमर के लिए। Notion नोट्स के लिए। Anki फ्लैशकार्ड के लिए।</p>', relatedLinks: [{ href: '/study-timer', label: 'स्टडी टाइमर' }] },
     'how-to-avoid-distractions': { title: 'ध्यान भटकाव से कैसे बचें — Focus25', description: 'विकर्षणों को खत्म करने के तरीके।', keywords: 'विकर्षण से बचें, फोकस बनाए रखें', heading: 'ध्यान भटकाव से कैसे बचें', content: '<p>स्रोत हटाएं। एम्बिएंट संकेतों का उपयोग करें। पोमोडोरो तकनीक से अपना काम समय-बद्ध करें।</p>', relatedLinks: [{ href: '/focus-timer', label: 'फोकस टाइमर' }] },
+    ...adhdBlogArticlesHi,
   },
   legalPages: {
     terms: { title: 'सेवा की शर्तें — Focus25', description: 'Focus25 की सेवा की शर्तें।', content: '' },
