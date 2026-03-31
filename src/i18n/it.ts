@@ -1,4 +1,5 @@
 import type { Translations } from './types';
+import { adhdBlogArticlesIt, adhdBlogIndexArticlesIt } from './adhd-it';
 
 const it: Translations = {
   langName: 'Italiano',
@@ -72,6 +73,7 @@ const it: Translations = {
       { slug: 'deep-work-technique-explained', title: 'La Tecnica del Deep Work Spiegata', excerpt: 'Il metodo Deep Work di Cal Newport: cos\'è, perché conta e come praticarlo ogni giorno.' },
       { slug: 'best-free-study-tools-online', title: 'I Migliori Strumenti di Studio Gratuiti Online', excerpt: 'Una lista curata di strumenti gratuiti che ogni studente dovrebbe conoscere per massimizzare la produttività.' },
       { slug: 'how-to-avoid-distractions', title: 'Come Evitare le Distrazioni al Lavoro', excerpt: 'Metodi comprovati per eliminare le distrazioni e creare un ambiente che supporta la concentrazione profonda.' },
+      ...adhdBlogIndexArticlesIt,
     ],
   },
   seoPages: {
@@ -1315,6 +1317,7 @@ const it: Translations = {
         { href: '/blog/how-to-stay-focused-while-studying', label: 'Come Restare Concentrati Studiando' },
       ],
     },
+    ...adhdBlogArticlesIt,
   },
   legalPages: {
     terms: { title: 'Termini di Servizio — Focus25', description: 'Termini di servizio per il timer Pomodoro Focus25.', content: '' },
