@@ -1,4 +1,5 @@
 import type { Translations } from './types';
+import { adhdBlogArticlesEs, adhdBlogIndexArticlesEs } from './adhd-es';
 
 const es: Translations = {
   langName: 'Español',
@@ -72,6 +73,7 @@ const es: Translations = {
       { slug: 'deep-work-technique-explained', title: 'La Técnica del Deep Work Explicada', excerpt: 'El método Deep Work de Cal Newport: qué es, por qué importa y cómo practicarlo.' },
       { slug: 'best-free-study-tools-online', title: 'Mejores Herramientas de Estudio Gratuitas', excerpt: 'Lista de herramientas gratuitas que todo estudiante debería conocer para máxima productividad.' },
       { slug: 'how-to-avoid-distractions', title: 'Cómo Evitar Distracciones al Trabajar', excerpt: 'Métodos probados para eliminar distracciones y crear un entorno que favorezca la concentración profunda.' },
+      ...adhdBlogIndexArticlesEs,
     ],
   },
   seoPages: {

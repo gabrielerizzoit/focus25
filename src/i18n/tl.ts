@@ -1,4 +1,5 @@
 import type { Translations } from './types';
+import { adhdBlogArticlesTl, adhdBlogIndexArticlesTl } from './adhd-tl';
 
 const tl: Translations = {
   langName: 'Filipino',
