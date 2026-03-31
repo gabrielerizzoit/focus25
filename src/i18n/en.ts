@@ -1426,6 +1426,7 @@ const en: Translations = {
         { href: '/blog/how-to-stay-focused-while-studying', label: 'How to Stay Focused Studying' },
       ],
     },
+    ...adhdBlogArticles,
   },
   legalPages: {
     terms: { title: 'Terms of Service — Focus25', description: 'Terms of service for Focus25 Pomodoro timer.', content: '' },
