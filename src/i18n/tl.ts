@@ -60,6 +60,7 @@ const tl: Translations = {
       { slug: 'deep-work-technique-explained', title: 'Deep Work Technique ni Cal Newport', excerpt: 'Ang kumpletong gabay sa deep work at kung paano gamitin ang mga timer para sa focused productivity.' },
       { slug: 'best-free-study-tools-online', title: 'Pinakamahusay na Libreng Study Tools Online (2026)', excerpt: 'Kumpletong koleksyon ng mga libreng tool para sa mga estudyante na gustong mag-excel.' },
       { slug: 'how-to-avoid-distractions', title: 'Paano Iwasan ang mga Distraction Habang Nagtatrabaho', excerpt: 'Mga estratehiyang base sa siyensya para alisin ang mga distraction at mapataas ang produktibidad.' },
+      ...adhdBlogIndexArticlesTl,
     ],
   },
   seoPages: {
@@ -1429,6 +1430,7 @@ const tl: Translations = {
         { href: '/blog/what-is-pomodoro-technique', label: 'Pomodoro Technique' },
       ],
     },
+    ...adhdBlogArticlesTl,
   },
   legalPages: {
     terms: { title: 'Mga Tuntunin ng Serbisyo — Focus25', description: 'Mga tuntunin ng serbisyo ng Focus25.', content: '' },
