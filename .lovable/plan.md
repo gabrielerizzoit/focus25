@@ -1,33 +1,55 @@
+# Sitemap, Robots.txt & AI Discoverability — Plan
 
+## Current State
 
-# Fix: Scroll to Top on Page Navigation
+- `robots.txt` exists but has **no Sitemap reference** and no AI bot rules
+- **No `sitemap.xml**` exists anywhere
+- No structured data (JSON-LD) for search engines or AI crawlers
 
-## Problem
-When navigating between pages, the browser keeps the current scroll position instead of scrolling to the top. This is a common issue with React Router SPAs — the browser doesn't reset scroll like it would with traditional page loads.
+## What We'll Add
 
-## Solution
-Add a small `ScrollToTop` component that listens to route changes and calls `window.scrollTo(0, 0)` on every navigation.
+### 1. Static `sitemap.xml` in `/public/`
 
-### New file: `src/components/ScrollToTop.tsx`
-```tsx
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+Generate a complete sitemap covering all routes across all 7 languages:
 
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
-};
+- `/` + 6 localized homepages = 7 URLs
+- 12 SEO pages × 7 languages = 84 URLs
+- `/blog` + 10 blog articles × 7 languages = 77 URLs
+- 5 legal pages × 7 languages = 35 URLs
 
-export default ScrollToTop;
+**Total: ~203 URLs**, all with `<lastmod>`, `<changefreq>`, and `<priority>`.
+
+### 2. Update `robots.txt`
+
+- Add `Sitemap: https://focus25.io/sitemap.xml`
+- Add rules for AI crawlers (GPTBot, Google-Extended, ChatGPT-User, Amazonbot, ClaudeBot, PerplexityBot, Applebot) — all set to `Allow`
+- Keep existing bot rules
+
+### 3. Structured Data (JSON-LD) in `index.html`
+
+Add `WebApplication` schema markup so Google/AI understand Focus25 is a web app:
+
+```json
+{
+  "@type": "WebApplication",
+  "name": "Focus25",
+  "applicationCategory": "ProductivityApplication",
+  "offers": { "price": "0" }
+}
 ```
 
-### Update: `src/App.tsx`
-Import `ScrollToTop` and place it inside `<BrowserRouter>` / `<LanguageProvider>`, before `<Routes>`.
+### 4. Add `llms.txt` in `/public/`
+
+Emerging standard for AI discoverability — a plain text file describing the site for LLMs.
 
 ---
 
-**Files changed:** 2 (1 new component, 1 minor edit to App.tsx)
+## Files
 
+
+| File                 | Action                                        |
+| -------------------- | --------------------------------------------- |
+| `public/sitemap.xml` | Create — full sitemap with all routes         |
+| `public/robots.txt`  | Update — add Sitemap directive + AI bot rules |
+| `public/llms.txt`    | Create — AI-readable site description         |
+| `index.html`         | Add JSON-LD structured data                   |
