@@ -1,38 +1,82 @@
 
 
-# SEO Infrastructure Fix
+# Add 14 ADHD Blog Articles (All 7 Languages)
 
-## Problem Found
+## Scope
 
-The critical bug: `src/components/SEOHead.tsx` line 12 uses `https://focus25.app` instead of `https://focus25.io`. This means ALL canonical tags and hreflang tags across every page are pointing to the wrong domain.
+14 new articles × 7 languages = 98 article translations. Each 800–1200 words of HTML content following the existing `blogArticles` pattern.
 
-Everything else (sitemap, robots.txt, index.html JSON-LD) already uses `focus25.io` correctly.
+**Due to the massive volume (~100,000+ words of content), this will be implemented in batches across multiple steps.**
 
-## Changes
+## Article Slugs
 
-### 1. Fix domain in SEOHead.tsx
-Change `const BASE = 'https://focus25.app'` to `const BASE = 'https://focus25.io'` — this single fix corrects canonical and hreflang tags on all ~203 pages.
+| # | Slug |
+|---|------|
+| 1 | `adhd-and-focus` |
+| 2 | `best-study-techniques-for-adhd` |
+| 3 | `pomodoro-technique-for-adhd` |
+| 4 | `how-to-stay-focused-with-adhd` |
+| 5 | `time-management-tips-adhd` |
+| 6 | `25-minute-timer-for-adhd` |
+| 7 | `adhd-study-timer` |
+| 8 | `adhd-and-procrastination` |
+| 9 | `deep-work-with-adhd` |
+| 10 | `adhd-productivity-hacks` |
+| 11 | `why-adhd-makes-tasks-hard` |
+| 12 | `adhd-brain-explained` |
+| 13 | `adhd-and-time-perception` |
+| 14 | `adhd-burnout-signs-solutions` |
 
-### 2. Standardize sitemap priorities per requirements
-Adjust priorities to match the requested values:
-- Homepage: 1.0 (already correct)
-- SEO pages: 0.8 (some currently 0.9, 0.7, 0.6 — normalize all to 0.8)
-- Blog articles: 0.6 (some currently 0.7 — normalize)
-- Legal pages: 0.3 (keep as-is)
+## Changes Per File
 
-### 3. Add OG URL tag to SEOHead
-Add `<meta property="og:url">` with the correct canonical URL for better social sharing.
+### `src/App.tsx`
+- Add 14 new slugs to `BLOG_SLUGS` array
 
-## Files
+### `src/i18n/en.ts`
+- Add 14 entries to `blogArticles` (each ~800–1200 words HTML with tips, CTAs, internal links)
+- Add 14 entries to `blogIndex.articles`
 
-| File | Change |
-|------|--------|
-| `src/components/SEOHead.tsx` | Fix BASE domain to `focus25.io`, add `og:url` |
-| `public/sitemap.xml` | Normalize priorities |
+### `src/i18n/it.ts`, `fr.ts`, `es.ts`, `pt.ts`, `hi.ts`, `tl.ts`
+- Same: 14 `blogArticles` entries + 14 `blogIndex.articles` entries per language
+- Full native translations, not simplified
 
-## What's Already Correct
-- `robots.txt` — has `Sitemap: https://focus25.io/sitemap.xml` and all AI bot rules
-- `index.html` — has JSON-LD with correct domain, `inLanguage`, `operatingSystem`
-- Hreflang logic in SEOHead — already generates tags for all 7 languages + x-default
-- Canonical tag logic — already handles lang prefixes correctly (just wrong domain)
+### `public/sitemap.xml`
+- Add 14 × 7 = 98 new blog URLs with priority 0.6
+
+## Content Structure (Each Article)
+
+1. Engaging intro (empathetic, relatable to ADHD)
+2. Problem explanation (ADHD + focus/time)
+3. Practical solutions with step-by-step tips
+4. Psychology/behavior explanation
+5. Common mistakes
+6. Practical examples
+7. Getting started section
+8. CTA button → "Start Focus Session" linking to `/`
+9. `relatedLinks` to other ADHD articles and SEO timer pages
+
+## Content Design
+- Short paragraphs, bold key concepts, bullet points
+- `.content-tip` highlight boxes for tips/insights
+- `.content-cta` block at end
+- 1–2 image references per article
+- Empathetic, supportive tone — no medical claims
+
+## Implementation Order (Batched)
+
+1. **Batch 1**: Articles 1–5 in English → register routes → update sitemap
+2. **Batch 2**: Articles 6–10 in English
+3. **Batch 3**: Articles 11–14 in English
+4. **Batch 4**: Italian translations (all 14)
+5. **Batch 5**: French translations
+6. **Batch 6**: Spanish translations
+7. **Batch 7**: Portuguese translations
+8. **Batch 8**: Hindi translations
+9. **Batch 9**: Filipino translations
+
+Each batch will be a separate implementation step to stay within file size limits.
+
+## Internal Linking Network
+
+Each ADHD article will link to 2–3 other ADHD articles + 1–2 timer SEO pages, creating a strong topic cluster around "ADHD + productivity."
 
