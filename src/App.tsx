@@ -41,6 +41,20 @@ const BLOG_SLUGS = [
   "deep-work-technique-explained",
   "best-free-study-tools-online",
   "how-to-avoid-distractions",
+  "adhd-and-focus",
+  "best-study-techniques-for-adhd",
+  "pomodoro-technique-for-adhd",
+  "how-to-stay-focused-with-adhd",
+  "time-management-tips-adhd",
+  "25-minute-timer-for-adhd",
+  "adhd-study-timer",
+  "adhd-and-procrastination",
+  "deep-work-with-adhd",
+  "adhd-productivity-hacks",
+  "why-adhd-makes-tasks-hard",
+  "adhd-brain-explained",
+  "adhd-and-time-perception",
+  "adhd-burnout-signs-solutions",
 ];
 
 const LEGAL_SLUGS = ["terms", "privacy", "fair-use", "faq", "how-it-works"];
