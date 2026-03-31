@@ -9,7 +9,7 @@ interface SEOHeadProps {
   keywords?: string;
 }
 
-const BASE = 'https://focus25.app';
+const BASE = 'https://focus25.io';
 
 const SEOHead = ({ title, description, canonical, keywords }: SEOHeadProps) => {
   const { lang } = useLanguage();
