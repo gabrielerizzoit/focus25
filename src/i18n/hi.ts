@@ -60,6 +60,7 @@ const hi: Translations = {
       { slug: 'deep-work-technique-explained', title: 'डीप वर्क तकनीक', excerpt: 'Cal Newport की डीप वर्क विधि।' },
       { slug: 'best-free-study-tools-online', title: 'सर्वश्रेष्ठ मुफ्त स्टडी टूल्स', excerpt: 'हर छात्र के लिए मुफ्त उपकरण।' },
       { slug: 'how-to-avoid-distractions', title: 'ध्यान भटकाव से कैसे बचें', excerpt: 'विकर्षणों को खत्म करने के तरीके।' },
+      ...adhdBlogIndexArticlesHi,
     ],
   },
   seoPages: {
