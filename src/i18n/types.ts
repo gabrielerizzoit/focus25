@@ -75,10 +75,27 @@ export interface FooterStrings {
   copyright: string;
 }
 
+export interface HomepageSEOContent {
+  h1: string;
+  howItWorksTitle: string;
+  howItWorksP1: string;
+  howItWorksP2: string;
+  howItWorksSteps: string[];
+  benefitsTitle: string;
+  benefitsItems: string[];
+  whyTitle: string;
+  whyP1: string;
+  whyFeatures: string[];
+  ctaText: string;
+  faqTitle: string;
+  faqItems: { q: string; a: string }[];
+}
+
 export interface HomepageContent {
   title: string;
   description: string;
   keywords: string;
+  seo: HomepageSEOContent;
 }
 
 export interface BlogIndexContent {
