@@ -1,82 +1,30 @@
 
 
-# Add 14 ADHD Blog Articles (All 7 Languages)
+# Fix 3 Timer Issues
 
-## Scope
+## Issues Identified
 
-14 new articles × 7 languages = 98 article translations. Each 800–1200 words of HTML content following the existing `blogArticles` pattern.
+### 1. Auto-switch doesn't auto-start the next timer
+In `useTimer.ts` line 135, after auto-switching mode, `switchMode()` is called which sets `isRunning = false`. The next mode is never started automatically. Fix: after `switchMode`, call `start()` with a small delay so the break/focus begins immediately.
 
-**Due to the massive volume (~100,000+ words of content), this will be implemented in batches across multiple steps.**
+### 2. Countdown beep sounds not audible
+The `playBeep` function creates a new `AudioContext` each time. On mobile browsers and some desktops, `AudioContext` requires a user gesture to resume. The context may be created in "suspended" state and never resumed. Fix: call `ctx.resume()` before playing, and similarly for `playChime`.
 
-## Article Slugs
+### 3. Settings input: leading zeros, max 99, and persistence issues
+- The `<input type="number">` allows leading zeros (e.g., "025") and values above 99. Fix: replace with a controlled text input that clamps to 1–99 and strips leading zeros.
+- Settings persist via localStorage forever, but the user expects them to reset to defaults after ~24h. Fix: store a timestamp alongside settings and expire them after 24 hours, restoring defaults.
 
-| # | Slug |
-|---|------|
-| 1 | `adhd-and-focus` |
-| 2 | `best-study-techniques-for-adhd` |
-| 3 | `pomodoro-technique-for-adhd` |
-| 4 | `how-to-stay-focused-with-adhd` |
-| 5 | `time-management-tips-adhd` |
-| 6 | `25-minute-timer-for-adhd` |
-| 7 | `adhd-study-timer` |
-| 8 | `adhd-and-procrastination` |
-| 9 | `deep-work-with-adhd` |
-| 10 | `adhd-productivity-hacks` |
-| 11 | `why-adhd-makes-tasks-hard` |
-| 12 | `adhd-brain-explained` |
-| 13 | `adhd-and-time-perception` |
-| 14 | `adhd-burnout-signs-solutions` |
+## File Changes
 
-## Changes Per File
+### `src/hooks/useTimer.ts`
+- **Auto-start after switch**: Add a `switchAndStart` function that calls `switchMode` then `start` after a brief delay. Use it in the completion effect when `autoSwitch` is true.
+- **Settings expiry**: Modify `loadSettings()` to check a saved timestamp. If older than 24 hours, return `DEFAULT_SETTINGS` and clear the stored value. Modify `saveSettings()` to include `Date.now()` as a timestamp.
+- **Clamp settings**: In `updateSettings`, clamp values to 1–99 minutes (60–5940 seconds).
 
-### `src/App.tsx`
-- Add 14 new slugs to `BLOG_SLUGS` array
+### `src/hooks/useAudio.ts`
+- **playBeep**: Add `await ctx.resume()` before `osc.start()` to ensure the AudioContext is active.
+- **playChime**: Same fix — add `ctx.resume()`.
 
-### `src/i18n/en.ts`
-- Add 14 entries to `blogArticles` (each ~800–1200 words HTML with tips, CTAs, internal links)
-- Add 14 entries to `blogIndex.articles`
-
-### `src/i18n/it.ts`, `fr.ts`, `es.ts`, `pt.ts`, `hi.ts`, `tl.ts`
-- Same: 14 `blogArticles` entries + 14 `blogIndex.articles` entries per language
-- Full native translations, not simplified
-
-### `public/sitemap.xml`
-- Add 14 × 7 = 98 new blog URLs with priority 0.6
-
-## Content Structure (Each Article)
-
-1. Engaging intro (empathetic, relatable to ADHD)
-2. Problem explanation (ADHD + focus/time)
-3. Practical solutions with step-by-step tips
-4. Psychology/behavior explanation
-5. Common mistakes
-6. Practical examples
-7. Getting started section
-8. CTA button → "Start Focus Session" linking to `/`
-9. `relatedLinks` to other ADHD articles and SEO timer pages
-
-## Content Design
-- Short paragraphs, bold key concepts, bullet points
-- `.content-tip` highlight boxes for tips/insights
-- `.content-cta` block at end
-- 1–2 image references per article
-- Empathetic, supportive tone — no medical claims
-
-## Implementation Order (Batched)
-
-1. **Batch 1**: Articles 1–5 in English → register routes → update sitemap
-2. **Batch 2**: Articles 6–10 in English
-3. **Batch 3**: Articles 11–14 in English
-4. **Batch 4**: Italian translations (all 14)
-5. **Batch 5**: French translations
-6. **Batch 6**: Spanish translations
-7. **Batch 7**: Portuguese translations
-8. **Batch 8**: Hindi translations
-9. **Batch 9**: Filipino translations
-
-Each batch will be a separate implementation step to stay within file size limits.
-
-## Internal Linking Network
-
-Each ADHD article will link to 2–3 other ADHD articles + 1–2 timer SEO pages, creating a strong topic cluster around "ADHD + productivity."
+### `src/components/Timer.tsx`
+- **Settings input**: Change `type="number"` to a controlled text input with `maxLength={2}`, `pattern="[0-9]*"`. On change, strip non-digits and leading zeros, clamp 1–99. On blur, if empty or 0, reset to default.
 
