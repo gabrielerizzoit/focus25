@@ -63,9 +63,10 @@ export function useAudio() {
 }
 
 // Alert sounds via Web Audio API (tiny beeps, not background music)
-export function playBeep(frequency = 800, durationMs = 150) {
+export async function playBeep(frequency = 800, durationMs = 150) {
   try {
     const ctx = new AudioContext();
+    await ctx.resume();
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
     osc.connect(gain);
@@ -78,9 +79,10 @@ export function playBeep(frequency = 800, durationMs = 150) {
   } catch {}
 }
 
-export function playChime() {
+export async function playChime() {
   try {
     const ctx = new AudioContext();
+    await ctx.resume();
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
     osc.connect(gain);

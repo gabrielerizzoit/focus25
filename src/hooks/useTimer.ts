@@ -22,16 +22,25 @@ const DEFAULT_SETTINGS: TimerSettings = {
   longBreak: 15 * 60,
 };
 
+const SETTINGS_TTL = 24 * 60 * 60 * 1000; // 24 hours
+
 function loadSettings(): TimerSettings {
   try {
-    const s = localStorage.getItem('focus25-settings');
-    if (s) return JSON.parse(s);
+    const raw = localStorage.getItem('focus25-settings');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed.timestamp && Date.now() - parsed.timestamp < SETTINGS_TTL) {
+        return { focus: parsed.focus, shortBreak: parsed.shortBreak, longBreak: parsed.longBreak };
+      }
+      // Expired — clear
+      localStorage.removeItem('focus25-settings');
+    }
   } catch {}
   return DEFAULT_SETTINGS;
 }
 
 function saveSettings(s: TimerSettings) {
-  localStorage.setItem('focus25-settings', JSON.stringify(s));
+  localStorage.setItem('focus25-settings', JSON.stringify({ ...s, timestamp: Date.now() }));
 }
 
 export function useTimer(
@@ -52,6 +61,7 @@ export function useTimer(
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const prevSettingsRef = useRef(settings);
   const prevModeRef = useRef(mode);
+  const pendingAutoStartRef = useRef(false);
 
   const clearTimer = useCallback(() => {
     if (intervalRef.current) {
@@ -112,13 +122,20 @@ export function useTimer(
 
   const updateSettings = useCallback((s: Partial<TimerSettings>) => {
     setSettingsState(prev => {
-      const next = { ...prev, ...s };
+      const next = { ...prev };
+      for (const key of Object.keys(s) as (keyof TimerSettings)[]) {
+        if (s[key] !== undefined) {
+          // Clamp to 1–99 minutes
+          const minutes = Math.max(1, Math.min(99, s[key]! / 60));
+          next[key] = Math.round(minutes) * 60;
+        }
+      }
       saveSettings(next);
       return next;
     });
   }, []);
 
-  // Handle completion
+  // Handle completion — auto-switch and auto-start
   useEffect(() => {
     if (remaining <= 0 && !isRunning && endTimeRef.current === null && pausedRemainingRef.current !== (defaultDuration || settings[mode])) {
       onComplete?.(mode);
@@ -132,12 +149,21 @@ export function useTimer(
         } else {
           nextMode = 'focus';
         }
+        pendingAutoStartRef.current = true;
         setTimeout(() => switchMode(nextMode), 500);
       }
       // Reset pausedRemaining to mark as "fresh"
       pausedRemainingRef.current = defaultDuration || settings[mode];
     }
   }, [remaining, isRunning, mode, autoSwitch, focusCount, switchMode, onComplete, settings, defaultDuration]);
+
+  // Auto-start after mode switch triggered by auto-switch
+  useEffect(() => {
+    if (pendingAutoStartRef.current && !isRunning && remaining > 0 && endTimeRef.current === null) {
+      pendingAutoStartRef.current = false;
+      setTimeout(() => start(), 100);
+    }
+  }, [mode, remaining, isRunning, start]);
 
   // Sync remaining to pausedRef when not running
   useEffect(() => {

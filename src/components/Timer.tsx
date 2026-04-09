@@ -144,18 +144,31 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
         <div className="bg-card border border-border rounded-xl p-4 w-full max-w-xs space-y-3">
           <h3 className="text-sm font-medium text-foreground">{ui.settings}</h3>
           {([
-            { key: 'focus' as const, label: ui.focusDuration },
-            { key: 'shortBreak' as const, label: ui.shortBreakDuration },
-            { key: 'longBreak' as const, label: ui.longBreakDuration },
-          ]).map(({ key, label }) => (
+            { key: 'focus' as const, label: ui.focusDuration, def: 25 },
+            { key: 'shortBreak' as const, label: ui.shortBreakDuration, def: 5 },
+            { key: 'longBreak' as const, label: ui.longBreakDuration, def: 15 },
+          ]).map(({ key, label, def }) => (
             <div key={key} className="flex items-center justify-between">
               <label className="text-xs text-muted-foreground">{label}</label>
               <input
-                type="number"
-                min={1}
-                max={120}
-                value={settings[key] / 60}
-                onChange={e => updateSettings({ [key]: Number(e.target.value) * 60 })}
+                type="text"
+                inputMode="numeric"
+                pattern="[0-9]*"
+                maxLength={2}
+                value={String(settings[key] / 60)}
+                onChange={e => {
+                  const raw = e.target.value.replace(/[^0-9]/g, '').replace(/^0+/, '');
+                  if (raw === '') {
+                    updateSettings({ [key]: def * 60 });
+                  } else {
+                    const n = Math.max(1, Math.min(99, Number(raw)));
+                    updateSettings({ [key]: n * 60 });
+                  }
+                }}
+                onBlur={e => {
+                  const v = Number(e.target.value);
+                  if (!v || v < 1) updateSettings({ [key]: def * 60 });
+                }}
                 className="w-16 bg-muted border border-border rounded px-2 py-1 text-sm text-foreground text-center"
               />
             </div>
