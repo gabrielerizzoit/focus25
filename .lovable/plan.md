@@ -1,96 +1,31 @@
 
 
-# SEO Homepage Optimization (Revised Plan)
+# Fix Auto-Switch & Add Settings Reset
 
-## Overview
+## Issues
 
-Optimize the Focus25 homepage with proper heading structure, SEO content below the timer, FAQ section with JSON-LD, and mid-content CTA. All text content stays as plain strings in i18n files — JSX structure is built in React components.
+### 1. Auto-switch not working (especially mobile)
+The completion detection effect (line 139) uses a fragile guard: `pausedRemainingRef.current !== settings[mode]`. But a later effect (line 169-173) keeps overwriting `pausedRemainingRef` back to `remaining` (which is 0), causing the completion effect to fire multiple times or creating race conditions with the `switchMode` setTimeout.
 
-## Changes
+**Fix**: Replace the ref-based guard with a dedicated `hasCompletedRef` boolean. Set it to `true` when the timer naturally reaches 0 (inside `tick`), and consume it in the completion effect. This eliminates all race conditions.
 
-### 1. Clean `index.html` — Remove Duplicate Meta Tags
+### 2. No "Reset to defaults" button in settings
+**Fix**: Add a `resetSettings` function in `useTimer` that restores `DEFAULT_SETTINGS` and clears localStorage. Add a small "Reset" button at the bottom of the settings panel in `Timer.tsx`.
 
-Remove lines 15–22 (title, description, keywords, og:*, twitter:card, canonical) since `SEOHead` handles these dynamically. Keep: charset, viewport, favicon, GA script, JSON-LD.
+## File Changes
 
-### 2. Extend Translation Types (`src/i18n/types.ts`)
+### `src/hooks/useTimer.ts`
+- Add `hasCompletedRef = useRef(false)`. Set it to `true` inside `tick` when `left <= 0`.
+- Rewrite completion effect: check `hasCompletedRef.current` instead of the pausedRemaining guard. Set it to `false` after handling.
+- Remove the sync effect (lines 169-173) that overwrites `pausedRemainingRef` — it causes the race condition. Instead, only update `pausedRemainingRef` explicitly in `pause`, `reset`, `switchMode`, and the settings-change effect.
+- Add `resetSettings` function: sets state to `DEFAULT_SETTINGS`, removes localStorage key, resets current timer duration.
+- Export `resetSettings`.
 
-Add `homepageSEO` to `HomepageContent` with **plain text strings only** (no HTML):
+### `src/components/Timer.tsx`
+- Destructure `resetSettings` from `useTimer`.
+- Add a "Reset to defaults" button at the bottom of the settings panel.
+- Add translation key `ui.resetDefaults` usage (fallback to "Reset").
 
-```ts
-interface HomepageContent {
-  title: string;
-  description: string;  // trimmed to ~150 chars
-  keywords: string;
-  seo: {
-    h1: string;                    // "Free Pomodoro Timer Online"
-    howItWorksTitle: string;       // "How the Pomodoro Technique Works"
-    howItWorksP1: string;
-    howItWorksP2: string;
-    howItWorksSteps: string[];     // 4 steps
-    benefitsTitle: string;         // "Benefits of Using a Focus Timer"
-    benefitsItems: string[];       // 4–5 bullet points
-    whyTitle: string;              // "Why Choose Focus25"
-    whyP1: string;
-    whyFeatures: string[];         // 4 feature bullets
-    ctaText: string;               // "Start a 25-minute focus session now"
-    faqTitle: string;              // "Frequently Asked Questions"
-    faqItems: { q: string; a: string }[];  // 3 FAQ items
-  };
-}
-```
-
-### 3. New Component: `HomepageSEO` (`src/components/HomepageSEO.tsx`)
-
-A React component that builds proper JSX structure using translated text:
-
-- **H2** "How the Pomodoro Technique Works" + paragraphs + ordered list of steps
-- **H2** "Benefits of Using a Focus Timer" + unordered list
-- **Mid-content CTA button** linking to `#` (scroll to top / timer)
-- **H2** "Why Choose Focus25" + paragraph + feature list
-- **H2** "Frequently Asked Questions" + accordion or simple Q&A blocks
-- External links to Wikipedia Pomodoro Technique and francescocirillo.com with `target="_blank" rel="noopener noreferrer"`
-- Internal links to `/study-timer`, `/focus-timer`, `/blog/what-is-pomodoro-technique`
-- Styled with `max-w-3xl mx-auto` for readability
-
-### 4. Update `Index.tsx`
-
-- Add **H1** ("Free Pomodoro Timer Online") **above** the timer, visible above the fold
-- Render `<HomepageSEO />` **below** the timer
-- Add FAQ JSON-LD via `<Helmet>` with `FAQPage` schema
-
-### 5. Populate Translations (all 7 languages)
-
-Add `seo` object to `homepage` in `en.ts`, `it.ts`, `fr.ts`, `es.ts`, `pt.ts`, `hi.ts`, `tl.ts` — plain text strings only, properly localized with natural keyword usage.
-
-Shorten `description` to ~150 chars in all languages.
-
-### 6. FAQ JSON-LD
-
-Injected via `<Helmet>` in `Index.tsx`:
-
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [...]
-}
-```
-
-Questions dynamically pulled from `t.homepage.seo.faqItems`.
-
-## File Summary
-
-| File | Action |
-|------|--------|
-| `index.html` | Remove duplicate meta tags (lines 15–22) |
-| `src/i18n/types.ts` | Extend `HomepageContent` with `seo` field |
-| `src/components/HomepageSEO.tsx` | New — JSX structure with translated text |
-| `src/pages/Index.tsx` | Add H1 above timer, HomepageSEO below, FAQ JSON-LD |
-| `src/i18n/en.ts` | Add `seo` strings, shorten description |
-| `src/i18n/it.ts` | Same (Italian) |
-| `src/i18n/fr.ts` | Same (French) |
-| `src/i18n/es.ts` | Same (Spanish) |
-| `src/i18n/pt.ts` | Same (Portuguese) |
-| `src/i18n/hi.ts` | Same (Hindi) |
-| `src/i18n/tl.ts` | Same (Filipino) |
+### `src/i18n/types.ts` + all language files
+- Add `resetDefaults: string` to UI translations (e.g., "Reset to defaults", "Ripristina predefiniti", etc.).
 
