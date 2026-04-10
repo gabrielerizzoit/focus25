@@ -27,6 +27,7 @@ const en: Translations = {
     sessionComplete: 'Focus session complete! Time for a break.',
     breakOver: 'Break over! Ready to focus?',
     productivityBlog: 'Productivity Blog',
+    resetDefaults: 'Reset to defaults',
   },
   footer: {
     timers: 'Timers',

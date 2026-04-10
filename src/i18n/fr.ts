@@ -27,6 +27,7 @@ const fr: Translations = {
     sessionComplete: 'Session terminée ! Temps de pause.',
     breakOver: 'Pause terminée ! Prêt à vous concentrer ?',
     productivityBlog: 'Blog Productivité',
+    resetDefaults: 'Réinitialiser par défaut',
   },
   footer: {
     timers: 'Minuteurs',
