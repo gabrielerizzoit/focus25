@@ -32,7 +32,6 @@ function loadSettings(): TimerSettings {
       if (parsed.timestamp && Date.now() - parsed.timestamp < SETTINGS_TTL) {
         return { focus: parsed.focus, shortBreak: parsed.shortBreak, longBreak: parsed.longBreak };
       }
-      // Expired — clear
       localStorage.removeItem('focus25-settings');
     }
   } catch {}
@@ -62,6 +61,7 @@ export function useTimer(
   const prevSettingsRef = useRef(settings);
   const prevModeRef = useRef(mode);
   const pendingAutoStartRef = useRef(false);
+  const hasCompletedRef = useRef(false);
 
   const clearTimer = useCallback(() => {
     if (intervalRef.current) {
@@ -79,6 +79,7 @@ export function useTimer(
       clearTimer();
       setIsRunning(false);
       endTimeRef.current = null;
+      hasCompletedRef.current = true;
     }
   }, [clearTimer]);
 
@@ -105,6 +106,7 @@ export function useTimer(
     clearTimer();
     endTimeRef.current = null;
     setIsRunning(false);
+    hasCompletedRef.current = false;
     const d = defaultDuration || settings[mode];
     pausedRemainingRef.current = d;
     setRemaining(d);
@@ -114,6 +116,7 @@ export function useTimer(
     clearTimer();
     endTimeRef.current = null;
     setIsRunning(false);
+    hasCompletedRef.current = false;
     setMode(newMode);
     const d = defaultDuration || settings[newMode];
     pausedRemainingRef.current = d;
@@ -125,7 +128,6 @@ export function useTimer(
       const next = { ...prev };
       for (const key of Object.keys(s) as (keyof TimerSettings)[]) {
         if (s[key] !== undefined) {
-          // Clamp to 1–99 minutes
           const minutes = Math.max(1, Math.min(99, s[key]! / 60));
           next[key] = Math.round(minutes) * 60;
         }
@@ -135,27 +137,39 @@ export function useTimer(
     });
   }, []);
 
+  const resetSettings = useCallback(() => {
+    localStorage.removeItem('focus25-settings');
+    setSettingsState(DEFAULT_SETTINGS);
+    // Reset current timer to new default duration
+    const d = defaultDuration || DEFAULT_SETTINGS[mode];
+    clearTimer();
+    endTimeRef.current = null;
+    setIsRunning(false);
+    hasCompletedRef.current = false;
+    pausedRemainingRef.current = d;
+    setRemaining(d);
+  }, [mode, defaultDuration, clearTimer]);
+
   // Handle completion — auto-switch and auto-start
   useEffect(() => {
-    if (remaining <= 0 && !isRunning && endTimeRef.current === null && pausedRemainingRef.current !== (defaultDuration || settings[mode])) {
-      onComplete?.(mode);
-      if (mode === 'focus') {
-        setFocusCount(c => c + 1);
-      }
-      if (autoSwitch) {
-        let nextMode: TimerMode;
-        if (mode === 'focus') {
-          nextMode = (focusCount + 1) % 4 === 0 ? 'longBreak' : 'shortBreak';
-        } else {
-          nextMode = 'focus';
-        }
-        pendingAutoStartRef.current = true;
-        setTimeout(() => switchMode(nextMode), 500);
-      }
-      // Reset pausedRemaining to mark as "fresh"
-      pausedRemainingRef.current = defaultDuration || settings[mode];
+    if (!hasCompletedRef.current) return;
+    hasCompletedRef.current = false;
+
+    onComplete?.(mode);
+    if (mode === 'focus') {
+      setFocusCount(c => c + 1);
     }
-  }, [remaining, isRunning, mode, autoSwitch, focusCount, switchMode, onComplete, settings, defaultDuration]);
+    if (autoSwitch) {
+      let nextMode: TimerMode;
+      if (mode === 'focus') {
+        nextMode = (focusCount + 1) % 4 === 0 ? 'longBreak' : 'shortBreak';
+      } else {
+        nextMode = 'focus';
+      }
+      pendingAutoStartRef.current = true;
+      setTimeout(() => switchMode(nextMode), 500);
+    }
+  }, [remaining, isRunning, mode, autoSwitch, focusCount, switchMode, onComplete]);
 
   // Auto-start after mode switch triggered by auto-switch
   useEffect(() => {
@@ -165,14 +179,7 @@ export function useTimer(
     }
   }, [mode, remaining, isRunning, start]);
 
-  // Sync remaining to pausedRef when not running
-  useEffect(() => {
-    if (!isRunning) {
-      pausedRemainingRef.current = remaining;
-    }
-  }, [remaining, isRunning]);
-
-  // Reset duration when settings or mode changes
+  // Reset duration when settings or mode changes (only when not running)
   useEffect(() => {
     if (!isRunning) {
       const settingsChanged = prevSettingsRef.current !== settings;
@@ -204,5 +211,6 @@ export function useTimer(
     reset,
     switchMode,
     updateSettings,
+    resetSettings,
   };
 }

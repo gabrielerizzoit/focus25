@@ -48,7 +48,7 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
     }
   });
 
-  const { mode, remaining, totalDuration, isRunning, progress, settings, autoSwitch, setAutoSwitch, start, pause, reset, switchMode, updateSettings } = timer;
+  const { mode, remaining, totalDuration, isRunning, progress, settings, autoSwitch, setAutoSwitch, start, pause, reset, switchMode, updateSettings, resetSettings } = timer;
   const isBreak = mode !== 'focus';
 
   useEffect(() => {
@@ -173,6 +173,14 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
               />
             </div>
           ))}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={resetSettings}
+            className="w-full text-xs text-muted-foreground hover:text-foreground mt-1"
+          >
+            {ui.resetDefaults}
+          </Button>
         </div>
       )}
 

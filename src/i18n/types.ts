@@ -25,6 +25,7 @@ export interface UIStrings {
   sessionComplete: string;
   breakOver: string;
   productivityBlog: string;
+  resetDefaults: string;
 }
 
 export interface SEOPageContent {
