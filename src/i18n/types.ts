@@ -74,6 +74,7 @@ export interface FooterStrings {
   privacy: string;
   fairUse: string;
   copyright: string;
+  youtube: string;
 }
 
 export interface HomepageSEOContent {
@@ -90,6 +91,16 @@ export interface HomepageSEOContent {
   ctaText: string;
   faqTitle: string;
   faqItems: { q: string; a: string }[];
+  bestWaysTitle: string;
+  bestWaysIntro: string;
+  bestWaysItems: string[];
+  whoShouldUseTitle: string;
+  whoShouldUseIntro: string;
+  whoShouldUseItems: string[];
+  pomodoroVsTitle: string;
+  pomodoroVsP1: string;
+  pomodoroVsP2: string;
+  youtubeCtaText: string;
 }
 
 export interface HomepageContent {
