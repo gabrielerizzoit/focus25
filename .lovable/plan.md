@@ -1,70 +1,28 @@
-# Add Color Theme Switcher to Focus25
 
-## Overview
 
-Add 3 predefined color themes (Default, Pink, Light) switchable via a compact segmented control placed below the timer settings area. Uses pure CSS variables — no libraries, no re-renders.
+# Fix Break Colors Across Themes
 
-## Technical Approach
+## Problem
 
-Themes work by setting a `data-theme` attribute on `<html>`. CSS variables override in `index.css` via `[data-theme="pink"]` and `[data-theme="light"]` selectors. A tiny script in `index.html` reads localStorage before React loads to prevent flash.
+Break modes (short/long) use the `--secondary` CSS variable for their color. In the default theme this is yellow (#FFC107), but in pink and light themes it changes to pink/blue — the user wants yellow breaks in all themes.
 
-## File Changes
+## Solution
 
-### `index.html`
-
-Add inline script in `<head>` (before React):
-
-```js
-(function(){var t=localStorage.getItem('focus25-theme');if(t)document.documentElement.setAttribute('data-theme',t)})()
-```
+Update the `[data-theme="pink"]` and `[data-theme="light"]` blocks in `src/index.css` to keep `--secondary` as the same yellow from the default theme.
 
 ### `src/index.css`
 
-Add two theme blocks after `:root`:
+In `[data-theme="pink"]`:
+- Change `--secondary: 326 78% 90%` → `--secondary: 45 100% 51%`
+- Change `--secondary-foreground: 224 71% 7%` → `--secondary-foreground: 216 30% 6%` (dark text on yellow, same as default)
 
-```css
-[data-theme="pink"] {
-  --background: 224 71% 7%;
-  --primary: 330 81% 70%;      /* #F472B6 */
-  --ring: 330 81% 70%;
-  --secondary: 326 78% 90%;   /* #FBCFE8 */
-  /* card, muted, border adjusted for pink palette */
-}
+In `[data-theme="light"]`:
+- Change `--secondary: 217 60% 85%` → `--secondary: 45 100% 51%`
+- Change `--secondary-foreground: 224 71% 7%` stays (dark text on yellow — already correct)
 
-[data-theme="light"] {
-  --background: 210 20% 98%;  /* #F9FAFB */
-  --foreground: 224 71% 7%;   /* #111827 */
-  --primary: 217 91% 68%;     /* #60A5FA */
-  --card: 210 20% 94%;
-  /* all foreground/text vars flipped to dark */
-}
-```
+This ensures the yellow break indicator is consistent across all three themes.
 
-### `src/components/ThemeSwitcher.tsx` (new)
+| File | Change |
+|------|--------|
+| `src/index.css` | Update `--secondary` and `--secondary-foreground` in both theme blocks |
 
-Compact component — 3 small colored circles in a row + a reset link. On click: sets `data-theme` attribute on `<html>` and saves to localStorage. No React state needed for the theme itself (DOM attribute drives it), but uses a local state for highlighting the active option.
-
-### `src/components/Timer.tsx`
-
-Import and render `<ThemeSwitcher />` after the settings panel and after `<AudioPlayer />`.
-
-### `src/i18n/types.ts` + all 7 language files
-
-Add to `UIStrings`:
-
-- `theme: string` — "Theme" / "Tema" / etc.
-- `themeDefault: string` — "Default"
-- `themePink: string` — "Pink" / "Rosa"
-- `themeLight: string` — "Light" / "Chiaro"
-
-## File Summary
-
-
-| File                               | Action                                                                  |
-| ---------------------------------- | ----------------------------------------------------------------------- |
-| `index.html`                       | Add inline theme loader script                                          |
-| `src/index.css`                    | Add `[data-theme="pink"]` and `[data-theme="light"]` variable overrides |
-| `src/components/ThemeSwitcher.tsx` | New — 3 color dots + reset link                                         |
-| `src/components/Timer.tsx`         | Render `<ThemeSwitcher />` below settings                               |
-| `src/i18n/types.ts`                | Add 4 theme strings to `UIStrings`                                      |
-| `src/i18n/en.ts` ... `tl.ts`       | Add theme translations (7 files)                                        |
