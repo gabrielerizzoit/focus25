@@ -28,6 +28,10 @@ const es: Translations = {
     breakOver: '¡Descanso terminado! ¿Listo para enfocarte?',
     productivityBlog: 'Blog de Productividad',
     resetDefaults: 'Restablecer valores',
+    theme: 'Tema',
+    themeDefault: 'Predeterminado',
+    themePink: 'Rosa',
+    themeLight: 'Claro',
   },
   footer: {
     timers: 'Temporizadores',

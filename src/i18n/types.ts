@@ -26,6 +26,10 @@ export interface UIStrings {
   breakOver: string;
   productivityBlog: string;
   resetDefaults: string;
+  theme: string;
+  themeDefault: string;
+  themePink: string;
+  themeLight: string;
 }
 
 export interface SEOPageContent {

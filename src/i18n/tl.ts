@@ -28,6 +28,10 @@ const tl: Translations = {
     breakOver: 'Tapos na ang pahinga! Handa ka na bang mag-focus?',
     productivityBlog: 'Blog ng Productivity',
     resetDefaults: 'I-reset sa default',
+    theme: 'Tema',
+    themeDefault: 'Default',
+    themePink: 'Pink',
+    themeLight: 'Light',
   },
   footer: {
     timers: 'Mga Timer', presetTimers: 'Mga Preset Timer', resources: 'Mga Resources',

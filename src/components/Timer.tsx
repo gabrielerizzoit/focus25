@@ -6,6 +6,7 @@ import { useSessionStats } from '@/hooks/useSessionStats';
 import { useLanguage } from '@/contexts/LanguageContext';
 import ProgressRing from './ProgressRing';
 import AudioPlayer from './AudioPlayer';
+import ThemeSwitcher from './ThemeSwitcher';
 import SessionStats from './SessionStats';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
@@ -185,6 +186,7 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
       )}
 
       {showAudio && <AudioPlayer />}
+      <ThemeSwitcher />
       <SessionStats />
       <p className="text-xs text-muted-foreground/60 text-center max-w-xs">{ui.tabMessage}</p>
     </div>
