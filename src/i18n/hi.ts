@@ -28,6 +28,10 @@ const hi: Translations = {
     breakOver: 'ब्रेक खत्म! फोकस करने के लिए तैयार?',
     productivityBlog: 'प्रोडक्टिविटी ब्लॉग',
     resetDefaults: 'डिफ़ॉल्ट पर रीसेट करें',
+    theme: 'थीम',
+    themeDefault: 'डिफ़ॉल्ट',
+    themePink: 'गुलाबी',
+    themeLight: 'हल्का',
   },
   footer: {
     timers: 'टाइमर', presetTimers: 'प्रीसेट टाइमर', resources: 'संसाधन',

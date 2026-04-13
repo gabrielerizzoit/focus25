@@ -28,6 +28,10 @@ const pt: Translations = {
     breakOver: 'Intervalo acabou! Pronto para focar?',
     productivityBlog: 'Blog de Produtividade',
     resetDefaults: 'Restaurar padrões',
+    theme: 'Tema',
+    themeDefault: 'Padrão',
+    themePink: 'Rosa',
+    themeLight: 'Claro',
   },
   footer: {
     timers: 'Temporizadores', presetTimers: 'Temporizadores Predefinidos', resources: 'Recursos',
