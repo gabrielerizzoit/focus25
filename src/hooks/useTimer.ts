@@ -128,8 +128,8 @@ export function useTimer(
       const next = { ...prev };
       for (const key of Object.keys(s) as (keyof TimerSettings)[]) {
         if (s[key] !== undefined) {
-          const minutes = Math.max(1, Math.min(99, s[key]! / 60));
-          next[key] = Math.round(minutes) * 60;
+          const seconds = Math.max(1, Math.min(99 * 60 + 59, Math.round(s[key]!)));
+          next[key] = seconds;
         }
       }
       saveSettings(next);
