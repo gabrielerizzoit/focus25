@@ -216,9 +216,6 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
           {isRunning ? <Pause size={20} /> : <Play size={20} />}
           {isRunning ? ui.pause : ui.start}
         </Button>
-        <Button variant="ghost" size="icon" onClick={() => setShowSettings(!showSettings)} className="rounded-full">
-          <Settings size={18} />
-        </Button>
         <Button variant="ghost" size="icon" onClick={handleToggleFullscreen} className="rounded-full" aria-label={ui.fullscreen}>
           <Maximize2 size={18} />
         </Button>
@@ -234,6 +231,9 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
             </PopoverTrigger>
             <PopoverContent className="w-auto max-w-xs text-sm p-2">{ui.autoSwitchTooltip}</PopoverContent>
           </Popover>
+          <Button variant="ghost" size="icon" onClick={() => setShowSettings(!showSettings)} className="rounded-full ml-2 h-8 w-8">
+            <Settings size={16} />
+          </Button>
         </div>
       )}
 
