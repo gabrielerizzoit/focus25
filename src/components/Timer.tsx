@@ -34,12 +34,12 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
   const [showSettings, setShowSettings] = useState(false);
   const { isFullscreen, isFallback, toggle, exit } = useFullscreen();
   const [fsSize, setFsSize] = useState(() =>
-    typeof window !== 'undefined' ? Math.min(window.innerHeight, window.innerWidth) * 0.7 : 400
+    typeof window !== 'undefined' ? Math.min(Math.min(window.innerHeight, window.innerWidth) * 0.6, 600) : 400
   );
 
   useEffect(() => {
     if (!isFullscreen) return;
-    const update = () => setFsSize(Math.min(window.innerHeight, window.innerWidth) * 0.7);
+    const update = () => setFsSize(Math.min(Math.min(window.innerHeight, window.innerWidth) * 0.6, 600));
     update();
     window.addEventListener('resize', update);
     window.addEventListener('orientationchange', update);
