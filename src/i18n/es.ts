@@ -39,6 +39,8 @@ const es: Translations = {
     longBreakInterval: 'Pausa larga después de',
     rounds: 'rondas',
     enableLongBreak: 'Activar pausa larga',
+    fullscreen: 'Pantalla completa',
+    exitFullscreen: 'Salir de pantalla completa',
   },
   footer: {
     timers: 'Temporizadores',

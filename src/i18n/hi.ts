@@ -39,6 +39,8 @@ const hi: Translations = {
     longBreakInterval: 'लंबा ब्रेक बाद',
     rounds: 'राउंड',
     enableLongBreak: 'लंबा ब्रेक सक्षम करें',
+    fullscreen: 'फ़ुलस्क्रीन',
+    exitFullscreen: 'फ़ुलस्क्रीन से बाहर निकलें',
   },
   footer: {
     timers: 'टाइमर', presetTimers: 'प्रीसेट टाइमर', resources: 'संसाधन',

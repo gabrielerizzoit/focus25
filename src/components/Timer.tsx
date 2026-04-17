@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import { Play, Pause, RotateCcw, Settings, Info } from 'lucide-react';
+import { Play, Pause, RotateCcw, Settings, Info, Maximize2, Minimize2, X } from 'lucide-react';
 import { useTimer, type TimerMode } from '@/hooks/useTimer';
 import { playBeep, playChime } from '@/hooks/useAudio';
 import { useSessionStats } from '@/hooks/useSessionStats';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useFullscreen } from '@/hooks/useFullscreen';
 import ProgressRing from './ProgressRing';
 import AudioPlayer from './AudioPlayer';
 import ThemeSwitcher from './ThemeSwitcher';
@@ -29,7 +30,9 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
   const ui = t.ui;
   const { incrementSession } = useSessionStats();
   const lastBeepRef = useRef<number>(-1);
+  const fsContainerRef = useRef<HTMLDivElement>(null);
   const [showSettings, setShowSettings] = useState(false);
+  const { isFullscreen, isFallback, toggle, exit } = useFullscreen();
 
   const allModes: { id: TimerMode; label: string }[] = [
     { id: 'focus', label: ui.focus },
@@ -72,10 +75,58 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
     start();
   };
 
+  const handleToggleFullscreen = () => {
+    toggle(fsContainerRef.current);
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'fullscreen_toggle', { fullscreen: !isFullscreen });
+    }
+  };
+
   const modeLabel = mode === 'shortBreak' ? ui.shortBreak : mode === 'longBreak' ? ui.longBreak : ui.focus;
 
+  // ============ Fullscreen layout ============
+  if (isFullscreen) {
+    return (
+      <div
+        ref={fsContainerRef}
+        className={`${isFallback ? 'fixed inset-0 z-50' : ''} bg-background text-foreground flex flex-col items-center justify-center min-h-screen w-full p-6`}
+      >
+        <button
+          onClick={handleToggleFullscreen}
+          aria-label={ui.exitFullscreen}
+          className="absolute top-4 right-4 p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-colors"
+        >
+          {isFallback ? <X size={24} /> : <Minimize2 size={24} />}
+        </button>
+
+        <span className="text-xs sm:text-sm uppercase tracking-[0.3em] text-muted-foreground mb-6">
+          {modeLabel}
+        </span>
+
+        <span className="text-[22vw] sm:text-[18vw] md:text-[15vw] lg:text-[13vw] xl:text-[12vw] leading-none font-light tracking-wider tabular-nums text-foreground">
+          {formatTime(remaining)}
+        </span>
+
+        <div className="flex items-center gap-4 mt-10">
+          <Button variant="ghost" size="icon" onClick={reset} className="rounded-full h-12 w-12">
+            <RotateCcw size={22} />
+          </Button>
+          <Button
+            onClick={isRunning ? pause : handleStart}
+            className={`rounded-full px-10 py-6 text-lg ${isBreak ? 'bg-secondary text-secondary-foreground hover:bg-secondary/80' : ''}`}
+            size="lg"
+          >
+            {isRunning ? <Pause size={24} /> : <Play size={24} />}
+            {isRunning ? ui.pause : ui.start}
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  // ============ Normal layout ============
   return (
-    <div className="flex flex-col items-center gap-6">
+    <div ref={fsContainerRef} className="flex flex-col items-center gap-6">
       {!defaultDuration && (
         <div className="flex gap-1 bg-muted/30 rounded-full p-1">
           {modes.map(({ id, label }) => (
@@ -127,6 +178,9 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
         </Button>
         <Button variant="ghost" size="icon" onClick={() => setShowSettings(!showSettings)} className="rounded-full">
           <Settings size={18} />
+        </Button>
+        <Button variant="ghost" size="icon" onClick={handleToggleFullscreen} className="rounded-full" aria-label={ui.fullscreen}>
+          <Maximize2 size={18} />
         </Button>
       </div>
 
