@@ -34,6 +34,9 @@ export interface UIStrings {
   preset25: string;
   preset50: string;
   preset15: string;
+  longBreakInterval: string;
+  rounds: string;
+  enableLongBreak: string;
 }
 
 export interface SEOPageContent {
