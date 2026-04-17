@@ -31,7 +31,7 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
   const lastBeepRef = useRef<number>(-1);
   const [showSettings, setShowSettings] = useState(false);
 
-  const modes: { id: TimerMode; label: string }[] = [
+  const allModes: { id: TimerMode; label: string }[] = [
     { id: 'focus', label: ui.focus },
     { id: 'shortBreak', label: ui.shortBreak },
     { id: 'longBreak', label: ui.longBreak },
@@ -52,6 +52,7 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
 
   const { mode, remaining, totalDuration, isRunning, progress, settings, autoSwitch, setAutoSwitch, start, pause, reset, switchMode, updateSettings, resetSettings } = timer;
   const isBreak = mode !== 'focus';
+  const modes = allModes.filter(m => m.id !== 'longBreak' || settings.longBreakEnabled);
 
   useEffect(() => {
     if (isRunning && remaining <= 5 && remaining > 0 && remaining !== lastBeepRef.current) {
@@ -168,7 +169,7 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
                     maxLength={2}
                     value={String(mm)}
                     onChange={e => {
-                      const raw = e.target.value.replace(/[^0-9]/g, '').slice(0, 2);
+                      const raw = e.target.value.replace(/[^0-9]/g, '').replace(/^0+(?=\d)/, '').slice(0, 2);
                       const n = raw === '' ? 0 : Math.min(99, Number(raw));
                       commit(n, ss);
                     }}
@@ -184,9 +185,9 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
                     inputMode="numeric"
                     pattern="[0-9]*"
                     maxLength={2}
-                    value={ss.toString().padStart(2, '0')}
+                    value={String(ss)}
                     onChange={e => {
-                      const raw = e.target.value.replace(/[^0-9]/g, '').slice(0, 2);
+                      const raw = e.target.value.replace(/[^0-9]/g, '').replace(/^0+(?=\d)/, '').slice(0, 2);
                       const n = raw === '' ? 0 : Math.min(59, Number(raw));
                       commit(mm, n);
                     }}
@@ -200,6 +201,40 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
               </div>
             );
           })}
+          <div className="flex items-center justify-between pt-2 border-t border-border">
+            <label className="text-xs text-muted-foreground">{ui.longBreakInterval}</label>
+            <div className="flex items-center gap-1">
+              <input
+                type="text"
+                inputMode="numeric"
+                pattern="[0-9]*"
+                maxLength={2}
+                value={String(settings.longBreakInterval)}
+                disabled={!settings.longBreakEnabled}
+                onChange={e => {
+                  const raw = e.target.value.replace(/[^0-9]/g, '').replace(/^0+(?=\d)/, '').slice(0, 2);
+                  const n = raw === '' ? 1 : Math.max(1, Math.min(20, Number(raw)));
+                  updateSettings({ longBreakInterval: n });
+                }}
+                onBlur={() => {
+                  if (settings.longBreakInterval < 1) updateSettings({ longBreakInterval: 4 });
+                }}
+                className="w-12 bg-muted border border-border rounded px-2 py-1 text-sm text-foreground text-center disabled:opacity-50"
+                aria-label={ui.longBreakInterval}
+              />
+              <span className="text-xs text-muted-foreground">{ui.rounds}</span>
+            </div>
+          </div>
+          <div className="flex items-center justify-between">
+            <label className="text-xs text-muted-foreground">{ui.enableLongBreak}</label>
+            <Switch
+              checked={settings.longBreakEnabled}
+              onCheckedChange={(checked) => {
+                updateSettings({ longBreakEnabled: checked });
+                if (!checked && mode === 'longBreak') switchMode('focus');
+              }}
+            />
+          </div>
           <Button
             variant="ghost"
             size="sm"
