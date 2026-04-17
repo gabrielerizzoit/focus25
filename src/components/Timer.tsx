@@ -114,13 +114,33 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
           {isFallback ? <X size={24} /> : <Minimize2 size={24} />}
         </button>
 
-        <span className="text-xs sm:text-sm uppercase tracking-[0.3em] text-muted-foreground mb-6">
-          {modeLabel}
-        </span>
+        <div className="flex gap-1 bg-muted/30 rounded-full p-1 mb-8">
+          {modes.map(({ id, label }) => (
+            <button
+              key={id}
+              onClick={() => switchMode(id)}
+              className={`px-4 py-1.5 rounded-full text-sm transition-all ${
+                mode === id
+                  ? (id !== 'focus' ? 'bg-secondary text-secondary-foreground' : 'bg-primary text-primary-foreground')
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
 
-        <span className="text-[22vw] sm:text-[18vw] md:text-[15vw] lg:text-[13vw] xl:text-[12vw] leading-none font-light tracking-wider tabular-nums text-foreground">
-          {formatTime(remaining)}
-        </span>
+        <div className="relative flex items-center justify-center" style={{ width: fsSize, height: fsSize }}>
+          <ProgressRing progress={progress} isBreak={isBreak} size={fsSize} strokeWidth={10} />
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
+            <span className="text-7xl sm:text-8xl md:text-9xl font-light tracking-wider tabular-nums text-foreground">
+              {formatTime(remaining)}
+            </span>
+            <span className="text-xs sm:text-sm uppercase tracking-[0.3em] text-muted-foreground mt-3">
+              {modeLabel}
+            </span>
+          </div>
+        </div>
 
         <div className="flex items-center gap-4 mt-10">
           <Button variant="ghost" size="icon" onClick={reset} className="rounded-full h-12 w-12">
