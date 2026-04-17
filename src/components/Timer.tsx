@@ -7,6 +7,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import ProgressRing from './ProgressRing';
 import AudioPlayer from './AudioPlayer';
 import ThemeSwitcher from './ThemeSwitcher';
+import TimerPresets from './TimerPresets';
 import SessionStats from './SessionStats';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
@@ -145,35 +146,60 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
         <div className="bg-card border border-border rounded-xl p-4 w-full max-w-xs space-y-3">
           <h3 className="text-sm font-medium text-foreground">{ui.settings}</h3>
           {([
-            { key: 'focus' as const, label: ui.focusDuration, def: 25 },
-            { key: 'shortBreak' as const, label: ui.shortBreakDuration, def: 5 },
-            { key: 'longBreak' as const, label: ui.longBreakDuration, def: 15 },
-          ]).map(({ key, label, def }) => (
-            <div key={key} className="flex items-center justify-between">
-              <label className="text-xs text-muted-foreground">{label}</label>
-              <input
-                type="text"
-                inputMode="numeric"
-                pattern="[0-9]*"
-                maxLength={2}
-                value={String(settings[key] / 60)}
-                onChange={e => {
-                  const raw = e.target.value.replace(/[^0-9]/g, '').replace(/^0+/, '');
-                  if (raw === '') {
-                    updateSettings({ [key]: def * 60 });
-                  } else {
-                    const n = Math.max(1, Math.min(99, Number(raw)));
-                    updateSettings({ [key]: n * 60 });
-                  }
-                }}
-                onBlur={e => {
-                  const v = Number(e.target.value);
-                  if (!v || v < 1) updateSettings({ [key]: def * 60 });
-                }}
-                className="w-16 bg-muted border border-border rounded px-2 py-1 text-sm text-foreground text-center"
-              />
-            </div>
-          ))}
+            { key: 'focus' as const, label: ui.focusDuration, def: 25 * 60 },
+            { key: 'shortBreak' as const, label: ui.shortBreakDuration, def: 5 * 60 },
+            { key: 'longBreak' as const, label: ui.longBreakDuration, def: 15 * 60 },
+          ]).map(({ key, label, def }) => {
+            const totalSec = settings[key];
+            const mm = Math.floor(totalSec / 60);
+            const ss = totalSec % 60;
+            const commit = (newMm: number, newSs: number) => {
+              const total = Math.max(1, Math.min(99 * 60 + 59, newMm * 60 + newSs));
+              updateSettings({ [key]: total });
+            };
+            return (
+              <div key={key} className="flex items-center justify-between">
+                <label className="text-xs text-muted-foreground">{label}</label>
+                <div className="flex items-center gap-1">
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    maxLength={2}
+                    value={String(mm)}
+                    onChange={e => {
+                      const raw = e.target.value.replace(/[^0-9]/g, '').slice(0, 2);
+                      const n = raw === '' ? 0 : Math.min(99, Number(raw));
+                      commit(n, ss);
+                    }}
+                    onBlur={() => {
+                      if (mm * 60 + ss < 1) updateSettings({ [key]: def });
+                    }}
+                    className="w-12 bg-muted border border-border rounded px-2 py-1 text-sm text-foreground text-center"
+                    aria-label={`${label} minutes`}
+                  />
+                  <span className="text-sm text-muted-foreground">:</span>
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    maxLength={2}
+                    value={ss.toString().padStart(2, '0')}
+                    onChange={e => {
+                      const raw = e.target.value.replace(/[^0-9]/g, '').slice(0, 2);
+                      const n = raw === '' ? 0 : Math.min(59, Number(raw));
+                      commit(mm, n);
+                    }}
+                    onBlur={() => {
+                      if (mm * 60 + ss < 1) updateSettings({ [key]: def });
+                    }}
+                    className="w-12 bg-muted border border-border rounded px-2 py-1 text-sm text-foreground text-center"
+                    aria-label={`${label} seconds`}
+                  />
+                </div>
+              </div>
+            );
+          })}
           <Button
             variant="ghost"
             size="sm"
@@ -187,6 +213,10 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
 
       {showAudio && <AudioPlayer />}
       <ThemeSwitcher />
+      <TimerPresets
+        onSelect={(focus, shortBreak) => updateSettings({ focus, shortBreak })}
+        current={{ focus: settings.focus, shortBreak: settings.shortBreak }}
+      />
       <SessionStats />
       <p className="text-xs text-muted-foreground/60 text-center max-w-xs">{ui.tabMessage}</p>
     </div>
