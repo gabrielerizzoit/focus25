@@ -39,6 +39,8 @@ const tl: Translations = {
     longBreakInterval: 'Mahabang break pagkatapos ng',
     rounds: 'rounds',
     enableLongBreak: 'I-enable ang mahabang break',
+    fullscreen: 'Buong screen',
+    exitFullscreen: 'Lumabas sa buong screen',
   },
   footer: {
     timers: 'Mga Timer', presetTimers: 'Mga Preset Timer', resources: 'Mga Resources',
