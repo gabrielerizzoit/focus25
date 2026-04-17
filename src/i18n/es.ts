@@ -36,6 +36,9 @@ const es: Translations = {
     preset25: '25 / 5',
     preset50: '50 / 10',
     preset15: '15 / 5',
+    longBreakInterval: 'Pausa larga después de',
+    rounds: 'rondas',
+    enableLongBreak: 'Activar pausa larga',
   },
   footer: {
     timers: 'Temporizadores',

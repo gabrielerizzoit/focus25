@@ -36,6 +36,9 @@ const tl: Translations = {
     preset25: '25 / 5',
     preset50: '50 / 10',
     preset15: '15 / 5',
+    longBreakInterval: 'Mahabang break pagkatapos ng',
+    rounds: 'rounds',
+    enableLongBreak: 'I-enable ang mahabang break',
   },
   footer: {
     timers: 'Mga Timer', presetTimers: 'Mga Preset Timer', resources: 'Mga Resources',
