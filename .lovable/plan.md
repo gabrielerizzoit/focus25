@@ -1,61 +1,59 @@
 
 
-User wants:
-1. **Fix seconds input bug**: When typing 2 digits in seconds field, leading zero stays. Currently `value={ss.toString().padStart(2, '0')}` causes "05" to show, then typing "3" produces "053" → sliced to "05". Need to display raw number when focused, or handle differently.
-2. **Configurable long-break interval** (default 4, min 1) in settings.
-3. **Disable long break** toggle in settings.
-4. **Reset to defaults** must also reset interval and the disable toggle.
+Let me explore the relevant files to understand the current Timer structure.
+<lov-tool-use id="toolu_vrtx_01R1zQY2FNMKf8TrHm5tfknw" name="code--view" integration-id="code" data="{\"file_path\": \"src/components/ProgressRing.tsx\"}">
+</lov-tool-use>
+<lov-plan>
 
-Let me check the current input behavior. Looking at Timer.tsx seconds input:
-```
-value={ss.toString().padStart(2, '0')}  // displays "05"
-onChange: raw = e.target.value.replace(...).slice(0, 2)
-```
-If user has "05" and types "3" before/after → becomes "053" → slice(0,2) = "05". Bug confirmed. Fix: don't pad displayed value, or strip leading zeros when length > 1.
+# Add Fullscreen Mode to Focus25
 
-# Fix Seconds Input + Configurable Long-Break Interval
+## Approach
 
-## 1. Fix Seconds Input Bug
+Add a fullscreen toggle button next to the existing controls. When activated, render the timer in a dedicated overlay that uses the browser's native Fullscreen API (with graceful fallback to a fixed-position page-level overlay).
 
-**Problem**: Seconds field displays padded `"05"`. Typing extra digits gets sliced and the leading zero is preserved, making it impossible to overwrite.
+## Implementation
 
-**Fix in `src/components/Timer.tsx`**: 
-- Display seconds as plain number (`String(ss)`) instead of `padStart(2, '0')`
-- In onChange, strip leading zeros: if raw length > 1, remove leading zero(s)
-- Same fix for minutes input (already uses `String(mm)`, but apply consistent strip)
-
-## 2. Long-Break Interval Setting
-
-### `src/hooks/useTimer.ts`
-- Extend `TimerSettings` with:
-  - `longBreakInterval: number` (default `4`, min `1`)
-  - `longBreakEnabled: boolean` (default `true`)
-- Update `DEFAULT_SETTINGS`, `loadSettings`, `saveSettings`, `updateSettings` validation
-- Update auto-switch completion logic: 
-  - If `!longBreakEnabled` → always `shortBreak` after focus
-  - Else use `longBreakInterval` instead of hard-coded `4`
-- `resetSettings` already resets all settings — works automatically
+### `src/hooks/useFullscreen.ts` (new)
+Tiny hook that:
+- Tracks `isFullscreen` state
+- `enter(element)` — calls `element.requestFullscreen()` if supported, otherwise sets a fallback flag
+- `exit()` — calls `document.exitFullscreen()` or clears fallback flag
+- Listens to `fullscreenchange` event + Esc key
+- Returns `{ isFullscreen, isFallback, enter, exit, toggle }`
 
 ### `src/components/Timer.tsx`
-Add to settings panel below the 3 duration rows:
-- **Number input** "Long break after" (1–20 rounds), disabled when long break disabled
-- **Switch** "Enable long break" (on by default)
-- Both above the "Reset to defaults" button
+- Add a `Maximize2` icon button next to Settings/Reset (rounded ghost button)
+- Wrap timer in a ref'd container for `requestFullscreen`
+- When `isFullscreen` is true:
+  - Render a separate **minimal layout**: mode label (top), huge centered time, Start/Pause + small Reset, exit button (top-right `X` icon)
+  - Hide ThemeSwitcher, TimerPresets, SessionStats, AudioPlayer, settings panel, mode tabs, autoSwitch toggle, tab message
+- When `isFallback` is true, apply `fixed inset-0 z-50 bg-background` to the container so it covers the whole viewport (Header/Footer hidden via the same overlay covering them)
 
-Also: hide the "Long break" mode tab in the mode selector when `longBreakEnabled === false`.
+### Fullscreen layout details
+- Container: `flex flex-col items-center justify-center min-h-screen` with theme background
+- Mode label: `text-sm uppercase tracking-widest text-muted-foreground`
+- Timer text: `text-[20vw] sm:text-[16vw] md:text-[14vw] lg:text-[12vw]` with `max-text-[40rem]` cap, tabular-nums, light weight (preserves current style at scale)
+- Buttons: large rounded pills, theme-aware (yellow for breaks, primary for focus — same as current)
+- Exit button: top-right corner, `Minimize2` or `X` icon, ghost style
+- Works in portrait + landscape via flex centering and viewport-relative font sizing
+
+### Behavior
+- Esc exits (handled natively in real fullscreen; manual listener for fallback)
+- Switching mode tabs disabled in fullscreen (kept minimal); user exits to change settings
+- Theme colors preserved (uses existing CSS variables — no overrides)
+- Notifications, audio chimes, beeps continue working unchanged
 
 ### `src/i18n/types.ts` + 7 language files
 Add to `UIStrings`:
-- `longBreakInterval: string` — "Long break after" / "Long break dopo"
-- `rounds: string` — "rounds" / "round"
-- `enableLongBreak: string` — "Enable long break" / "Abilita long break"
+- `fullscreen: string` — "Fullscreen" / "Schermo intero"
+- `exitFullscreen: string` — "Exit fullscreen" / "Esci da schermo intero"
 
 ## File Summary
 
-| File | Change |
+| File | Action |
 |------|--------|
-| `src/hooks/useTimer.ts` | Add `longBreakInterval` + `longBreakEnabled` settings; update auto-switch logic |
-| `src/components/Timer.tsx` | Fix seconds input zero-strip bug; add interval input + enable toggle; hide long-break tab when disabled |
-| `src/i18n/types.ts` | Add 3 new UI keys |
+| `src/hooks/useFullscreen.ts` | New — Fullscreen API wrapper with fallback |
+| `src/components/Timer.tsx` | Add fullscreen button + minimal overlay layout |
+| `src/i18n/types.ts` | Add 2 keys |
 | `src/i18n/{en,it,es,fr,pt,hi,tl}.ts` | Add translations |
 
