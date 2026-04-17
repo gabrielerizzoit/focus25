@@ -30,6 +30,10 @@ export interface UIStrings {
   themeDefault: string;
   themePink: string;
   themeLight: string;
+  presets: string;
+  preset25: string;
+  preset50: string;
+  preset15: string;
 }
 
 export interface SEOPageContent {

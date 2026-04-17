@@ -32,6 +32,10 @@ const hi: Translations = {
     themeDefault: 'डिफ़ॉल्ट',
     themePink: 'गुलाबी',
     themeLight: 'हल्का',
+    presets: 'प्रीसेट',
+    preset25: '25 / 5',
+    preset50: '50 / 10',
+    preset15: '15 / 5',
   },
   footer: {
     timers: 'टाइमर', presetTimers: 'प्रीसेट टाइमर', resources: 'संसाधन',

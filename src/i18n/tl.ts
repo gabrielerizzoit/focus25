@@ -32,6 +32,10 @@ const tl: Translations = {
     themeDefault: 'Default',
     themePink: 'Pink',
     themeLight: 'Light',
+    presets: 'Mga Preset',
+    preset25: '25 / 5',
+    preset50: '50 / 10',
+    preset15: '15 / 5',
   },
   footer: {
     timers: 'Mga Timer', presetTimers: 'Mga Preset Timer', resources: 'Mga Resources',
