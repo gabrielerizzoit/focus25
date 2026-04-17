@@ -36,6 +36,9 @@ const en: Translations = {
     preset25: '25 / 5',
     preset50: '50 / 10',
     preset15: '15 / 5',
+    longBreakInterval: 'Long break after',
+    rounds: 'rounds',
+    enableLongBreak: 'Enable long break',
   },
   footer: {
     timers: 'Timers',

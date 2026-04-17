@@ -36,6 +36,9 @@ const hi: Translations = {
     preset25: '25 / 5',
     preset50: '50 / 10',
     preset15: '15 / 5',
+    longBreakInterval: 'लंबा ब्रेक बाद',
+    rounds: 'राउंड',
+    enableLongBreak: 'लंबा ब्रेक सक्षम करें',
   },
   footer: {
     timers: 'टाइमर', presetTimers: 'प्रीसेट टाइमर', resources: 'संसाधन',

@@ -6,6 +6,8 @@ interface TimerSettings {
   focus: number;
   shortBreak: number;
   longBreak: number;
+  longBreakInterval: number;
+  longBreakEnabled: boolean;
 }
 
 interface TimerState {
@@ -20,6 +22,8 @@ const DEFAULT_SETTINGS: TimerSettings = {
   focus: 25 * 60,
   shortBreak: 5 * 60,
   longBreak: 15 * 60,
+  longBreakInterval: 4,
+  longBreakEnabled: true,
 };
 
 const SETTINGS_TTL = 24 * 60 * 60 * 1000; // 24 hours
@@ -30,7 +34,13 @@ function loadSettings(): TimerSettings {
     if (raw) {
       const parsed = JSON.parse(raw);
       if (parsed.timestamp && Date.now() - parsed.timestamp < SETTINGS_TTL) {
-        return { focus: parsed.focus, shortBreak: parsed.shortBreak, longBreak: parsed.longBreak };
+        return {
+          focus: parsed.focus,
+          shortBreak: parsed.shortBreak,
+          longBreak: parsed.longBreak,
+          longBreakInterval: typeof parsed.longBreakInterval === 'number' ? parsed.longBreakInterval : DEFAULT_SETTINGS.longBreakInterval,
+          longBreakEnabled: typeof parsed.longBreakEnabled === 'boolean' ? parsed.longBreakEnabled : DEFAULT_SETTINGS.longBreakEnabled,
+        };
       }
       localStorage.removeItem('focus25-settings');
     }
@@ -127,9 +137,14 @@ export function useTimer(
     setSettingsState(prev => {
       const next = { ...prev };
       for (const key of Object.keys(s) as (keyof TimerSettings)[]) {
-        if (s[key] !== undefined) {
-          const seconds = Math.max(1, Math.min(99 * 60 + 59, Math.round(s[key]!)));
-          next[key] = seconds;
+        const val = s[key];
+        if (val === undefined) continue;
+        if (key === 'longBreakEnabled') {
+          (next[key] as boolean) = Boolean(val);
+        } else if (key === 'longBreakInterval') {
+          (next[key] as number) = Math.max(1, Math.min(20, Math.round(val as number)));
+        } else {
+          (next[key] as number) = Math.max(1, Math.min(99 * 60 + 59, Math.round(val as number)));
         }
       }
       saveSettings(next);
@@ -162,7 +177,8 @@ export function useTimer(
     if (autoSwitch) {
       let nextMode: TimerMode;
       if (mode === 'focus') {
-        nextMode = (focusCount + 1) % 4 === 0 ? 'longBreak' : 'shortBreak';
+        const interval = Math.max(1, settings.longBreakInterval || 4);
+        nextMode = settings.longBreakEnabled && (focusCount + 1) % interval === 0 ? 'longBreak' : 'shortBreak';
       } else {
         nextMode = 'focus';
       }
