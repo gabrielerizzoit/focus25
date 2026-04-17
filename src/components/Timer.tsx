@@ -33,6 +33,21 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
   const fsContainerRef = useRef<HTMLDivElement>(null);
   const [showSettings, setShowSettings] = useState(false);
   const { isFullscreen, isFallback, toggle, exit } = useFullscreen();
+  const [fsSize, setFsSize] = useState(() =>
+    typeof window !== 'undefined' ? Math.min(window.innerHeight, window.innerWidth) * 0.7 : 400
+  );
+
+  useEffect(() => {
+    if (!isFullscreen) return;
+    const update = () => setFsSize(Math.min(window.innerHeight, window.innerWidth) * 0.7);
+    update();
+    window.addEventListener('resize', update);
+    window.addEventListener('orientationchange', update);
+    return () => {
+      window.removeEventListener('resize', update);
+      window.removeEventListener('orientationchange', update);
+    };
+  }, [isFullscreen]);
 
   const allModes: { id: TimerMode; label: string }[] = [
     { id: 'focus', label: ui.focus },
