@@ -104,17 +104,17 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
     return (
       <div
         ref={fsContainerRef}
-        className={`${isFallback ? 'fixed inset-0 z-50' : ''} bg-background text-foreground flex flex-col items-center justify-center min-h-screen w-full p-6`}
+        className={`${isFallback ? 'fixed inset-0 z-50' : ''} bg-background text-foreground flex flex-col items-center justify-center h-screen w-full p-3 sm:p-6 gap-4 sm:gap-6 overflow-hidden`}
       >
         <button
           onClick={handleToggleFullscreen}
           aria-label={ui.exitFullscreen}
-          className="absolute top-4 right-4 p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-colors"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-colors"
         >
           {isFallback ? <X size={24} /> : <Minimize2 size={24} />}
         </button>
 
-        <div className="flex gap-1 bg-muted/30 rounded-full p-1 mb-8">
+        <div className="flex gap-1 bg-muted/30 rounded-full p-1">
           {modes.map(({ id, label }) => (
             <button
               key={id}
@@ -133,25 +133,30 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
         <div className="relative flex items-center justify-center" style={{ width: fsSize, height: fsSize }}>
           <ProgressRing progress={progress} isBreak={isBreak} size={fsSize} strokeWidth={10} />
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-7xl sm:text-8xl md:text-9xl font-light tracking-wider tabular-nums text-foreground">
+            <span
+              className="font-light tracking-wider tabular-nums text-foreground leading-none"
+              style={{ fontSize: fsSize * 0.22 }}
+            >
               {formatTime(remaining)}
             </span>
-            <span className="text-xs sm:text-sm uppercase tracking-[0.3em] text-muted-foreground mt-3">
+            <span
+              className="uppercase tracking-[0.3em] text-muted-foreground mt-3"
+              style={{ fontSize: Math.max(10, Math.min(fsSize * 0.04, 16)) }}
+            >
               {modeLabel}
             </span>
           </div>
         </div>
 
-        <div className="flex items-center gap-4 mt-10">
+        <div className="flex items-center gap-4">
           <Button variant="ghost" size="icon" onClick={reset} className="rounded-full h-12 w-12">
             <RotateCcw size={22} />
           </Button>
           <Button
             onClick={isRunning ? pause : handleStart}
-            className={`rounded-full px-10 py-6 text-lg ${isBreak ? 'bg-secondary text-secondary-foreground hover:bg-secondary/80' : ''}`}
-            size="lg"
+            className={`rounded-full px-8 py-5 text-base ${isBreak ? 'bg-secondary text-secondary-foreground hover:bg-secondary/80' : ''}`}
           >
-            {isRunning ? <Pause size={24} /> : <Play size={24} />}
+            {isRunning ? <Pause size={22} /> : <Play size={22} />}
             {isRunning ? ui.pause : ui.start}
           </Button>
         </div>
