@@ -32,6 +32,10 @@ const pt: Translations = {
     themeDefault: 'Padrão',
     themePink: 'Rosa',
     themeLight: 'Claro',
+    presets: 'Predefinidos',
+    preset25: '25 / 5',
+    preset50: '50 / 10',
+    preset15: '15 / 5',
   },
   footer: {
     timers: 'Temporizadores', presetTimers: 'Temporizadores Predefinidos', resources: 'Recursos',

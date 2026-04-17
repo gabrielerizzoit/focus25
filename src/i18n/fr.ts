@@ -32,6 +32,10 @@ const fr: Translations = {
     themeDefault: 'Défaut',
     themePink: 'Rose',
     themeLight: 'Clair',
+    presets: 'Préréglages',
+    preset25: '25 / 5',
+    preset50: '50 / 10',
+    preset15: '15 / 5',
   },
   footer: {
     timers: 'Minuteurs',
