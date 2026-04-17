@@ -37,6 +37,8 @@ export interface UIStrings {
   longBreakInterval: string;
   rounds: string;
   enableLongBreak: string;
+  fullscreen: string;
+  exitFullscreen: string;
 }
 
 export interface SEOPageContent {
