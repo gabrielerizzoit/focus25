@@ -10,6 +10,11 @@ import AudioPlayer from './AudioPlayer';
 import ThemeSwitcher from './ThemeSwitcher';
 import TimerPresets from './TimerPresets';
 import SessionStats from './SessionStats';
+import TimerStyleSelector from './TimerStyleSelector';
+import CurrentClock from './CurrentClock';
+import DigitalTimer from './timer-styles/DigitalTimer';
+import TrafficLightTimer from './timer-styles/TrafficLightTimer';
+import { useTimerStyle } from '@/hooks/useTimerStyle';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
@@ -28,6 +33,7 @@ function formatTime(seconds: number) {
 const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
   const { t } = useLanguage();
   const ui = t.ui;
+  const { style: timerStyle, showClock } = useTimerStyle();
   const { incrementSession } = useSessionStats();
   const lastBeepRef = useRef<number>(-1);
   const fsContainerRef = useRef<HTMLDivElement>(null);
@@ -114,6 +120,8 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
           {isFallback ? <X size={24} /> : <Minimize2 size={24} />}
         </button>
 
+        {showClock && <CurrentClock className="absolute top-4 left-4" />}
+
         <div className="flex gap-1 bg-muted/30 rounded-full p-1">
           {modes.map(({ id, label }) => (
             <button
@@ -130,23 +138,31 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
           ))}
         </div>
 
-        <div className="relative flex items-center justify-center" style={{ width: fsSize, height: fsSize }}>
-          <ProgressRing progress={progress} isBreak={isBreak} size={fsSize} strokeWidth={10} />
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span
-              className="font-light tracking-wider tabular-nums text-foreground leading-none"
-              style={{ fontSize: fsSize * 0.22 }}
-            >
-              {formatTime(remaining)}
-            </span>
-            <span
-              className="uppercase tracking-[0.3em] text-muted-foreground mt-3"
-              style={{ fontSize: Math.max(10, Math.min(fsSize * 0.04, 16)) }}
-            >
-              {modeLabel}
-            </span>
+        {timerStyle === 'circle' && (
+          <div className="relative flex items-center justify-center" style={{ width: fsSize, height: fsSize }}>
+            <ProgressRing progress={progress} isBreak={isBreak} size={fsSize} strokeWidth={10} />
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <span
+                className="font-light tracking-wider tabular-nums text-foreground leading-none"
+                style={{ fontSize: fsSize * 0.22 }}
+              >
+                {formatTime(remaining)}
+              </span>
+              <span
+                className="uppercase tracking-[0.3em] text-muted-foreground mt-3"
+                style={{ fontSize: Math.max(10, Math.min(fsSize * 0.04, 16)) }}
+              >
+                {modeLabel}
+              </span>
+            </div>
           </div>
-        </div>
+        )}
+        {timerStyle === 'digital' && (
+          <DigitalTimer time={formatTime(remaining)} modeLabel={modeLabel} isBreak={isBreak} size={fsSize} />
+        )}
+        {timerStyle === 'traffic' && (
+          <TrafficLightTimer time={formatTime(remaining)} modeLabel={modeLabel} mode={mode} size={fsSize} />
+        )}
 
         <div className="flex items-center gap-4">
           <Button variant="ghost" size="icon" onClick={reset} className="rounded-full h-12 w-12">
@@ -194,15 +210,23 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
         </div>
       )}
 
-      <div className="relative flex items-center justify-center">
-        <ProgressRing progress={progress} isBreak={isBreak} />
-        <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-5xl sm:text-6xl font-light tracking-wider text-foreground tabular-nums">
-            {formatTime(remaining)}
-          </span>
-          <span className="text-xs text-muted-foreground mt-1 capitalize">{modeLabel}</span>
+      {timerStyle === 'circle' && (
+        <div className="relative flex items-center justify-center">
+          <ProgressRing progress={progress} isBreak={isBreak} />
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
+            <span className="text-5xl sm:text-6xl font-light tracking-wider text-foreground tabular-nums">
+              {formatTime(remaining)}
+            </span>
+            <span className="text-xs text-muted-foreground mt-1 capitalize">{modeLabel}</span>
+          </div>
         </div>
-      </div>
+      )}
+      {timerStyle === 'digital' && (
+        <DigitalTimer time={formatTime(remaining)} modeLabel={modeLabel} isBreak={isBreak} />
+      )}
+      {timerStyle === 'traffic' && (
+        <TrafficLightTimer time={formatTime(remaining)} modeLabel={modeLabel} mode={mode} />
+      )}
 
       <div className="flex items-center gap-3">
         <Button variant="ghost" size="icon" onClick={reset} className="rounded-full">
@@ -342,6 +366,7 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
 
       {showAudio && <AudioPlayer />}
       <ThemeSwitcher />
+      <TimerStyleSelector />
       <TimerPresets
         onSelect={(focus, shortBreak) => updateSettings({ focus, shortBreak })}
         current={{ focus: settings.focus, shortBreak: settings.shortBreak }}
