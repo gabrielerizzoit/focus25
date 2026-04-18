@@ -41,6 +41,11 @@ const hi: Translations = {
     enableLongBreak: 'लंबा ब्रेक सक्षम करें',
     fullscreen: 'फ़ुलस्क्रीन',
     exitFullscreen: 'फ़ुलस्क्रीन से बाहर निकलें',
+    timerStyle: 'टाइमर शैली',
+    styleCircle: 'वृत्त',
+    styleDigital: 'डिजिटल',
+    styleTraffic: 'ट्रैफिक लाइट',
+    showCurrentTime: 'वर्तमान समय दिखाएं',
   },
   footer: {
     timers: 'टाइमर', presetTimers: 'प्रीसेट टाइमर', resources: 'संसाधन',
