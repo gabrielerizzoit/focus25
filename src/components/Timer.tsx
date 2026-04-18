@@ -10,6 +10,11 @@ import AudioPlayer from './AudioPlayer';
 import ThemeSwitcher from './ThemeSwitcher';
 import TimerPresets from './TimerPresets';
 import SessionStats from './SessionStats';
+import TimerStyleSelector from './TimerStyleSelector';
+import CurrentClock from './CurrentClock';
+import DigitalTimer from './timer-styles/DigitalTimer';
+import TrafficLightTimer from './timer-styles/TrafficLightTimer';
+import { useTimerStyle } from '@/hooks/useTimerStyle';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
@@ -28,6 +33,7 @@ function formatTime(seconds: number) {
 const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
   const { t } = useLanguage();
   const ui = t.ui;
+  const { style: timerStyle, showClock } = useTimerStyle();
   const { incrementSession } = useSessionStats();
   const lastBeepRef = useRef<number>(-1);
   const fsContainerRef = useRef<HTMLDivElement>(null);
