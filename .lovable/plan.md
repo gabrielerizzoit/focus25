@@ -1,38 +1,81 @@
 
 
-User reports two issues in fullscreen on mobile landscape:
-1. Layout not well centered, parts cut off
-2. Timer text larger than the ring (overflowing)
+# Timer Style Selector + Optional Current Time
 
-Looking at current Timer.tsx fullscreen layout:
-- Container uses `min-h-screen` + `p-6` + mode tabs (mb-8) + ring + controls (mt-10) → in landscape (e.g. 844x390), total vertical content exceeds viewport, causing cutoff
-- `fsSize = min(innerHeight, innerWidth) * 0.7` → in landscape 390h × 844w → 273px ring
-- Time text `text-7xl sm:text-8xl md:text-9xl` → on 844px wide it hits `sm:` (640+) → text-8xl = 6rem = 96px, but at md: (768+) → text-9xl = 8rem = 128px, larger than 273px ring diameter visually overflows
+## New components
 
-# Fix Fullscreen Layout on Mobile Landscape
+### `src/components/TimerStyleSelector.tsx` (new)
+- Reads/writes `focus25-timer-style` in localStorage; values: `circle` | `digital` | `traffic`
+- Reads/writes `focus25-show-clock` boolean in localStorage
+- Renders, matching `ThemeSwitcher` style:
+  - Label "Timer style" + 3 small pill buttons (Circle / Digital / Traffic)
+  - Toggle Switch + label "Show current time"
+  - Small "Reset to defaults" link when style != circle or clock on
+- Exposes a tiny event-based subscription so `Timer.tsx` re-renders when changes happen (use a custom hook `useTimerStyle()` returning `{ style, setStyle, showClock, setShowClock }` backed by `useState` + a window event `'focus25-timerstyle-change'`).
 
-## Problems
-1. In landscape, `min-h-screen` + fixed margins (mb-8, mt-10) + p-6 push content past viewport edges → tabs/buttons cut off
-2. Timer text scales by viewport width breakpoints (`sm:`/`md:`) but ring scales by the smaller of width/height → in landscape the text breakpoint triggers `text-9xl` while the ring stays small → text overflows ring
+### `src/components/timer-styles/DigitalTimer.tsx` (new)
+- Pure presentational. Props: `time: string`, `modeLabel: string`, `isBreak: boolean`, `size: number` (used in fullscreen for scaling).
+- Layout: massive monospace digital numerals, thin uppercase mode label below. No ring. Uses `tabular-nums font-light`. Color follows current foreground; no break-color flood (keeps it minimal). Mode label colored with primary/secondary accent dot.
 
-## Fix in `src/components/Timer.tsx` (fullscreen branch only)
+### `src/components/timer-styles/TrafficLightTimer.tsx` (new)
+- Pure presentational. Props: `time`, `modeLabel`, `mode`, `progress`, `size`.
+- Layout: 3 stacked circles (vertical on tall, horizontal on wide via `flex-col sm:flex-row` choice driven by aspect — keep simple: always vertical). Active light per mode:
+  - `focus` → red lit
+  - `shortBreak` → yellow lit
+  - `longBreak` → green lit
+- Inactive lights dimmed to `bg-muted/30`. Active light uses theme tokens (`bg-primary` for focus accent or fixed `#ef4444 / #facc15 / #22c55e`? Use fixed traffic colors for clarity, with subtle `shadow-[0_0_24px_color]`).
+- Time text shown beside/below the lights (large tabular-nums). Mode label small uppercase.
 
-1. **Tighter centered layout that always fits**:
-   - Replace `min-h-screen` + `p-6` + fixed `mb-8`/`mt-10` with `h-screen`, `gap-4 sm:gap-6`, smaller padding (`p-3 sm:p-6`)
-   - Use `justify-center` and let flex distribute space; remove individual large margins
+### `src/components/CurrentClock.tsx` (new)
+- Shows `HH:MM` (24h, browser local). Updates via `setInterval(60_000)` aligned to next minute boundary on mount.
+- Tiny: `text-sm text-muted-foreground tabular-nums`.
+- Used only in fullscreen overlay (top-right, with safe spacing from the exit button — exit button stays top-right, clock just below it OR exit moves slightly: place clock at `top-3 left-3`, exit stays `top-3 right-3` to avoid overlap on small screens).
 
-2. **Scale text from ring size, not from viewport breakpoints**:
-   - Compute time text size from `fsSize`: `fontSize: fsSize * 0.22` (inline style) — guarantees it fits inside the ring regardless of orientation
-   - Mode label: `fontSize: fsSize * 0.04`, capped reasonably
-   - Drop the Tailwind `text-7xl sm:text-8xl md:text-9xl` classes for the fullscreen timer
+## Hook
 
-3. **Ring sizing already responsive** (`min(innerH, innerW) * 0.7`) — keep, but reduce to `* 0.6` to leave room for tabs above and controls below in landscape. Add a max cap of ~600px so it doesn't get absurd on TVs while still huge.
+### `src/hooks/useTimerStyle.ts` (new, lightweight)
+```ts
+type TimerStyle = 'circle' | 'digital' | 'traffic';
+// reads localStorage, listens for window event 'focus25-timerstyle-change',
+// returns { style, setStyle, showClock, setShowClock, reset }
+```
+Setters dispatch the event so all subscribers update without a context.
 
-4. **Smaller controls in landscape**: use `size="default"` button + slightly smaller paddings on short viewports (use `h-screen` flexbox so it auto-fits)
+## `src/components/Timer.tsx` integration
+
+- Call `useTimerStyle()` at top.
+- Build a `<TimerDisplay>` inline switch:
+  - `circle` → existing `<ProgressRing>` + centered text (current code, unchanged)
+  - `digital` → `<DigitalTimer>`
+  - `traffic` → `<TrafficLightTimer>`
+- Use this same switch in **both** normal and fullscreen layouts, passing appropriate `size` (current default for normal; `fsSize` for fullscreen).
+- In fullscreen: render `<CurrentClock>` at `top-3 left-3` when `showClock` is true (works for all 3 styles).
+- Place `<TimerStyleSelector>` after `<ThemeSwitcher />` and before `<TimerPresets ...>`.
+
+## i18n
+
+Add to `UIStrings` in `src/i18n/types.ts`:
+- `timerStyle`, `styleCircle`, `styleDigital`, `styleTraffic`, `showCurrentTime`
+
+Add translations to all 7 language files (en/it/fr/es/pt/hi/tl).
+
+## Performance
+
+- No new libs.
+- Clock re-renders once per minute only.
+- Digital/Traffic components are pure SVG-free divs/spans → cheaper than ring.
+- localStorage reads happen once at mount; updates via single window event.
 
 ## File Summary
 
-| File | Change |
+| File | Action |
 |------|--------|
-| `src/components/Timer.tsx` | Fullscreen branch: switch to `h-screen` flex layout, scale timer text from `fsSize` via inline style, reduce ring factor to 0.6, tighten paddings/gaps |
+| `src/hooks/useTimerStyle.ts` | New — style + clock toggle persistence |
+| `src/components/TimerStyleSelector.tsx` | New — selector UI |
+| `src/components/timer-styles/DigitalTimer.tsx` | New |
+| `src/components/timer-styles/TrafficLightTimer.tsx` | New |
+| `src/components/CurrentClock.tsx` | New — local time HH:MM, updates per minute |
+| `src/components/Timer.tsx` | Integrate selector + style switch in normal & fullscreen, render clock in fullscreen |
+| `src/i18n/types.ts` | Add 5 UI keys |
+| `src/i18n/{en,it,fr,es,pt,hi,tl}.ts` | Add translations |
 
