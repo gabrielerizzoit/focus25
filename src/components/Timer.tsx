@@ -366,6 +366,7 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
 
       {showAudio && <AudioPlayer />}
       <ThemeSwitcher />
+      <TimerStyleSelector />
       <TimerPresets
         onSelect={(focus, shortBreak) => updateSettings({ focus, shortBreak })}
         current={{ focus: settings.focus, shortBreak: settings.shortBreak }}
