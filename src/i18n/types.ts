@@ -39,11 +39,6 @@ export interface UIStrings {
   enableLongBreak: string;
   fullscreen: string;
   exitFullscreen: string;
-  timerStyle: string;
-  styleCircle: string;
-  styleDigital: string;
-  styleTraffic: string;
-  showCurrentTime: string;
 }
 
 export interface SEOPageContent {

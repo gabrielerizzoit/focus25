@@ -41,11 +41,6 @@ const fr: Translations = {
     enableLongBreak: 'Activer la longue pause',
     fullscreen: 'Plein écran',
     exitFullscreen: 'Quitter le plein écran',
-    timerStyle: 'Style du minuteur',
-    styleCircle: 'Cercle',
-    styleDigital: 'Digital',
-    styleTraffic: 'Feu tricolore',
-    showCurrentTime: 'Afficher l\'heure',
   },
   footer: {
     timers: 'Minuteurs',

@@ -41,11 +41,6 @@ const en: Translations = {
     enableLongBreak: 'Enable long break',
     fullscreen: 'Fullscreen',
     exitFullscreen: 'Exit fullscreen',
-    timerStyle: 'Timer style',
-    styleCircle: 'Circle',
-    styleDigital: 'Digital',
-    styleTraffic: 'Traffic light',
-    showCurrentTime: 'Show current time',
   },
   footer: {
     timers: 'Timers',

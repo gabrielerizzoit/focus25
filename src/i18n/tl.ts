@@ -41,11 +41,6 @@ const tl: Translations = {
     enableLongBreak: 'I-enable ang mahabang break',
     fullscreen: 'Buong screen',
     exitFullscreen: 'Lumabas sa buong screen',
-    timerStyle: 'Estilo ng timer',
-    styleCircle: 'Bilog',
-    styleDigital: 'Digital',
-    styleTraffic: 'Traffic light',
-    showCurrentTime: 'Ipakita ang kasalukuyang oras',
   },
   footer: {
     timers: 'Mga Timer', presetTimers: 'Mga Preset Timer', resources: 'Mga Resources',

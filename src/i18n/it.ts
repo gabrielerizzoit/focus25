@@ -41,11 +41,6 @@ const it: Translations = {
     enableLongBreak: 'Abilita pausa lunga',
     fullscreen: 'Schermo intero',
     exitFullscreen: 'Esci da schermo intero',
-    timerStyle: 'Stile timer',
-    styleCircle: 'Cerchio',
-    styleDigital: 'Digitale',
-    styleTraffic: 'Semaforo',
-    showCurrentTime: 'Mostra ora corrente',
   },
   footer: {
     timers: 'Timer',
