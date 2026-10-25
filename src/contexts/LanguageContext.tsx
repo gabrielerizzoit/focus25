@@ -9,7 +9,9 @@ interface LanguageContextValue {
   langPrefix: string;
 }
 
-const LanguageContext = createContext<LanguageContextValue | null>(null);
+// Keep one context instance across hot reloads so providers and consumers always match.
+const g = globalThis as unknown as { __focus25LangCtx?: React.Context<LanguageContextValue | null> };
+const LanguageContext = g.__focus25LangCtx ?? (g.__focus25LangCtx = createContext<LanguageContextValue | null>(null));
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const location = useLocation();
