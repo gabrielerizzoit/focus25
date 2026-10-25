@@ -163,7 +163,7 @@ const hi: Translations = {
   },
   legalPages: {
     terms: { title: 'सेवा की शर्तें — Focus25', description: 'Focus25 की सेवा की शर्तें।', content: '' },
-    privacy: { title: 'गोपनीयता नीति — Focus25', description: 'Focus25 की गोपनीयता नीति।', content: '' },
+    privacy: { title: 'गोपनीयता नीति — Focus25', description: 'Focus25 वेबसाइट और Android ऐप में आपके डेटा को कैसे संभालता है।', content: '' },
     'fair-use': { title: 'उचित उपयोग — Focus25', description: 'Focus25 की उचित उपयोग नीति।', content: '' },
     faq: { title: 'सामान्य प्रश्न — Focus25', description: 'Focus25 के बारे में FAQ।', content: '' },
     'how-it-works': { title: 'कैसे काम करता है — Focus25', description: 'जानें Focus25 कैसे काम करता है।', content: '' },

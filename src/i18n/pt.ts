@@ -163,7 +163,7 @@ const pt: Translations = {
   },
   legalPages: {
     terms: { title: 'Termos de Serviço — Focus25', description: 'Termos de serviço do Focus25.', content: '' },
-    privacy: { title: 'Política de Privacidade — Focus25', description: 'Política de privacidade do Focus25.', content: '' },
+    privacy: { title: 'Política de Privacidade — Focus25', description: 'Como o Focus25 trata seus dados no site e no app Android.', content: '' },
     'fair-use': { title: 'Uso Justo — Focus25', description: 'Política de uso justo do Focus25.', content: '' },
     faq: { title: 'Perguntas Frequentes — Focus25', description: 'FAQ do Focus25.', content: '' },
     'how-it-works': { title: 'Como Funciona — Focus25', description: 'Saiba como o Focus25 funciona.', content: '' },

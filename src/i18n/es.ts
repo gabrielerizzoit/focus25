@@ -1403,7 +1403,7 @@ const es: Translations = {
   },
   legalPages: {
     terms: { title: 'Términos de Servicio — Focus25', description: 'Términos de servicio del temporizador Pomodoro Focus25.', content: '' },
-    privacy: { title: 'Política de Privacidad — Focus25', description: 'Política de privacidad del temporizador Pomodoro Focus25.', content: '' },
+    privacy: { title: 'Política de Privacidad — Focus25', description: 'Cómo Focus25 gestiona tus datos en el sitio web y en la app de Android.', content: '' },
     'fair-use': { title: 'Uso Justo — Focus25', description: 'Política de uso justo de Focus25.', content: '' },
     faq: { title: 'Preguntas Frecuentes — Focus25', description: 'Preguntas frecuentes sobre Focus25.', content: '' },
     'how-it-works': { title: 'Cómo Funciona — Focus25', description: 'Descubre cómo funciona el temporizador Pomodoro Focus25.', content: '' },

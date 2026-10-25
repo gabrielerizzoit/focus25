@@ -1457,7 +1457,7 @@ const fr: Translations = {
   },
   legalPages: {
     terms: { title: 'Conditions d\'Utilisation — Focus25', description: 'Conditions d\'utilisation du minuteur Pomodoro Focus25.', content: '' },
-    privacy: { title: 'Politique de Confidentialité — Focus25', description: 'Politique de confidentialité du minuteur Pomodoro Focus25.', content: '' },
+    privacy: { title: 'Politique de Confidentialité — Focus25', description: 'Comment Focus25 traite vos données sur le site web et dans l’application Android.', content: '' },
     'fair-use': { title: 'Utilisation Équitable — Focus25', description: 'Politique d\'utilisation équitable de Focus25.', content: '' },
     faq: { title: 'FAQ — Focus25', description: 'Questions fréquemment posées sur Focus25.', content: '' },
     'how-it-works': { title: 'Comment ça Marche — Focus25', description: 'Découvrez comment fonctionne le minuteur Pomodoro Focus25.', content: '' },
