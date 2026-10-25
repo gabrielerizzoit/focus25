@@ -1,5 +1,6 @@
 import { Cloud, Coffee, Radio, Volume2 } from 'lucide-react';
-import { useAudio, type SoundType } from '@/hooks/useAudio';
+import type { SoundType } from '@/hooks/useAudio';
+import { useAudioContext } from '@/contexts/AudioContext';
 import { Slider } from '@/components/ui/slider';
 
 const sounds: { id: SoundType; label: string; icon: typeof Cloud }[] = [
@@ -8,8 +9,8 @@ const sounds: { id: SoundType; label: string; icon: typeof Cloud }[] = [
   { id: 'white-noise', label: 'Noise', icon: Radio },
 ];
 
-const AudioPlayer = () => {
-  const { activeSound, isPlaying, volume, playSound, setVolume } = useAudio();
+const AudioPlayer = ({ compact = false }: { compact?: boolean }) => {
+  const { activeSound, isPlaying, volume, playSound, setVolume } = useAudioContext();
 
   return (
     <div className="flex flex-col items-center gap-3 w-full max-w-xs mx-auto">
@@ -29,7 +30,7 @@ const AudioPlayer = () => {
           </button>
         ))}
       </div>
-      {activeSound && (
+      {activeSound && !compact && (
         <div className="flex items-center gap-2 w-full px-4">
           <Volume2 size={14} className="text-muted-foreground shrink-0" />
           <Slider

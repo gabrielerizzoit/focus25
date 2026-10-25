@@ -160,6 +160,7 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
             {isRunning ? ui.pause : ui.start}
           </Button>
         </div>
+        {showAudio && <AudioPlayer compact />}
       </div>
     );
   }
