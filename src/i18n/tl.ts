@@ -1505,7 +1505,7 @@ const tl: Translations = {
   },
   legalPages: {
     terms: { title: 'Mga Tuntunin ng Serbisyo — Focus25', description: 'Mga tuntunin ng serbisyo ng Focus25.', content: '' },
-    privacy: { title: 'Patakaran sa Privacy — Focus25', description: 'Patakaran sa privacy ng Focus25.', content: '' },
+    privacy: { title: 'Patakaran sa Privacy — Focus25', description: 'Paano pinangangasiwaan ng Focus25 ang iyong data sa website at sa Android app.', content: '' },
     'fair-use': { title: 'Fair Use — Focus25', description: 'Patakaran sa fair use ng Focus25.', content: '' },
     faq: { title: 'FAQ — Focus25', description: 'Mga madalas itanong tungkol sa Focus25.', content: '' },
     'how-it-works': { title: 'Paano Gumagana — Focus25', description: 'Alamin kung paano gumagana ang Focus25.', content: '' },

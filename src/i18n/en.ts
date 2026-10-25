@@ -1501,7 +1501,7 @@ const en: Translations = {
   },
   legalPages: {
     terms: { title: 'Terms of Service — Focus25', description: 'Terms of service for Focus25 Pomodoro timer.', content: '' },
-    privacy: { title: 'Privacy Policy — Focus25', description: 'Privacy policy for Focus25 Pomodoro timer.', content: '' },
+    privacy: { title: 'Privacy Policy — Focus25', description: 'How Focus25 handles your data on the website and in the Android app.', content: '' },
     'fair-use': { title: 'Fair Use — Focus25', description: 'Fair use policy for Focus25 Pomodoro timer.', content: '' },
     faq: { title: 'FAQ — Focus25', description: 'Frequently asked questions about Focus25.', content: '' },
     'how-it-works': { title: 'How It Works — Focus25', description: 'Learn how Focus25 Pomodoro timer works.', content: '' },

@@ -1392,7 +1392,7 @@ const it: Translations = {
   },
   legalPages: {
     terms: { title: 'Termini di Servizio — Focus25', description: 'Termini di servizio per il timer Pomodoro Focus25.', content: '' },
-    privacy: { title: 'Informativa sulla Privacy — Focus25', description: 'Informativa sulla privacy per il timer Pomodoro Focus25.', content: '' },
+    privacy: { title: 'Informativa sulla Privacy — Focus25', description: 'Come Focus25 gestisce i tuoi dati sul sito web e nell’app Android.', content: '' },
     'fair-use': { title: 'Fair Use — Focus25', description: 'Politica fair use per il timer Pomodoro Focus25.', content: '' },
     faq: { title: 'FAQ — Focus25', description: 'Domande frequenti su Focus25.', content: '' },
     'how-it-works': { title: 'Come Funziona — Focus25', description: 'Scopri come funziona il timer Pomodoro Focus25.', content: '' },
