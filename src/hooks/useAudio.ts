@@ -57,7 +57,7 @@ export function useAudio() {
     if (audioRef.current) audioRef.current.volume = v;
   }, []);
 
-  useEffect(() => () => stopCurrent(), [stopCurrent]);
+
 
   return { activeSound, isPlaying, volume, playSound, togglePlay, setVolume, stopCurrent };
 }

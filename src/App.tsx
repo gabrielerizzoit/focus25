@@ -4,6 +4,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { AudioProvider } from "@/contexts/AudioContext";
 import Index from "./pages/Index";
 import Blog from "./pages/Blog";
 import NotFound from "./pages/NotFound";
@@ -66,7 +67,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <BrowserRouter>
-          <LanguageProvider>
+          <LanguageProvider><AudioProvider>
             <ScrollToTop />
             <Routes>
               {/* English routes */}
@@ -99,7 +100,7 @@ const App = () => (
 
               <Route path="*" element={<NotFound />} />
             </Routes>
-          </LanguageProvider>
+          </AudioProvider></LanguageProvider>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
