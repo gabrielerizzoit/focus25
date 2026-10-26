@@ -39,8 +39,11 @@ const en: Translations = {
     longBreakInterval: 'Long break after',
     rounds: 'rounds',
     enableLongBreak: 'Enable long break',
-    fullscreen: 'Fullscreen',
-    exitFullscreen: 'Exit fullscreen',
+    fullscreen: "Focus mode",
+    exitFullscreen: "Exit focus mode",
+    focusHintAutohide: "Controls hide automatically. Tap anywhere to show them again.",
+    focusHintTap: "Tap anywhere to show the controls",
+    focusModeCaption: "Full-screen timer, nothing else. Perfect for studying.",
   },
   footer: {
     timers: 'Timers',

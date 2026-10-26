@@ -39,8 +39,11 @@ const pt: Translations = {
     longBreakInterval: 'Pausa longa após',
     rounds: 'rodadas',
     enableLongBreak: 'Ativar pausa longa',
-    fullscreen: 'Tela cheia',
-    exitFullscreen: 'Sair da tela cheia',
+    fullscreen: "Modo foco",
+    exitFullscreen: "Sair do modo foco",
+    focusHintAutohide: "Os controles se ocultam sozinhos. Toque na tela para vê-los de novo.",
+    focusHintTap: "Toque na tela para ver os controles",
+    focusModeCaption: "Só o timer, em tela cheia. Perfeito para estudar.",
   },
   footer: {
     timers: 'Temporizadores', presetTimers: 'Temporizadores Predefinidos', resources: 'Recursos',

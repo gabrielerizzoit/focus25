@@ -19,6 +19,9 @@ interface TimerProps {
   showAudio?: boolean;
 }
 
+const HINTS_KEY = 'focus25-focus-hints';
+const HIDE_DELAY = 3000;
+
 function formatTime(seconds: number) {
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
@@ -33,13 +36,22 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
   const fsContainerRef = useRef<HTMLDivElement>(null);
   const [showSettings, setShowSettings] = useState(false);
   const { isFullscreen, isFallback, toggle, exit } = useFullscreen();
-  const [fsSize, setFsSize] = useState(() =>
-    typeof window !== 'undefined' ? Math.min(Math.min(window.innerHeight, window.innerWidth) * 0.6, 600) : 400
-  );
+  const calcFsSize = () => Math.max(160, Math.min(window.innerWidth * 0.88, 520, window.innerHeight - 260));
+  const [fsSize, setFsSize] = useState(() => (typeof window !== 'undefined' ? calcFsSize() : 400));
+  const [hintCount, setHintCount] = useState<number>(() => {
+    try { return Number(localStorage.getItem(HINTS_KEY)) || 0; } catch { return 0; }
+  });
+  const [hintsActive, setHintsActive] = useState(false);
+  const [controlsVisible, setControlsVisible] = useState(true);
+  const [showTapHint, setShowTapHint] = useState(false);
+  const hideTimerRef = useRef<number | null>(null);
+  const tapHintTimerRef = useRef<number | null>(null);
+  const focusInsideRef = useRef(false);
+  const isRunningRef = useRef(false);
 
   useEffect(() => {
     if (!isFullscreen) return;
-    const update = () => setFsSize(Math.min(Math.min(window.innerHeight, window.innerWidth) * 0.6, 600));
+    const update = () => setFsSize(calcFsSize());
     update();
     window.addEventListener('resize', update);
     window.addEventListener('orientationchange', update);
@@ -97,70 +109,147 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
     }
   };
 
+  isRunningRef.current = isRunning;
+
+  const clearHide = () => {
+    if (hideTimerRef.current) { window.clearTimeout(hideTimerRef.current); hideTimerRef.current = null; }
+  };
+  const scheduleHide = () => {
+    clearHide();
+    if (!isRunningRef.current || focusInsideRef.current) return;
+    hideTimerRef.current = window.setTimeout(() => setControlsVisible(false), HIDE_DELAY);
+  };
+  const reveal = () => {
+    setControlsVisible(true);
+    scheduleHide();
+  };
+
+  // Count fullscreen openings for hints
+  useEffect(() => {
+    if (!isFullscreen) { clearHide(); setControlsVisible(true); setShowTapHint(false); return; }
+    const next = hintCount + 1;
+    setHintsActive(next <= 5);
+    setHintCount(next);
+    try { localStorage.setItem(HINTS_KEY, String(next)); } catch { /* noop */ }
+    setControlsVisible(true);
+    scheduleHide();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isFullscreen]);
+
+  // Keep controls visible while paused; start auto-hide while running
+  useEffect(() => {
+    if (!isFullscreen) return;
+    if (!isRunning) { clearHide(); setControlsVisible(true); }
+    else scheduleHide();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isRunning, isFullscreen]);
+
+  // Tap hint when controls hide
+  useEffect(() => {
+    if (!isFullscreen || !hintsActive) return;
+    if (!controlsVisible) {
+      setShowTapHint(true);
+      tapHintTimerRef.current = window.setTimeout(() => setShowTapHint(false), 3000);
+    } else {
+      setShowTapHint(false);
+    }
+    return () => { if (tapHintTimerRef.current) window.clearTimeout(tapHintTimerRef.current); };
+  }, [controlsVisible, isFullscreen, hintsActive]);
+
+  useEffect(() => () => clearHide(), []);
+
+  // Keyboard: Space = start/pause, Escape = exit, any key reveals
+  useEffect(() => {
+    if (!isFullscreen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') { exit(); return; }
+      if (e.key === ' ' || e.code === 'Space') {
+        e.preventDefault();
+        if (isRunningRef.current) pause(); else handleStart();
+      }
+      reveal();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  });
+
   const modeLabel = mode === 'shortBreak' ? ui.shortBreak : mode === 'longBreak' ? ui.longBreak : ui.focus;
 
   // ============ Fullscreen layout ============
   if (isFullscreen) {
+    const fade = `transition-opacity duration-200 ${controlsVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`;
+    const focusHandlers = {
+      onFocus: () => { focusInsideRef.current = true; clearHide(); setControlsVisible(true); },
+      onBlur: (e: React.FocusEvent<HTMLDivElement>) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) { focusInsideRef.current = false; scheduleHide(); }
+      },
+    };
     return (
       <div
         ref={fsContainerRef}
-        className={`${isFallback ? 'fixed inset-0 z-50' : ''} bg-background text-foreground flex flex-col items-center justify-center h-screen w-full p-3 sm:p-6 gap-4 sm:gap-6 overflow-hidden`}
+        onMouseMove={reveal}
+        onPointerDown={reveal}
+        className={`${isFallback ? 'fixed inset-0 z-50' : ''} relative bg-background text-foreground flex flex-col items-center justify-center h-screen w-full p-3 overflow-hidden`}
+        style={{ cursor: controlsVisible ? 'auto' : 'none' }}
       >
-        <button
-          onClick={handleToggleFullscreen}
-          aria-label={ui.exitFullscreen}
-          className="absolute top-3 right-3 sm:top-4 sm:right-4 p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-colors"
-        >
-          {isFallback ? <X size={24} /> : <Minimize2 size={24} />}
-        </button>
+        <div className="flex flex-col items-center gap-6">
+          <div className={`flex gap-1 bg-muted/30 rounded-full p-1 ${fade}`} {...focusHandlers}>
+            {modes.map(({ id, label }) => (
+              <button
+                key={id}
+                tabIndex={0}
+                onClick={() => switchMode(id)}
+                className={`px-4 py-1.5 rounded-full text-sm transition-all ${
+                  mode === id
+                    ? (id !== 'focus' ? 'bg-secondary text-secondary-foreground' : 'bg-primary text-primary-foreground')
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
 
-        <div className="flex gap-1 bg-muted/30 rounded-full p-1">
-          {modes.map(({ id, label }) => (
-            <button
-              key={id}
-              onClick={() => switchMode(id)}
-              className={`px-4 py-1.5 rounded-full text-sm transition-all ${
-                mode === id
-                  ? (id !== 'focus' ? 'bg-secondary text-secondary-foreground' : 'bg-primary text-primary-foreground')
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
+          <div className="relative flex items-center justify-center" style={{ width: fsSize, height: fsSize }}>
+            <ProgressRing progress={progress} isBreak={isBreak} size={fsSize} strokeWidth={10} />
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <span className="font-light tracking-wider tabular-nums text-foreground leading-none" style={{ fontSize: fsSize * 0.22 }}>
+                {formatTime(remaining)}
+              </span>
+              <span className="uppercase tracking-[0.3em] text-muted-foreground mt-3" style={{ fontSize: Math.max(10, Math.min(fsSize * 0.04, 16)) }}>
+                {modeLabel}
+              </span>
+            </div>
+          </div>
 
-        <div className="relative flex items-center justify-center" style={{ width: fsSize, height: fsSize }}>
-          <ProgressRing progress={progress} isBreak={isBreak} size={fsSize} strokeWidth={10} />
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span
-              className="font-light tracking-wider tabular-nums text-foreground leading-none"
-              style={{ fontSize: fsSize * 0.22 }}
-            >
-              {formatTime(remaining)}
-            </span>
-            <span
-              className="uppercase tracking-[0.3em] text-muted-foreground mt-3"
-              style={{ fontSize: Math.max(10, Math.min(fsSize * 0.04, 16)) }}
-            >
-              {modeLabel}
-            </span>
+          <div className={`flex flex-col items-center gap-3 ${fade}`} {...focusHandlers}>
+            <div className="flex items-center gap-4">
+              <Button variant="ghost" size="icon" onClick={reset} className="rounded-full h-12 w-12" aria-label={ui.reset}>
+                <RotateCcw size={22} />
+              </Button>
+              <Button
+                onClick={isRunning ? pause : handleStart}
+                className={`rounded-full px-8 py-5 text-base ${isBreak ? 'bg-secondary text-secondary-foreground hover:bg-secondary/80' : ''}`}
+              >
+                {isRunning ? <Pause size={22} /> : <Play size={22} />}
+                {isRunning ? ui.pause : ui.start}
+              </Button>
+              <Button variant="ghost" size="icon" onClick={handleToggleFullscreen} className="rounded-full h-12 w-12" aria-label={ui.exitFullscreen}>
+                {isFallback ? <X size={22} /> : <Minimize2 size={22} />}
+              </Button>
+            </div>
+            {showAudio && <AudioPlayer compact />}
+            <p className={`text-xs text-muted-foreground/70 text-center max-w-xs min-h-4 ${hintsActive && isRunning ? '' : 'invisible'}`}>
+              {ui.focusHintAutohide}
+            </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" onClick={reset} className="rounded-full h-12 w-12">
-            <RotateCcw size={22} />
-          </Button>
-          <Button
-            onClick={isRunning ? pause : handleStart}
-            className={`rounded-full px-8 py-5 text-base ${isBreak ? 'bg-secondary text-secondary-foreground hover:bg-secondary/80' : ''}`}
-          >
-            {isRunning ? <Pause size={22} /> : <Play size={22} />}
-            {isRunning ? ui.pause : ui.start}
-          </Button>
+        <div
+          className={`absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-muted/40 text-xs text-muted-foreground transition-opacity duration-200 pointer-events-none ${showTapHint && !controlsVisible ? 'opacity-100' : 'opacity-0'}`}
+        >
+          {ui.focusHintTap}
         </div>
-        {showAudio && <AudioPlayer compact />}
       </div>
     );
   }
@@ -217,9 +306,17 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
           {isRunning ? <Pause size={20} /> : <Play size={20} />}
           {isRunning ? ui.pause : ui.start}
         </Button>
-        <Button variant="ghost" size="icon" onClick={handleToggleFullscreen} className="rounded-full" aria-label={ui.fullscreen}>
-          <Maximize2 size={18} />
+        <div className="w-10 h-10" aria-hidden="true" />
+      </div>
+
+      <div className="flex flex-col items-center gap-1.5 -mt-2">
+        <Button variant="outline" size="sm" onClick={handleToggleFullscreen} className="rounded-full gap-2">
+          <Maximize2 size={16} />
+          {ui.fullscreen}
         </Button>
+        {hintCount === 0 && (
+          <p className="text-xs text-muted-foreground/70 text-center max-w-xs">{ui.focusModeCaption}</p>
+        )}
       </div>
 
       {!defaultDuration && (

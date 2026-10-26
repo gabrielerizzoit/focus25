@@ -39,8 +39,11 @@ const es: Translations = {
     longBreakInterval: 'Pausa larga después de',
     rounds: 'rondas',
     enableLongBreak: 'Activar pausa larga',
-    fullscreen: 'Pantalla completa',
-    exitFullscreen: 'Salir de pantalla completa',
+    fullscreen: "Modo enfoque",
+    exitFullscreen: "Salir del modo enfoque",
+    focusHintAutohide: "Los controles se ocultan solos. Toca la pantalla para volver a verlos.",
+    focusHintTap: "Toca la pantalla para ver los controles",
+    focusModeCaption: "Solo el temporizador, a pantalla completa. Ideal para estudiar.",
   },
   footer: {
     timers: 'Temporizadores',

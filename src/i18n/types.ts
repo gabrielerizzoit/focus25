@@ -39,6 +39,9 @@ export interface UIStrings {
   enableLongBreak: string;
   fullscreen: string;
   exitFullscreen: string;
+  focusHintAutohide: string;
+  focusHintTap: string;
+  focusModeCaption: string;
 }
 
 export interface SEOPageContent {
