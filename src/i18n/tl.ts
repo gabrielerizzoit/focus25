@@ -39,8 +39,11 @@ const tl: Translations = {
     longBreakInterval: 'Mahabang break pagkatapos ng',
     rounds: 'rounds',
     enableLongBreak: 'I-enable ang mahabang break',
-    fullscreen: 'Buong screen',
-    exitFullscreen: 'Lumabas sa buong screen',
+    fullscreen: "Focus mode",
+    exitFullscreen: "Lumabas sa focus mode",
+    focusHintAutohide: "Kusang nawawala ang mga kontrol. I-tap kahit saan para makita ulit.",
+    focusHintTap: "I-tap ang screen para makita ang mga kontrol",
+    focusModeCaption: "Timer lang, full screen. Swak sa pag-aaral.",
   },
   footer: {
     timers: 'Mga Timer', presetTimers: 'Mga Preset Timer', resources: 'Mga Resources',

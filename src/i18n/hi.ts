@@ -39,8 +39,11 @@ const hi: Translations = {
     longBreakInterval: 'लंबा ब्रेक बाद',
     rounds: 'राउंड',
     enableLongBreak: 'लंबा ब्रेक सक्षम करें',
-    fullscreen: 'फ़ुलस्क्रीन',
-    exitFullscreen: 'फ़ुलस्क्रीन से बाहर निकलें',
+    fullscreen: "फोकस मोड",
+    exitFullscreen: "फोकस मोड से बाहर निकलें",
+    focusHintAutohide: "कंट्रोल अपने आप छिप जाते हैं। उन्हें फिर से देखने के लिए स्क्रीन पर कहीं भी टैप करें।",
+    focusHintTap: "कंट्रोल देखने के लिए स्क्रीन पर टैप करें",
+    focusModeCaption: "सिर्फ़ टाइमर, फ़ुल-स्क्रीन में। पढ़ाई के लिए बढ़िया।",
   },
   footer: {
     timers: 'टाइमर', presetTimers: 'प्रीसेट टाइमर', resources: 'संसाधन',

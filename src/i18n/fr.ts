@@ -39,8 +39,11 @@ const fr: Translations = {
     longBreakInterval: 'Longue pause après',
     rounds: 'tours',
     enableLongBreak: 'Activer la longue pause',
-    fullscreen: 'Plein écran',
-    exitFullscreen: 'Quitter le plein écran',
+    fullscreen: "Mode focus",
+    exitFullscreen: "Quitter le mode focus",
+    focusHintAutohide: "Les commandes se masquent automatiquement. Touchez l'écran pour les afficher.",
+    focusHintTap: "Touchez l'écran pour afficher les commandes",
+    focusModeCaption: "Le minuteur en plein écran, rien d'autre. Idéal pour réviser.",
   },
   footer: {
     timers: 'Minuteurs',
