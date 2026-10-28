@@ -8,6 +8,8 @@ const SOUND_FILES: Record<SoundType, string> = {
   'white-noise': '/audio/white-noise.wav',
 };
 
+export const SOUND_GAIN: Record<SoundType, number> = { 'white-noise': 1.0, rain: 0.62, cafe: 0.14 };
+
 export function useAudio() {
   const [activeSound, setActiveSound] = useState<SoundType | null>(null);
   const [volume, setVolumeState] = useState(0.5);
@@ -34,7 +36,7 @@ export function useAudio() {
     }
     const audio = new Audio(SOUND_FILES[sound]);
     audio.loop = true;
-    audio.volume = volume;
+    audio.volume = volume * SOUND_GAIN[sound];
     audio.play().catch(() => {});
     audioRef.current = audio;
     setActiveSound(sound);
@@ -54,8 +56,8 @@ export function useAudio() {
 
   const setVolume = useCallback((v: number) => {
     setVolumeState(v);
-    if (audioRef.current) audioRef.current.volume = v;
-  }, []);
+    if (audioRef.current && activeSound) audioRef.current.volume = v * SOUND_GAIN[activeSound];
+  }, [activeSound]);
 
 
 
