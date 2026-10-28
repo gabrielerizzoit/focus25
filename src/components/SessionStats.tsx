@@ -4,9 +4,9 @@ const SessionStats = () => {
   const { todaySessions, streak } = useSessionStats();
 
   return (
-    <div className="text-center text-sm text-muted-foreground space-y-1">
+    <div className="flex items-center justify-between text-sm text-foreground">
       <p>Today: {todaySessions} session{todaySessions !== 1 ? 's' : ''} completed</p>
-      {streak > 1 && <p className="text-xs">🔥 {streak} day streak</p>}
+      {streak > 1 && <p className="text-muted-foreground">🔥 {streak} day streak</p>}
     </div>
   );
 };

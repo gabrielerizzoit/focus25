@@ -275,5 +275,182 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
     );
   }
 
+  // ============ Normal layout ============
+  const fmtMin = (sec: number) => (sec % 60 ? `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, '0')}` : String(sec / 60));
+  const durationSummary = [settings.focus, settings.shortBreak, ...(settings.longBreakEnabled ? [settings.longBreak] : [])].map(fmtMin).join(' · ') + ' min';
+  const clean = (v: string) => v.replace(/[^0-9]/g, '').replace(/^0+(?=\d)/, '').slice(0, 2);
+
+  const durationsPanel = (
+    <div className="space-y-3 p-1">
+      {([
+        { key: 'focus' as const, label: ui.focusDuration, def: 25 * 60 },
+        { key: 'shortBreak' as const, label: ui.shortBreakDuration, def: 5 * 60 },
+        { key: 'longBreak' as const, label: ui.longBreakDuration, def: 15 * 60 },
+      ]).map(({ key, label, def }) => {
+        const totalSec = settings[key];
+        const mm = Math.floor(totalSec / 60);
+        const ss = totalSec % 60;
+        const commit = (newMm: number, newSs: number) => {
+          const total = Math.max(1, Math.min(99 * 60 + 59, newMm * 60 + newSs));
+          updateSettings({ [key]: total });
+        };
+        return (
+          <div key={key} className="flex items-center justify-between">
+            <label className="text-sm text-foreground">{label}</label>
+            <div className="flex items-center gap-1">
+              <input type="text" inputMode="numeric" pattern="[0-9]*" maxLength={2} value={String(mm)}
+                onChange={e => { const r = clean(e.target.value); commit(r === '' ? 0 : Math.min(99, Number(r)), ss); }}
+                onBlur={() => { if (mm * 60 + ss < 1) updateSettings({ [key]: def }); }}
+                className="w-12 bg-muted border border-border rounded px-2 py-1 text-sm text-foreground text-center"
+                aria-label={`${label} minutes`} />
+              <span className="text-sm text-muted-foreground">:</span>
+              <input type="text" inputMode="numeric" pattern="[0-9]*" maxLength={2} value={String(ss)}
+                onChange={e => { const r = clean(e.target.value); commit(mm, r === '' ? 0 : Math.min(59, Number(r))); }}
+                onBlur={() => { if (mm * 60 + ss < 1) updateSettings({ [key]: def }); }}
+                className="w-12 bg-muted border border-border rounded px-2 py-1 text-sm text-foreground text-center"
+                aria-label={`${label} seconds`} />
+            </div>
+          </div>
+        );
+      })}
+      <div className="flex items-center justify-between pt-3 border-t border-border">
+        <label className="text-sm text-foreground">{ui.longBreakInterval}</label>
+        <div className="flex items-center gap-1">
+          <input type="text" inputMode="numeric" pattern="[0-9]*" maxLength={2}
+            value={String(settings.longBreakInterval)} disabled={!settings.longBreakEnabled}
+            onChange={e => { const r = clean(e.target.value); updateSettings({ longBreakInterval: r === '' ? 1 : Math.max(1, Math.min(20, Number(r))) }); }}
+            className="w-12 bg-muted border border-border rounded px-2 py-1 text-sm text-foreground text-center disabled:opacity-50"
+            aria-label={ui.longBreakInterval} />
+          <span className="text-xs text-muted-foreground">{ui.rounds}</span>
+        </div>
+      </div>
+      <div className="flex items-center justify-between">
+        <label className="text-sm text-foreground">{ui.enableLongBreak}</label>
+        <Switch checked={settings.longBreakEnabled} onCheckedChange={(checked) => {
+          updateSettings({ longBreakEnabled: checked });
+          if (!checked && mode === 'longBreak') switchMode('focus');
+        }} />
+      </div>
+      <Button variant="ghost" size="sm" onClick={resetSettings} className="w-full text-xs text-muted-foreground hover:text-foreground">
+        {ui.resetDefaults}
+      </Button>
+    </div>
+  );
+
+  const ringSize = isDesktop ? 340 : 280;
+
+  return (
+    <div ref={fsContainerRef} className="w-full max-w-[1120px] mx-auto grid gap-8 lg:grid-cols-2 lg:gap-10">
+      <section className="flex flex-col items-center justify-center gap-6 lg:bg-card lg:border lg:border-border lg:rounded-3xl lg:p-8">
+        {!defaultDuration && (
+          <div className="flex gap-1 bg-muted/30 rounded-full p-1">
+            {modes.map(({ id, label }) => (
+              <button
+                key={id}
+                onClick={() => { switchMode(id); if (typeof window.gtag === 'function') window.gtag('event', 'mode_switch', { timer_mode: id }); }}
+                className={`px-4 py-1.5 rounded-full text-sm transition-all ${
+                  mode === id
+                    ? isBreak ? 'bg-secondary text-secondary-foreground' : 'bg-primary text-primary-foreground'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        )}
+
+        <div className="relative flex items-center justify-center">
+          <ProgressRing progress={progress} isBreak={isBreak} size={ringSize} strokeWidth={8} />
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
+            <span className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-wider text-foreground tabular-nums">
+              {formatTime(remaining)}
+            </span>
+            <span className="text-xs text-muted-foreground mt-1 capitalize">{modeLabel}</span>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-4">
+          <Button variant="secondary" size="icon" onClick={reset} aria-label={ui.reset}
+            className="rounded-full h-14 w-14 bg-muted text-foreground hover:bg-muted/80">
+            <RotateCcw size={20} />
+          </Button>
+          <Button
+            onClick={isRunning ? pause : handleStart}
+            className={`rounded-full h-14 px-12 text-lg font-semibold gap-2 ${isBreak ? 'bg-secondary text-secondary-foreground hover:bg-secondary/80' : ''}`}
+          >
+            {isRunning ? <Pause size={20} /> : <Play size={20} />}
+            {isRunning ? ui.pause : ui.start}
+          </Button>
+          <div className="w-14 h-14" aria-hidden="true" />
+        </div>
+
+        <div className="flex flex-col items-center gap-1.5 -mt-2">
+          <Button variant="outline" onClick={handleToggleFullscreen} className="rounded-full gap-2 px-5">
+            <Maximize2 size={16} />
+            {ui.fullscreen}
+          </Button>
+          {hintCount === 0 && (
+            <p className="text-xs text-muted-foreground/70 text-center max-w-xs">{ui.focusModeCaption}</p>
+          )}
+        </div>
+      </section>
+
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-1 lg:content-between">
+        <Group title={ui.groupTimer}>
+          {!defaultDuration && (
+            <>
+              <div className="flex items-center justify-between gap-4 px-4 py-3">
+                <div>
+                  <p className="text-sm text-foreground">{ui.autoSwitch}</p>
+                  <p className="text-xs text-muted-foreground">{ui.autoSwitchTooltip}</p>
+                </div>
+                <Switch checked={autoSwitch} onCheckedChange={setAutoSwitch} />
+              </div>
+              <button onClick={() => setShowSettings(true)} className="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-muted/30 transition-colors">
+                <span className="text-sm text-foreground">{ui.durations}</span>
+                <span className="flex items-center gap-1 text-sm text-muted-foreground">{durationSummary}<ChevronRight size={16} /></span>
+              </button>
+            </>
+          )}
+          <div className="px-4 py-3">
+            <TimerPresets
+              onSelect={(focus, shortBreak) => updateSettings({ focus, shortBreak })}
+              current={{ focus: settings.focus, shortBreak: settings.shortBreak }}
+            />
+          </div>
+        </Group>
+        {showAudio && (
+          <Group title={ui.groupSound}>
+            <div className="px-4 py-3"><AudioPlayer /></div>
+          </Group>
+        )}
+        <Group title={ui.groupAppearance}>
+          <div className="px-4 py-3"><ThemeSwitcher /></div>
+        </Group>
+        <Group title={ui.groupToday}>
+          <div className="px-4 py-3"><SessionStats /></div>
+        </Group>
+        <p className="text-xs text-muted-foreground/60 text-center md:col-span-2 lg:col-span-1">{ui.tabMessage}</p>
+      </div>
+
+      {isDesktop ? (
+        <Dialog open={showSettings} onOpenChange={setShowSettings}>
+          <DialogContent className="max-w-sm">
+            <DialogHeader><DialogTitle>{ui.durations}</DialogTitle></DialogHeader>
+            {durationsPanel}
+          </DialogContent>
+        </Dialog>
+      ) : (
+        <Drawer open={showSettings} onOpenChange={setShowSettings}>
+          <DrawerContent>
+            <DrawerHeader><DrawerTitle>{ui.durations}</DrawerTitle></DrawerHeader>
+            <div className="px-4 pb-8 max-w-md mx-auto w-full">{durationsPanel}</div>
+          </DrawerContent>
+        </Drawer>
+      )}
+    </div>
+  );
+};
 
 export default Timer;
