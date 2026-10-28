@@ -44,6 +44,11 @@ const es: Translations = {
     focusHintAutohide: "Los controles se ocultan solos. Toca la pantalla para volver a verlos.",
     focusHintTap: "Toca la pantalla para ver los controles",
     focusModeCaption: "Solo el temporizador, a pantalla completa. Ideal para estudiar.",
+    groupTimer: "Temporizador",
+    groupSound: "Sonido",
+    groupAppearance: "Apariencia",
+    groupToday: "Hoy",
+    durations: "Duraciones",
   },
   footer: {
     timers: 'Temporizadores',

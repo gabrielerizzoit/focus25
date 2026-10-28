@@ -44,6 +44,11 @@ const en: Translations = {
     focusHintAutohide: "Controls hide automatically. Tap anywhere to show them again.",
     focusHintTap: "Tap anywhere to show the controls",
     focusModeCaption: "Full-screen timer, nothing else. Perfect for studying.",
+    groupTimer: "Timer",
+    groupSound: "Sound",
+    groupAppearance: "Appearance",
+    groupToday: "Today",
+    durations: "Durations",
   },
   footer: {
     timers: 'Timers',

@@ -44,6 +44,11 @@ const fr: Translations = {
     focusHintAutohide: "Les commandes se masquent automatiquement. Touchez l'écran pour les afficher.",
     focusHintTap: "Touchez l'écran pour afficher les commandes",
     focusModeCaption: "Le minuteur en plein écran, rien d'autre. Idéal pour réviser.",
+    groupTimer: "Minuteur",
+    groupSound: "Sons",
+    groupAppearance: "Apparence",
+    groupToday: "Aujourd'hui",
+    durations: "Durées",
   },
   footer: {
     timers: 'Minuteurs',

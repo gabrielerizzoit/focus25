@@ -44,6 +44,11 @@ const hi: Translations = {
     focusHintAutohide: "कंट्रोल अपने आप छिप जाते हैं। उन्हें फिर से देखने के लिए स्क्रीन पर कहीं भी टैप करें।",
     focusHintTap: "कंट्रोल देखने के लिए स्क्रीन पर टैप करें",
     focusModeCaption: "सिर्फ़ टाइमर, फ़ुल-स्क्रीन में। पढ़ाई के लिए बढ़िया।",
+    groupTimer: "टाइमर",
+    groupSound: "ध्वनि",
+    groupAppearance: "रूप",
+    groupToday: "आज",
+    durations: "अवधि",
   },
   footer: {
     timers: 'टाइमर', presetTimers: 'प्रीसेट टाइमर', resources: 'संसाधन',
