@@ -44,6 +44,11 @@ const tl: Translations = {
     focusHintAutohide: "Kusang nawawala ang mga kontrol. I-tap kahit saan para makita ulit.",
     focusHintTap: "I-tap ang screen para makita ang mga kontrol",
     focusModeCaption: "Timer lang, full screen. Swak sa pag-aaral.",
+    groupTimer: "Timer",
+    groupSound: "Tunog",
+    groupAppearance: "Itsura",
+    groupToday: "Ngayon",
+    durations: "Mga Tagal",
   },
   footer: {
     timers: 'Mga Timer', presetTimers: 'Mga Preset Timer', resources: 'Mga Resources',

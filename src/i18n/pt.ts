@@ -44,6 +44,11 @@ const pt: Translations = {
     focusHintAutohide: "Os controles se ocultam sozinhos. Toque na tela para vê-los de novo.",
     focusHintTap: "Toque na tela para ver os controles",
     focusModeCaption: "Só o timer, em tela cheia. Perfeito para estudar.",
+    groupTimer: "Timer",
+    groupSound: "Som",
+    groupAppearance: "Aparência",
+    groupToday: "Hoje",
+    durations: "Durações",
   },
   footer: {
     timers: 'Temporizadores', presetTimers: 'Temporizadores Predefinidos', resources: 'Recursos',

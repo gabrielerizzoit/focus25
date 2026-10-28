@@ -44,6 +44,11 @@ const it: Translations = {
     focusHintAutohide: "I comandi si nascondono da soli. Tocca un punto qualsiasi per rivederli.",
     focusHintTap: "Tocca lo schermo per mostrare i comandi",
     focusModeCaption: "Solo il timer, a schermo intero. Perfetto per studiare.",
+    groupTimer: "Timer",
+    groupSound: "Suoni",
+    groupAppearance: "Aspetto",
+    groupToday: "Oggi",
+    durations: "Durate",
   },
   footer: {
     timers: 'Timer',

@@ -11,9 +11,10 @@ const sounds: { id: SoundType; label: string; icon: typeof Cloud }[] = [
 
 const AudioPlayer = ({ compact = false }: { compact?: boolean }) => {
   const { activeSound, isPlaying, volume, playSound, setVolume } = useAudioContext();
+  const playing = !!activeSound && isPlaying;
 
-  return (
-    <div className="flex flex-col items-center gap-3 w-full max-w-xs mx-auto">
+  if (compact) {
+    return (
       <div className="flex gap-2">
         {sounds.map(({ id, label, icon: Icon }) => (
           <button
@@ -30,18 +31,38 @@ const AudioPlayer = ({ compact = false }: { compact?: boolean }) => {
           </button>
         ))}
       </div>
-      {activeSound && !compact && (
-        <div className="flex items-center gap-2 w-full px-4">
-          <Volume2 size={14} className="text-muted-foreground shrink-0" />
-          <Slider
-            value={[volume * 100]}
-            onValueChange={([v]) => setVolume(v / 100)}
-            max={100}
-            step={1}
-            className="flex-1"
-          />
-        </div>
-      )}
+    );
+  }
+
+  return (
+    <div className="flex flex-col gap-3 w-full">
+      <div className="grid grid-cols-3 gap-2">
+        {sounds.map(({ id, label, icon: Icon }) => (
+          <button
+            key={id}
+            onClick={() => playSound(id)}
+            className={`flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-sm border transition-colors ${
+              activeSound === id && isPlaying
+                ? 'bg-primary/15 text-primary border-primary/60'
+                : 'bg-muted/50 text-foreground border-transparent hover:bg-muted'
+            }`}
+          >
+            <Icon size={16} />
+            {label}
+          </button>
+        ))}
+      </div>
+      <div className={`flex items-center gap-2 transition-opacity ${playing ? '' : 'opacity-40'}`}>
+        <Volume2 size={16} className="text-muted-foreground shrink-0" />
+        <Slider
+          value={[volume * 100]}
+          onValueChange={([v]) => setVolume(v / 100)}
+          max={100}
+          step={1}
+          className="flex-1"
+          aria-label="Volume"
+        />
+      </div>
     </div>
   );
 };

@@ -42,6 +42,11 @@ export interface UIStrings {
   focusHintAutohide: string;
   focusHintTap: string;
   focusModeCaption: string;
+  groupTimer: string;
+  groupSound: string;
+  groupAppearance: string;
+  groupToday: string;
+  durations: string;
 }
 
 export interface SEOPageContent {
