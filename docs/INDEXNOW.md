@@ -34,8 +34,11 @@ is harmless — the engines just re-check them.
 
 - The key file only exists on the live site after a Publish. Running the script
   before publishing returns `403: key not verified`.
-- `focus25.io` redirects to `www.focus25.io`. If a submission is rejected for
-  that reason, run it with the other host:
-  `INDEXNOW_HOST=www.focus25.io bun run indexnow`.
+- `focus25.io` redirects to `www.focus25.io`, and `api.indexnow.org` does not
+  follow the redirect when verifying the key (it returns `403`). The working
+  command is:
+  `INDEXNOW_HOST=www.focus25.io INDEXNOW_ENDPOINT=https://www.bing.com/indexnow bun run indexnow`.
+  Bing's endpoint verifies the key on `www.focus25.io` directly and shares the
+  URLs with the other IndexNow engines.
 - IndexNow covers Bing, Yandex, Seznam and Naver. Google is not part of
   IndexNow: for Google, keep the sitemap in Google Search Console.

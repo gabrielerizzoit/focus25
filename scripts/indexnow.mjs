@@ -22,7 +22,7 @@ import path from 'node:path';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PUBLIC_DIR = path.join(ROOT, 'public');
 const HOST = process.env.INDEXNOW_HOST || 'focus25.io';
-const ENDPOINT = 'https://api.indexnow.org/indexnow';
+const ENDPOINT = process.env.INDEXNOW_ENDPOINT || 'https://api.indexnow.org/indexnow';
 const KEY_FILE_RE = /^[0-9a-f]{32,128}\.txt$/;
 const MAX_PER_REQUEST = 10000;
 
@@ -49,10 +49,16 @@ function sitemapUrls() {
 function onHost(url) {
   try {
     const { hostname } = new URL(url);
-    return hostname === HOST || hostname === `www.${HOST}`;
+    return hostname === HOST || hostname === `www.${HOST}` || hostname === HOST.replace(/^www\./, '');
   } catch {
     return false;
   }
+}
+
+function toHost(url) {
+  const u = new URL(url);
+  u.hostname = HOST;
+  return u.toString();
 }
 
 function explainStatus(status, body) {
@@ -94,7 +100,7 @@ async function submitBatch(urls, key) {
 async function main() {
   const { key, file } = findKey();
   const given = process.argv.slice(2).filter((a) => !a.startsWith('-'));
-  const urls = [...new Set((given.length ? given : sitemapUrls()).filter(onHost))];
+  const urls = [...new Set((given.length ? given : sitemapUrls()).filter(onHost).map(toHost))];
 
   if (!urls.length) {
     throw new Error(`No URLs for host ${HOST} found — nothing to submit.`);
