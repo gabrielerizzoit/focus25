@@ -49,10 +49,16 @@ function sitemapUrls() {
 function onHost(url) {
   try {
     const { hostname } = new URL(url);
-    return hostname === HOST || hostname === `www.${HOST}`;
+    return hostname === HOST || hostname === `www.${HOST}` || hostname === HOST.replace(/^www\./, '');
   } catch {
     return false;
   }
+}
+
+function toHost(url) {
+  const u = new URL(url);
+  u.hostname = HOST;
+  return u.toString();
 }
 
 function explainStatus(status, body) {
