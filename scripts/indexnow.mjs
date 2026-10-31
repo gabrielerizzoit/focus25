@@ -100,7 +100,7 @@ async function submitBatch(urls, key) {
 async function main() {
   const { key, file } = findKey();
   const given = process.argv.slice(2).filter((a) => !a.startsWith('-'));
-  const urls = [...new Set((given.length ? given : sitemapUrls()).filter(onHost))];
+  const urls = [...new Set((given.length ? given : sitemapUrls()).filter(onHost).map(toHost))];
 
   if (!urls.length) {
     throw new Error(`No URLs for host ${HOST} found — nothing to submit.`);
