@@ -22,7 +22,7 @@ import path from 'node:path';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PUBLIC_DIR = path.join(ROOT, 'public');
 const HOST = process.env.INDEXNOW_HOST || 'focus25.io';
-const ENDPOINT = 'https://api.indexnow.org/indexnow';
+const ENDPOINT = process.env.INDEXNOW_ENDPOINT || 'https://api.indexnow.org/indexnow';
 const KEY_FILE_RE = /^[0-9a-f]{32,128}\.txt$/;
 const MAX_PER_REQUEST = 10000;
 
