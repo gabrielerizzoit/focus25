@@ -79,7 +79,7 @@ async function submitBatch(urls, key) {
   const payload = {
     host: HOST,
     key,
-    keyLocation: `https://${HOST}/indexnow-key.txt`,
+    keyLocation: `https://${HOST}/${key}.txt`,
     urlList: urls,
   };
   const response = await fetch(ENDPOINT, {
