@@ -1,26 +1,13 @@
-# Riquadro "Avvia il timer" più visibile negli articoli del blog
+# Add a "Timer sounds" on/off switch
 
-Obiettivo: far passare più lettori degli articoli al timer.
+## What changes
+- A new "Timer sounds" switch goes in the Sound box. It sits below the Rain/Café/Noise buttons and the volume slider. Its description appears underneath in smaller grey text, styled like the Auto-switch row. The switch stays visible even when no ambient sound is playing.
+- When the switch is off, the beeps in the last 5 seconds and the chime at the end of a session don't play. Everything else works as it does now: ambient sounds, the browser notification, the timer and auto-switch.
+- The switch is on by default. The choice is saved under "focus25-timer-sounds" and never expires. "Reset to defaults" leaves it alone.
+- A change takes effect right away, even while a session is running or during its last 5 seconds.
+- The switch is not added to fullscreen mode.
 
-## Cosa cambia per chi legge
-1. **Riquadro in alto**, subito sotto il titolo dell'articolo: frase breve ("Metti subito in pratica: 25 minuti di focus") e pulsante grande "Avvia 25 minuti di focus".
-2. **Riquadro a metà articolo**, con lo stesso invito, visibile mentre si legge.
-3. **Barra fissa in basso solo su telefono**, piccola, con il pulsante "Avvia il timer". Compare dopo un po' di scorrimento e si può chiudere con una X.
-4. Il pulsante finale già presente resta, con lo stesso testo nuovo.
-5. Toccando il pulsante si apre la home con il timer da 25 minuti pronto in cima alla pagina (non parte da solo: basta premere Start).
-
-Colori del tema attuale, nessun cambiamento alla home o alle pagine timer.
-
-## Misurazione
-Nuovo evento in Google Analytics `blog_cta_click`, con l'articolo e la posizione del pulsante (alto, metà, barra, fine). Così vedi quali articoli portano persone al timer.
-
-## Testi
-Nuove frasi tradotte in tutte e 7 le lingue, solo testo.
-
-## Dettagli tecnici
-- `BlogLayout.tsx`: componente `BlogCta` (varianti `top`, `inline`, `sticky`, `end`). Il riquadro centrale viene inserito dividendo `article.content` al primo `</h2>` dopo metà lunghezza; se non c'è, va dopo il contenuto.
-- I vecchi `content-cta` HTML dentro gli articoli vengono nascosti via CSS per non duplicare.
-- Barra mobile: `md:hidden`, appare dopo 30% di scroll, chiusura salvata in sessionStorage.
-- Link a `${langPrefix}/` con reset a 25 min solo se il timer non sta già girando.
-- Evento GA4 tramite `gtag` esistente, se presente.
-- Nuove chiavi in `UIStrings`: `blogCtaTitle`, `blogCtaText`, `blogCtaButton`, `blogCtaSticky`, `close`.
+## Technical details
+- `src/components/Timer.tsx`: hold `timerSounds` in state, starting from localStorage (`'0'` means off, anything else means on). Mirror it in a ref so the completion and countdown callbacks read the current value. Write to localStorage when it changes. Check the ref before calling `playChime()` (line 92) and `playBeep(...)` (line 111). In the Sound group (line 425), add a second `px-4 py-3` row with the label, the muted description and a `<Switch>`.
+- `src/i18n/types.ts`: add `timerSounds` and `timerSoundsDesc` to UIStrings.
+- Add the 7 given strings to en, it, fr, es, pt, hi and tl, next to `durations`.
