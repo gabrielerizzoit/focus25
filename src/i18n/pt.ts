@@ -49,6 +49,8 @@ const pt: Translations = {
     groupAppearance: "Aparência",
     groupToday: "Hoje",
     durations: "Durações",
+    timerSounds: "Sons do timer",
+    timerSoundsDesc: "Bipes nos últimos 5 segundos e um som ao fim da sessão",
   },
   footer: {
     timers: 'Temporizadores', presetTimers: 'Temporizadores Predefinidos', resources: 'Recursos',

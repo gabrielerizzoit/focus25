@@ -88,8 +88,18 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
     { id: 'longBreak', label: ui.longBreak },
   ];
 
+  const [timerSounds, setTimerSoundsState] = useState<boolean>(() => {
+    try { return localStorage.getItem('focus25-timer-sounds') !== '0'; } catch { return true; }
+  });
+  const timerSoundsRef = useRef(timerSounds);
+  const setTimerSounds = (v: boolean) => {
+    timerSoundsRef.current = v;
+    setTimerSoundsState(v);
+    try { localStorage.setItem('focus25-timer-sounds', v ? '1' : '0'); } catch {}
+  };
+
   const timer = useTimer(defaultDuration, (mode) => {
-    playChime();
+    if (timerSoundsRef.current) playChime();
     if (mode === 'focus') incrementSession();
     if (typeof window.gtag === 'function') {
       window.gtag('event', 'session_complete', { completed_mode: mode });
@@ -108,7 +118,7 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
   useEffect(() => {
     if (isRunning && remaining <= 5 && remaining > 0 && remaining !== lastBeepRef.current) {
       lastBeepRef.current = remaining;
-      playBeep(remaining === 1 ? 1000 : 800, 100);
+      if (timerSoundsRef.current) playBeep(remaining === 1 ? 1000 : 800, 100);
     }
     if (remaining > 5) lastBeepRef.current = -1;
   }, [remaining, isRunning]);
@@ -423,6 +433,13 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
         {showAudio && (
           <Group title={ui.groupSound}>
             <div className="px-4 py-3"><AudioPlayer /></div>
+            <div className="flex items-center justify-between gap-4 px-4 py-3">
+              <div>
+                <p className="text-sm text-foreground">{ui.timerSounds}</p>
+                <p className="text-xs text-muted-foreground">{ui.timerSoundsDesc}</p>
+              </div>
+              <Switch checked={timerSounds} onCheckedChange={setTimerSounds} />
+            </div>
           </Group>
         )}
         <Group title={ui.groupAppearance}>

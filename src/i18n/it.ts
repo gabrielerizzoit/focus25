@@ -49,6 +49,8 @@ const it: Translations = {
     groupAppearance: "Aspetto",
     groupToday: "Oggi",
     durations: "Durate",
+    timerSounds: "Suoni del timer",
+    timerSoundsDesc: "Beep negli ultimi 5 secondi e un suono a fine sessione",
   },
   footer: {
     timers: 'Timer',

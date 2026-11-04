@@ -49,6 +49,8 @@ const en: Translations = {
     groupAppearance: "Appearance",
     groupToday: "Today",
     durations: "Durations",
+    timerSounds: "Timer sounds",
+    timerSoundsDesc: "Beeps in the last 5 seconds and a sound when a session ends",
   },
   footer: {
     timers: 'Timers',

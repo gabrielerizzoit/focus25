@@ -49,6 +49,8 @@ const hi: Translations = {
     groupAppearance: "रूप",
     groupToday: "आज",
     durations: "अवधि",
+    timerSounds: "टाइमर की आवाज़ें",
+    timerSoundsDesc: "आखिरी 5 सेकंड में बीप और सत्र खत्म होने पर एक आवाज़",
   },
   footer: {
     timers: 'टाइमर', presetTimers: 'प्रीसेट टाइमर', resources: 'संसाधन',

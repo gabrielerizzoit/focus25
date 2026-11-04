@@ -49,6 +49,8 @@ const tl: Translations = {
     groupAppearance: "Itsura",
     groupToday: "Ngayon",
     durations: "Mga Tagal",
+    timerSounds: "Mga tunog ng timer",
+    timerSoundsDesc: "Mga beep sa huling 5 segundo at tunog kapag tapos na ang sesyon",
   },
   footer: {
     timers: 'Mga Timer', presetTimers: 'Mga Preset Timer', resources: 'Mga Resources',
