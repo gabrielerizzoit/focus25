@@ -311,13 +311,13 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
               <input type="text" inputMode="numeric" pattern="[0-9]*" maxLength={2} value={String(mm)}
                 onChange={e => { const r = clean(e.target.value); commit(r === '' ? 0 : Math.min(99, Number(r)), ss); }}
                 onBlur={() => { if (mm * 60 + ss < 1) updateSettings({ [key]: def }); }}
-                className="w-12 bg-muted border border-border rounded px-2 py-1 text-sm text-foreground text-center"
+                className="w-12 bg-muted border border-border rounded px-2 py-1 text-base md:text-sm text-foreground text-center"
                 aria-label={`${label} minutes`} />
               <span className="text-sm text-muted-foreground">:</span>
               <input type="text" inputMode="numeric" pattern="[0-9]*" maxLength={2} value={String(ss)}
                 onChange={e => { const r = clean(e.target.value); commit(mm, r === '' ? 0 : Math.min(59, Number(r))); }}
                 onBlur={() => { if (mm * 60 + ss < 1) updateSettings({ [key]: def }); }}
-                className="w-12 bg-muted border border-border rounded px-2 py-1 text-sm text-foreground text-center"
+                className="w-12 bg-muted border border-border rounded px-2 py-1 text-base md:text-sm text-foreground text-center"
                 aria-label={`${label} seconds`} />
             </div>
           </div>
@@ -329,7 +329,7 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
           <input type="text" inputMode="numeric" pattern="[0-9]*" maxLength={2}
             value={String(settings.longBreakInterval)} disabled={!settings.longBreakEnabled}
             onChange={e => { const r = clean(e.target.value); updateSettings({ longBreakInterval: r === '' ? 1 : Math.max(1, Math.min(20, Number(r))) }); }}
-            className="w-12 bg-muted border border-border rounded px-2 py-1 text-sm text-foreground text-center disabled:opacity-50"
+            className="w-12 bg-muted border border-border rounded px-2 py-1 text-base md:text-sm text-foreground text-center disabled:opacity-50"
             aria-label={ui.longBreakInterval} />
           <span className="text-xs text-muted-foreground">{ui.rounds}</span>
         </div>
