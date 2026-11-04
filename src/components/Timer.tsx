@@ -459,10 +459,10 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
           </DialogContent>
         </Dialog>
       ) : (
-        <Drawer open={showSettings} onOpenChange={setShowSettings}>
-          <DrawerContent>
+        <Drawer open={showSettings} onOpenChange={setShowSettings} repositionInputs={false}>
+          <DrawerContent className="max-h-[85dvh]">
             <DrawerHeader><DrawerTitle>{ui.durations}</DrawerTitle></DrawerHeader>
-            <div className="px-4 pb-8 max-w-md mx-auto w-full">{durationsPanel}</div>
+            <div className="px-4 pb-8 max-w-md mx-auto w-full overflow-y-auto">{durationsPanel}</div>
           </DrawerContent>
         </Drawer>
       )}
