@@ -49,6 +49,8 @@ const es: Translations = {
     groupAppearance: "Apariencia",
     groupToday: "Hoy",
     durations: "Duraciones",
+    timerSounds: "Sonidos del temporizador",
+    timerSoundsDesc: "Pitidos en los últimos 5 segundos y un sonido al terminar la sesión",
   },
   footer: {
     timers: 'Temporizadores',

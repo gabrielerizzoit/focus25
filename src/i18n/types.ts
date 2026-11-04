@@ -47,6 +47,8 @@ export interface UIStrings {
   groupAppearance: string;
   groupToday: string;
   durations: string;
+  timerSounds: string;
+  timerSoundsDesc: string;
 }
 
 export interface SEOPageContent {

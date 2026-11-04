@@ -49,6 +49,8 @@ const fr: Translations = {
     groupAppearance: "Apparence",
     groupToday: "Aujourd'hui",
     durations: "Durées",
+    timerSounds: "Sons du minuteur",
+    timerSoundsDesc: "Bips pendant les 5 dernières secondes et un son à la fin de la session",
   },
   footer: {
     timers: 'Minuteurs',
