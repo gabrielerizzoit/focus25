@@ -20,14 +20,14 @@ const OPT = 'https://tools.google.com/dlpage/gaoptout';
 export const privacyContent: Record<string, PrivacyContent> = {
   en: {
     heading: 'Privacy Policy',
-    lastUpdated: 'Last updated: October 25, 2026',
-    intro: 'Focus25 is a free Pomodoro timer available as a website (focus25.io) and as an Android app ("Focus25 – Pomodoro Timer"). This policy explains what data each of them handles.',
+    lastUpdated: "Last updated: November 20, 2026",
+    intro: "Focus25 is a free Pomodoro timer available as a website (focus25.io), as an Android app and as a Windows desktop app from the Microsoft Store (\"Focus25 – Pomodoro Timer\"). This policy explains what data each of them handles.",
     sections: [
-      { h: 'Android app', items: [
-        'The app does not collect, transmit or share any personal data.',
-        'It works entirely offline: it has no account, no analytics, no advertising and no internet access.',
-        'Your settings (timer durations, theme, sound volume) and your daily count of completed sessions are stored only on your device. They are deleted when you uninstall the app.',
-        'The app asks for permission to show notifications only to display the running timer and to tell you when a session ends. You can turn notifications off at any time in your device settings.',
+      { h: "Android and Windows apps", items: [
+        "Focus25 does not collect, store on any server or share any personal data.",
+        "The app works entirely offline and has no account, analytics or advertising.",
+        "Your settings (timer durations, theme, volume) and your session statistics are saved only on your device and are deleted when you uninstall the app.",
+        "On Android the app asks for permission to show notifications; on Windows it uses system notifications only to tell you when a session ends.",
       ] },
       { h: 'Website', items: [
         'The website does not require an account and does not ask for personal information.',
@@ -42,14 +42,14 @@ export const privacyContent: Record<string, PrivacyContent> = {
   },
   it: {
     heading: 'Informativa sulla Privacy',
-    lastUpdated: 'Ultimo aggiornamento: 25 ottobre 2026',
-    intro: 'Focus25 è un timer Pomodoro gratuito disponibile come sito web (focus25.io) e come app Android ("Focus25 – Pomodoro Timer"). Questa informativa spiega quali dati vengono gestiti da ciascuno.',
+    lastUpdated: "Ultimo aggiornamento: 20 novembre 2026",
+    intro: "Focus25 è un timer Pomodoro gratuito disponibile come sito web (focus25.io), come app Android e come app desktop per Windows dal Microsoft Store (\"Focus25 – Pomodoro Timer\"). Questa informativa spiega quali dati vengono gestiti da ciascuno.",
     sections: [
-      { h: 'App Android', items: [
-        "L'app non raccoglie, trasmette né condivide alcun dato personale.",
-        'Funziona interamente offline: non ha account, analytics, pubblicità né accesso a internet.',
-        'Le tue impostazioni (durate del timer, tema, volume) e il conteggio giornaliero delle sessioni completate sono salvati solo sul tuo dispositivo. Vengono eliminati quando disinstalli l’app.',
-        "L'app chiede il permesso di mostrare notifiche solo per visualizzare il timer in corso e avvisarti quando una sessione termina. Puoi disattivare le notifiche in qualsiasi momento dalle impostazioni del dispositivo.",
+      { h: "App Android e Windows", items: [
+        "Focus25 non raccoglie, non salva su alcun server e non condivide alcun dato personale.",
+        "L'app funziona interamente offline e non ha account, analytics né pubblicità.",
+        "Le tue impostazioni (durate del timer, tema, volume) e le statistiche delle sessioni sono salvate solo sul tuo dispositivo e vengono eliminate quando disinstalli l'app.",
+        "Su Android l'app chiede il permesso di mostrare notifiche; su Windows usa le notifiche di sistema solo per avvisarti quando una sessione termina.",
       ] },
       { h: 'Sito web', items: [
         'Il sito non richiede un account e non chiede informazioni personali.',
@@ -64,14 +64,14 @@ export const privacyContent: Record<string, PrivacyContent> = {
   },
   fr: {
     heading: 'Politique de Confidentialité',
-    lastUpdated: 'Dernière mise à jour : 25 octobre 2026',
-    intro: 'Focus25 est un minuteur Pomodoro gratuit disponible sous forme de site web (focus25.io) et d’application Android (« Focus25 – Pomodoro Timer »). Cette politique explique quelles données chacun d’eux traite.',
+    lastUpdated: "Dernière mise à jour : 20 novembre 2026",
+    intro: "Focus25 est un minuteur Pomodoro gratuit disponible sous forme de site web (focus25.io), d’application Android et d’application de bureau Windows sur le Microsoft Store (« Focus25 – Pomodoro Timer »). Cette politique explique quelles données chacun d’eux traite.",
     sections: [
-      { h: 'Application Android', items: [
-        'L’application ne collecte, ne transmet ni ne partage aucune donnée personnelle.',
-        'Elle fonctionne entièrement hors ligne : pas de compte, pas d’analyse, pas de publicité et pas d’accès à internet.',
-        'Vos réglages (durées, thème, volume) et votre nombre quotidien de sessions terminées sont stockés uniquement sur votre appareil. Ils sont supprimés lorsque vous désinstallez l’application.',
-        'L’application demande l’autorisation d’afficher des notifications uniquement pour montrer le minuteur en cours et vous prévenir à la fin d’une session. Vous pouvez désactiver les notifications à tout moment dans les réglages de l’appareil.',
+      { h: "Applications Android et Windows", items: [
+        "Focus25 ne collecte, ne stocke sur aucun serveur et ne partage aucune donnée personnelle.",
+        "L’application fonctionne entièrement hors ligne, sans compte, sans analyse et sans publicité.",
+        "Vos réglages (durées, thème, volume) et vos statistiques de sessions sont enregistrés uniquement sur votre appareil et supprimés lorsque vous désinstallez l’application.",
+        "Sur Android, l’application demande l’autorisation d’afficher des notifications ; sur Windows, elle utilise les notifications système uniquement pour vous prévenir à la fin d’une session.",
       ] },
       { h: 'Site web', items: [
         'Le site ne nécessite pas de compte et ne demande aucune information personnelle.',
@@ -86,14 +86,14 @@ export const privacyContent: Record<string, PrivacyContent> = {
   },
   es: {
     heading: 'Política de Privacidad',
-    lastUpdated: 'Última actualización: 25 de octubre de 2026',
-    intro: 'Focus25 es un temporizador Pomodoro gratuito disponible como sitio web (focus25.io) y como app de Android ("Focus25 – Pomodoro Timer"). Esta política explica qué datos gestiona cada uno.',
+    lastUpdated: "Última actualización: 20 de noviembre de 2026",
+    intro: "Focus25 es un temporizador Pomodoro gratuito disponible como sitio web (focus25.io), como app de Android y como app de escritorio para Windows en Microsoft Store (\"Focus25 – Pomodoro Timer\"). Esta política explica qué datos gestiona cada uno.",
     sections: [
-      { h: 'App de Android', items: [
-        'La app no recopila, transmite ni comparte ningún dato personal.',
-        'Funciona completamente sin conexión: no tiene cuenta, analíticas, publicidad ni acceso a internet.',
-        'Tus ajustes (duraciones, tema, volumen) y tu recuento diario de sesiones completadas se guardan solo en tu dispositivo. Se eliminan al desinstalar la app.',
-        'La app pide permiso para mostrar notificaciones solo para mostrar el temporizador en curso y avisarte cuando termina una sesión. Puedes desactivarlas en cualquier momento en los ajustes del dispositivo.',
+      { h: "Apps de Android y Windows", items: [
+        "Focus25 no recopila, no guarda en ningún servidor ni comparte ningún dato personal.",
+        "La app funciona completamente sin conexión y no tiene cuenta, analíticas ni publicidad.",
+        "Tus ajustes (duraciones, tema, volumen) y tus estadísticas de sesiones se guardan solo en tu dispositivo y se eliminan al desinstalar la app.",
+        "En Android la app pide permiso para mostrar notificaciones; en Windows usa las notificaciones del sistema solo para avisarte cuando termina una sesión.",
       ] },
       { h: 'Sitio web', items: [
         'El sitio no requiere cuenta ni pide información personal.',
@@ -108,14 +108,14 @@ export const privacyContent: Record<string, PrivacyContent> = {
   },
   pt: {
     heading: 'Política de Privacidade',
-    lastUpdated: 'Última atualização: 25 de outubro de 2026',
-    intro: 'Focus25 é um temporizador Pomodoro gratuito disponível como site (focus25.io) e como app Android ("Focus25 – Pomodoro Timer"). Esta política explica quais dados cada um trata.',
+    lastUpdated: "Última atualização: 20 de novembro de 2026",
+    intro: "Focus25 é um temporizador Pomodoro gratuito disponível como site (focus25.io), como app Android e como app de desktop para Windows na Microsoft Store (\"Focus25 – Pomodoro Timer\"). Esta política explica quais dados cada um trata.",
     sections: [
-      { h: 'App Android', items: [
-        'O app não coleta, transmite nem compartilha nenhum dado pessoal.',
-        'Funciona totalmente offline: não tem conta, análises, publicidade nem acesso à internet.',
-        'Suas configurações (durações, tema, volume) e a contagem diária de sessões concluídas ficam armazenadas apenas no seu dispositivo. São apagadas quando você desinstala o app.',
-        'O app pede permissão para mostrar notificações apenas para exibir o temporizador em andamento e avisar quando uma sessão termina. Você pode desativar as notificações a qualquer momento nas configurações do dispositivo.',
+      { h: "Apps Android e Windows", items: [
+        "O Focus25 não coleta, não armazena em nenhum servidor nem compartilha nenhum dado pessoal.",
+        "O app funciona totalmente offline e não tem conta, análises nem publicidade.",
+        "Suas configurações (durações, tema, volume) e suas estatísticas de sessões ficam salvas apenas no seu dispositivo e são apagadas quando você desinstala o app.",
+        "No Android o app pede permissão para mostrar notificações; no Windows usa as notificações do sistema apenas para avisar quando uma sessão termina.",
       ] },
       { h: 'Site', items: [
         'O site não exige conta e não pede informações pessoais.',
@@ -130,14 +130,14 @@ export const privacyContent: Record<string, PrivacyContent> = {
   },
   hi: {
     heading: 'गोपनीयता नीति',
-    lastUpdated: 'अंतिम अपडेट: 25 अक्टूबर 2026',
-    intro: 'Focus25 एक मुफ़्त Pomodoro टाइमर है जो वेबसाइट (focus25.io) और Android ऐप ("Focus25 – Pomodoro Timer") के रूप में उपलब्ध है। यह नीति बताती है कि इनमें से प्रत्येक कौन-सा डेटा संभालता है।',
+    lastUpdated: "अंतिम अपडेट: 20 नवंबर 2026",
+    intro: "Focus25 एक मुफ़्त Pomodoro टाइमर है जो वेबसाइट (focus25.io), Android ऐप और Microsoft Store से Windows डेस्कटॉप ऐप (\"Focus25 – Pomodoro Timer\") के रूप में उपलब्ध है। यह नीति बताती है कि इनमें से प्रत्येक कौन-सा डेटा संभालता है।",
     sections: [
-      { h: 'Android ऐप', items: [
-        'ऐप कोई भी व्यक्तिगत डेटा एकत्र, प्रसारित या साझा नहीं करता।',
-        'यह पूरी तरह ऑफ़लाइन काम करता है: इसमें कोई खाता, एनालिटिक्स, विज्ञापन या इंटरनेट एक्सेस नहीं है।',
-        'आपकी सेटिंग्स (टाइमर अवधि, थीम, वॉल्यूम) और पूरे किए गए सत्रों की दैनिक गिनती केवल आपके डिवाइस पर संग्रहीत होती है। ऐप अनइंस्टॉल करने पर ये हट जाती हैं।',
-        'ऐप सूचनाएँ दिखाने की अनुमति केवल चल रहे टाइमर को दिखाने और सत्र समाप्त होने पर बताने के लिए माँगता है। आप डिवाइस सेटिंग्स में कभी भी सूचनाएँ बंद कर सकते हैं।',
+      { h: "Android और Windows ऐप", items: [
+        "Focus25 कोई भी व्यक्तिगत डेटा एकत्र नहीं करता, किसी सर्वर पर संग्रहीत नहीं करता और साझा नहीं करता।",
+        "ऐप पूरी तरह ऑफ़लाइन काम करता है और इसमें कोई खाता, एनालिटिक्स या विज्ञापन नहीं है।",
+        "आपकी सेटिंग्स (टाइमर अवधि, थीम, वॉल्यूम) और सत्र आँकड़े केवल आपके डिवाइस पर सहेजे जाते हैं और ऐप अनइंस्टॉल करने पर हट जाते हैं।",
+        "Android पर ऐप सूचनाएँ दिखाने की अनुमति माँगता है; Windows पर यह सिस्टम सूचनाओं का उपयोग केवल सत्र समाप्त होने पर बताने के लिए करता है।",
       ] },
       { h: 'वेबसाइट', items: [
         'वेबसाइट के लिए खाते की आवश्यकता नहीं है और यह कोई व्यक्तिगत जानकारी नहीं माँगती।',
@@ -152,14 +152,14 @@ export const privacyContent: Record<string, PrivacyContent> = {
   },
   tl: {
     heading: 'Patakaran sa Privacy',
-    lastUpdated: 'Huling na-update: Oktubre 25, 2026',
-    intro: 'Ang Focus25 ay isang libreng Pomodoro timer na makukuha bilang website (focus25.io) at bilang Android app ("Focus25 – Pomodoro Timer"). Ipinapaliwanag ng patakarang ito kung anong data ang pinangangasiwaan ng bawat isa.',
+    lastUpdated: "Huling na-update: Nobyembre 20, 2026",
+    intro: "Ang Focus25 ay isang libreng Pomodoro timer na makukuha bilang website (focus25.io), bilang Android app at bilang Windows desktop app mula sa Microsoft Store (\"Focus25 – Pomodoro Timer\"). Ipinapaliwanag ng patakarang ito kung anong data ang pinangangasiwaan ng bawat isa.",
     sections: [
-      { h: 'Android app', items: [
-        'Hindi nangongolekta, nagpapadala o nagbabahagi ang app ng anumang personal na data.',
-        'Gumagana ito nang buong offline: walang account, walang analytics, walang advertising at walang internet access.',
-        'Ang iyong mga setting (tagal ng timer, tema, volume) at ang araw-araw na bilang ng natapos na session ay naka-store lamang sa iyong device. Nabubura ang mga ito kapag in-uninstall mo ang app.',
-        'Humihingi ang app ng pahintulot na magpakita ng notification para lamang ipakita ang tumatakbong timer at sabihin kapag natapos ang session. Maaari mong i-off ang mga notification anumang oras sa settings ng device.',
+      { h: "Mga app para sa Android at Windows", items: [
+        "Hindi nangongolekta, hindi nag-iimbak sa anumang server at hindi nagbabahagi ang Focus25 ng anumang personal na data.",
+        "Gumagana ang app nang buong offline at walang account, analytics o advertising.",
+        "Ang iyong mga setting (tagal ng timer, tema, volume) at ang iyong mga istatistika ng session ay naka-save lamang sa iyong device at nabubura kapag in-uninstall mo ang app.",
+        "Sa Android, humihingi ang app ng pahintulot na magpakita ng notification; sa Windows, gumagamit ito ng system notification para lamang sabihin kapag natapos ang session.",
       ] },
       { h: 'Website', items: [
         'Hindi nangangailangan ng account ang website at hindi ito humihingi ng personal na impormasyon.',
