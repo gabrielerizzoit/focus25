@@ -12,6 +12,7 @@ import TimerPage from "@/components/TimerPage";
 import BlogLayout from "@/components/BlogLayout";
 import LegalPage from "./pages/LegalPage";
 import ScrollToTop from "@/components/ScrollToTop";
+import AppPromoToast from "@/components/AppPromoToast";
 
 const queryClient = new QueryClient();
 
@@ -69,6 +70,7 @@ const App = () => (
         <BrowserRouter>
           <LanguageProvider><AudioProvider>
             <ScrollToTop />
+            <AppPromoToast />
             <Routes>
               {/* English routes */}
               <Route path="/" element={<Index />} />

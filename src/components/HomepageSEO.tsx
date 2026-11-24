@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { ArrowUp } from 'lucide-react';
+import { AppPromoSection } from '@/components/AppPromo';
 
 const HomepageSEO = () => {
   const { t, langPrefix } = useLanguage();
@@ -179,6 +180,8 @@ const HomepageSEO = () => {
           {seo.ctaText}
         </Button>
       </div>
+
+      <AppPromoSection />
 
       {/* FAQ */}
       <div>

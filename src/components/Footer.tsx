@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { AppPromoFooter } from '@/components/AppPromo';
 
 const Footer = () => {
   const { t, langPrefix } = useLanguage();
@@ -9,7 +10,7 @@ const Footer = () => {
   return (
     <footer className="w-full border-t border-border mt-16 py-8 px-4">
       <div className="max-w-4xl mx-auto">
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 text-sm">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-sm">
           <div>
             <h4 className="font-medium text-foreground mb-3">{f.timers}</h4>
             <ul className="space-y-1.5 text-muted-foreground">
@@ -51,6 +52,7 @@ const Footer = () => {
               </li>
             </ul>
           </div>
+          <AppPromoFooter />
         </div>
         <div className="flex flex-wrap justify-center gap-4 mt-6 text-xs text-muted-foreground">
           <Link to={p('/how-it-works')} className="hover:text-foreground transition-colors">{f.howItWorks}</Link>

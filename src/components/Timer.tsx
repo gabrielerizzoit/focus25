@@ -112,6 +112,9 @@ const Timer = ({ defaultDuration, showAudio = true }: TimerProps) => {
   });
 
   const { mode, remaining, totalDuration, isRunning, progress, settings, autoSwitch, setAutoSwitch, start, pause, reset, switchMode, updateSettings, resetSettings } = timer;
+  useEffect(() => {
+    document.documentElement.dataset.timerBusy = isRunning || isFullscreen ? '1' : '0';
+  }, [isRunning, isFullscreen]);
   const isBreak = mode !== 'focus';
   const modes = allModes.filter(m => m.id !== 'longBreak' || settings.longBreakEnabled);
 
